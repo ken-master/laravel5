@@ -44,9 +44,8 @@ class AuthController extends Controller {
 	public function postStore( RegisterUserRequest $request )
 	{
 
-		dd($this->user->save( $request->all() ));
-
-		//return redirect('auth/register')->with('message', $request->all() );
+		$this->user->save( $request->all() );
+		return redirect('auth/login')->with('message', "Successfully Registered!" );
 	}
 
 }

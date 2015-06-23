@@ -8,46 +8,46 @@
 
   <div class="register-box-body">
     <p class="login-box-msg">Register a new membership</p>
-    {{ print_r($errors) }}
-    <form action="http://laravel5.app/auth/store" method="post">
+    
+    <form action="/auth/store" method="post">
       
       <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
 
-      <div class="form-group has-feedback has-error">
+      <div class="form-group has-feedback {{ Session::get('has-error') }}">
         
         <label class="control-label" for="full_name">
-          <i class="fa fa-times-circle-o"></i> Input with error
+          <i class="fa fa-times-circle-o"></i> {{ $errors->first('full_name') }}
         </label>
 
         <input type="text" id="full_name" name="full_name" class="form-control" placeholder="Full name"/>
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
 
-      <div class="form-group has-feedback has-error">
-        <label class="control-label" for="full_name">
-          <i class="fa fa-times-circle-o"></i> Input with error
+      <div class="form-group has-feedback {{ Session::get('has-error') }}">
+        <label class="control-label" for="email">
+          <i class="fa fa-times-circle-o"></i> {{ $errors->first('email') }}
         </label>
 
-        <input type="email" name="email" class="form-control" placeholder="Email"/>
+        <input type="email" name="email" id="email" class="form-control" placeholder="Email"/>
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
 
-      <div class="form-group has-feedback has-error">
+      <div class="form-group has-feedback {{ Session::get('has-error') }}">
 
         <label class="control-label" for="full_name">
-          <i class="fa fa-times-circle-o"></i> Input with error
+          <i class="fa fa-times-circle-o"></i> {{ $errors->first('password') }}
         </label>
 
         <input type="password" name="password" class="form-control" placeholder="Password"/>
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
 
-      <div class="form-group has-feedback has-error">
-        <label class="control-label" for="full_name">
-          <i class="fa fa-times-circle-o"></i> Input with error
+      <div class="form-group has-feedback {{ Session::get('has-error') }}">
+        <label class="control-label" for="password_confirmation">
+          <i class="fa fa-times-circle-o"></i> {{ $errors->first('password_confirmation') }}
         </label>
 
-        <input type="password" name="password_confirmation" class="form-control" placeholder="Retype password"/>
+        <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" placeholder="Retype password"/>
         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
       </div>
 

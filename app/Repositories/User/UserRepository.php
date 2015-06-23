@@ -31,10 +31,10 @@ class UserRepository implements UserInterface {
 		$this->user->email = $data['email'];
 		$this->user->password = Hash::make($data['password']);
 		if( $this->user->save() ){
-			return 'success Adding DAta';	
+			return true;	
 		}
 		
-		return 'failed inserting';
+		return false;
 	}
 
 }

@@ -2,6 +2,8 @@
 
 use App\Http\Requests\Request;
 
+
+
 class RegisterUserRequest extends Request {
 
 	/**
@@ -29,5 +31,11 @@ class RegisterUserRequest extends Request {
 			
 		];
 	}
+
+
+	
+
+
+	
 
 }
