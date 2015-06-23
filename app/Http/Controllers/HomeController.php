@@ -1,5 +1,8 @@
 <?php namespace App\Http\Controllers;
 
+
+use App\Repositories\User\UserInterface;
+
 class HomeController extends Controller {
 
 	/*
@@ -12,15 +15,15 @@ class HomeController extends Controller {
 	| controller as you wish. It is just here to get your app started!
 	|
 	*/
-
+	protected $user;
 	/**
 	 * Create a new controller instance.
 	 *
 	 * @return void
 	 */
-	public function __construct()
+	public function __construct(UserInterface $user)
 	{
-		
+		$this->user = $user;
 	}
 
 	/**
@@ -30,7 +33,17 @@ class HomeController extends Controller {
 	 */
 	public function getIndex()
 	{
+
+
+
+		dd($this->user->get());
 		return view('home');
+	}
+
+
+	public function getTest()
+	{
+		dd('ken was here');
 	}
 
 }

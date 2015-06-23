@@ -1,6 +1,12 @@
 <?php namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RegisterUserRequest;
+
+
+use App\Services\UserService;
+
+use Illuminate\Http\Request;
 
 
 class AuthController extends Controller {
@@ -10,14 +16,14 @@ class AuthController extends Controller {
 	*
 	*
 	*/
-	public function __construct()
+	public function __construct(UserService $user)
 	{
-
+		$this->user = $user;
 	}
 
 	public function getIndex()
 	{
-
+		return view('auth.login');
 	}
 
 	public function getLogin()
@@ -29,7 +35,18 @@ class AuthController extends Controller {
 
 	public function getRegister()
 	{
+
+
 		return view('auth.register');
+	}
+
+
+	public function postStore( RegisterUserRequest $request )
+	{
+
+		dd($this->user->save( $request->all() ));
+
+		//return redirect('auth/register')->with('message', $request->all() );
 	}
 
 }

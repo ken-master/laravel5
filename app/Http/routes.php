@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@getIndex');
 
-Route::get('home', '');
+
 
 Route::resource( 'admin', 'Admin\AdminController' );
 
