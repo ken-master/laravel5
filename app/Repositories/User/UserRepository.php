@@ -19,7 +19,7 @@ class UserRepository implements UserInterface {
 	}
 
 
-	public function get()
+	public function get(int $id = null)
 	{
 		return $this->user->all();
 	}
@@ -37,4 +37,8 @@ class UserRepository implements UserInterface {
 		return false;
 	}
 
+	public function delete()
+	{
+		return false;
+	}
 }

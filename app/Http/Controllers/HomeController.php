@@ -36,7 +36,7 @@ class HomeController extends Controller {
 
 
 
-		dd($this->user->get());
+		//dd($this->user->get());
 		return view('home');
 	}
 

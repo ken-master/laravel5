@@ -13,9 +13,9 @@
 
 Route::get('/', 'HomeController@getIndex');
 
+//Route::resource( 'admin', 'Admin\AdminController' );
 
 
-Route::resource( 'admin', 'Admin\AdminController' );
 
 
 //implicit controllers
@@ -24,3 +24,6 @@ Route::controllers([
 	'home' => 'HomeController'
 	//'password' => 'Auth\PasswordController',
 ]);
+
+
+Route::resource( 'user', 'UserController' );

@@ -5,12 +5,12 @@
 interface UserInterface {
 
 
-	public function get();
+	public function get(int $id = null);
 
 	//public function update();
 
 	public function save(array $data);
 
-	//public function delete();
+	public function delete();
 
 }
