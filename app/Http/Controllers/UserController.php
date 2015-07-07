@@ -5,7 +5,19 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
+//repository
+use App\Services\UserService;
+
 class UserController extends Controller {
+
+
+	protected $user;
+
+	public function __construct(UserService $user)
+	{
+		$this->user = $user;
+	}
+
 
 	/**
 	 * Display a listing of the resource.
@@ -14,8 +26,10 @@ class UserController extends Controller {
 	 */
 	public function index()
 	{
-		//
-		return view( 'users.index' );
+		
+		$data = $this->user->get();
+
+		return view( 'users.index' )->with('data' , $data);
 	}
 
 	/**

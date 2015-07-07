@@ -13,6 +13,11 @@ class UserService{
 	}
 
 
+
+	public function get($id = null){
+		return $this->user->get($id);
+	}
+
 	public function save(array $data)
 	{
 

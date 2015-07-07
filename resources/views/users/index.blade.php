@@ -16,6 +16,9 @@
                   </div>
                 </div><!-- /.box-header -->
                 <div class="box-body">
+
+               
+
                   <table class="table table-bordered">
                     <tr>
                       <th style="width: 10px">#id</th>
@@ -23,9 +26,11 @@
                       <th>Roles</th>
                       <th class="pull-right">Action</th>
                     </tr>
+
+                    @foreach($data as $user)
                     <tr>
-                      <td>1.</td>
-                      <td>Admin is trator</td>
+                      <td>{{ $user->id  }}.</td>
+                      <td>{{ $user->name }}</td>
                       <td>
                         Administrator
                       </td>
@@ -33,54 +38,16 @@
                       	<div class="btn-group pull-right">
 	                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action <span class="fa fa-caret-down"></span></button>
 	                   		<ul class="dropdown-menu">
-	                        <li><a href="#">View</a></li>
-	                        <li><a href="#">Edit</a></li>
+	                        <li><a href="{{ route('user.show', $user->id) }}">View</a></li>
+	                        <li><a href="{{ route('user.edit', $user->id) }}">Edit</a></li>
 	                        <li class="divider"></li>
-	                        <li><a href="#">Remove</a></li>
+	                        <li><a href="{{ route('user.destroy', $user->id) }}">Remove</a></li>
 	                      </ul>
 	                    </div>            		
 	                   </td>
                     </tr>
-                    	
-                    <tr>
-                      <td>1.</td>
-                      <td>Admin is trator</td>
-                      <td>
-                        Administrator
-                      </td>
-                      <td>
-                      	<div class="btn-group pull-right">
-	                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action <span class="fa fa-caret-down"></span></button>
-	                   		<ul class="dropdown-menu">
-	                        <li><a href="#">View</a></li>
-	                        <li><a href="#">Edit</a></li>
-	                        <li class="divider"></li>
-	                        <li><a href="#">Remove</a></li>
-	                      </ul>
-	                    </div>
-
-	                   </td>
-                    </tr>
-
-
-                    <tr>
-                      <td>1.</td>
-                      <td>Admin is trator</td>
-                      <td>
-                        Administrator
-                      </td>
-                      <td>
-                      	<div class="btn-group pull-right">
-	                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action <span class="fa fa-caret-down"></span></button>
-	                   		<ul class="dropdown-menu">
-	                        <li><a href="#">View</a></li>
-	                        <li><a href="#">Edit</a></li>
-	                        <li class="divider"></li>
-	                        <li><a href="#">Remove</a></li>
-	                      </ul>
-	                    </div>
-	                   </td>
-                    </tr>
+                   	@endforeach
+                   
 
 
                   </table>

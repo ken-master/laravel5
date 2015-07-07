@@ -21,3 +21,13 @@ Thank you for considering contributing to the Laravel framework! The contributio
 ### License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+
+
+### TO DO LIST
+
+1. USERS CRUD
+2. MODIFY Database migration
+3. USER ROLES
+    a. Create Role
+    b. Middle wares
+    c. Auth
