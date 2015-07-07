@@ -3,53 +3,101 @@
 
 
 @section('content')
-
 <div class="box">
-                <div class="box-header">
-                  <h3 class="box-title">Data Table With Full Features</h3>
+                <div class="box-header with-border">
+                  <h3 class="box-title">User Management</h3>
+                  <div class="box-tools">
+                    <div class="input-group">
+                      <input type="text" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
+                      <div class="input-group-btn">
+                        <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                      </div>
+                    </div>
+                  </div>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                  <table id="example1" class="table table-bordered table-striped">
-                    <thead>
-                      <tr>
-                        <th>Rendering engine</th>
-                        <th>Browser</th>
-                        <th>Platform(s)</th>
-                        <th>Engine version</th>
-                        <th>CSS grade</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                     
-                      <tr>
-                        <td>Misc</td>
-                        <td>PSP browser</td>
-                        <td>PSP</td>
-                        <td>-</td>
-                        <td>C</td>
-                      </tr>
-                      <tr>
-                        <td>Other browsers</td>
-                        <td>All others</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>U</td>
-                      </tr>
-                    </tbody>
-                    <tfoot>
-                      <tr>
-                        <th>Rendering engine</th>
-                        <th>Browser</th>
-                        <th>Platform(s)</th>
-                        <th>Engine version</th>
-                        <th>CSS grade</th>
-                      </tr>
-                    </tfoot>
+                  <table class="table table-bordered">
+                    <tr>
+                      <th style="width: 10px">#id</th>
+                      <th>Full Name</th>
+                      <th>Roles</th>
+                      <th class="pull-right">Action</th>
+                    </tr>
+                    <tr>
+                      <td>1.</td>
+                      <td>Admin is trator</td>
+                      <td>
+                        Administrator
+                      </td>
+                      <td>
+                      	<div class="btn-group pull-right">
+	                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action <span class="fa fa-caret-down"></span></button>
+	                   		<ul class="dropdown-menu">
+	                        <li><a href="#">View</a></li>
+	                        <li><a href="#">Edit</a></li>
+	                        <li class="divider"></li>
+	                        <li><a href="#">Remove</a></li>
+	                      </ul>
+	                    </div>            		
+	                   </td>
+                    </tr>
+                    	
+                    <tr>
+                      <td>1.</td>
+                      <td>Admin is trator</td>
+                      <td>
+                        Administrator
+                      </td>
+                      <td>
+                      	<div class="btn-group pull-right">
+	                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action <span class="fa fa-caret-down"></span></button>
+	                   		<ul class="dropdown-menu">
+	                        <li><a href="#">View</a></li>
+	                        <li><a href="#">Edit</a></li>
+	                        <li class="divider"></li>
+	                        <li><a href="#">Remove</a></li>
+	                      </ul>
+	                    </div>
+
+	                   </td>
+                    </tr>
+
+
+                    <tr>
+                      <td>1.</td>
+                      <td>Admin is trator</td>
+                      <td>
+                        Administrator
+                      </td>
+                      <td>
+                      	<div class="btn-group pull-right">
+	                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action <span class="fa fa-caret-down"></span></button>
+	                   		<ul class="dropdown-menu">
+	                        <li><a href="#">View</a></li>
+	                        <li><a href="#">Edit</a></li>
+	                        <li class="divider"></li>
+	                        <li><a href="#">Remove</a></li>
+	                      </ul>
+	                    </div>
+	                   </td>
+                    </tr>
+
+
                   </table>
                 </div><!-- /.box-body -->
+                <div class="box-footer clearfix">
+                  <ul class="pagination pagination-sm no-margin pull-right">
+                    <li><a href="#">&laquo;</a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">...</a></li>
+                    <li><a href="#">57</a></li>
+                    <li><a href="#">58</a></li>
+                    <li><a href="#">&raquo;</a></li>
+                  </ul>
+                </div>
               </div><!-- /.box -->
-            </div><!-- /.col -->
-
 	 
     
 
@@ -68,22 +116,5 @@
 
     <script src='/plugins/fastclick/fastclick.min.js'></script>
 
-	<script type="text/javascript">
-		$(function () {
-			$("#example1").dataTable({"bPaginate": true,
-				"bLengthChange": false,
-				"bFilter": false,
-				"bSort": true,
-				"bInfo": true,
-				"bAutoWidth": false});
-			$('#example2').dataTable({
-				"bPaginate": true,
-				"bLengthChange": false,
-				"bFilter": false,
-				"bSort": true,
-				"bInfo": true,
-				"bAutoWidth": false
-			});
-		});
-	</script>
+	
 @endsection
