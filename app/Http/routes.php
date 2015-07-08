@@ -27,3 +27,4 @@ Route::controllers([
 
 
 Route::resource( 'user', 'UserController' );
+// /Route::post('user/{id}','UserController@update');

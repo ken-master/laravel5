@@ -21,23 +21,24 @@ class UserRepository implements UserInterface {
 
 	public function get(int $id = null)
 	{
-		return $this->user->all();
+		$user = $this->user->all();
+		if (!is_null($id)){
+			$user = $this->user->all($id);
+		}
+		return $user;
 	}
 
 	public function save(array $data)
 	{
 
-		$this->user->name = $data['full_name'];
-		$this->user->email = $data['email'];
-		$this->user->password = Hash::make($data['password']);
 		if( $this->user->save() ){
-			return true;	
+			return $this;	
 		}
 		
 		return false;
 	}
 
-	public function delete()
+	public function delete(int $Id)
 	{
 		return false;
 	}

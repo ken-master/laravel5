@@ -11,7 +11,7 @@ class UserUpdateRequest extends Request {
 	 */
 	public function authorize()
 	{
-		return false;
+		return true;
 	}
 
 	/**
@@ -22,7 +22,10 @@ class UserUpdateRequest extends Request {
 	public function rules()
 	{
 		return [
-			//
+			'full_name' => 'required',
+			'email' => 'required|email|unique:users',
+			'password' => 'required|min:6|',
+			'password_confirmation' => 'required|min:6|same:password'
 		];
 	}
 

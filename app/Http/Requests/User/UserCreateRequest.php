@@ -22,7 +22,10 @@ class UserCreateRequest extends Request {
 	public function rules()
 	{
 		return [
-			//
+			'full_name' => 'required',
+			'email' => 'required|email|unique:users',
+			'password' => 'required|min:6|',
+			'password_confirmation' => 'required|min:6|same:password'
 		];
 	}
 

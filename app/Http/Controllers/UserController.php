@@ -1,12 +1,18 @@
 <?php namespace App\Http\Controllers;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 //repository
 use App\Services\UserService;
+
+//requests
+
+use App\Http\Requests\User\UserCreateRequest;
+use App\Http\Requests\User\UserUpdateRequest;
+use App\Http\Requests;
+//use Illuminate\Http\Request;
+
 
 class UserController extends Controller {
 
@@ -48,7 +54,7 @@ class UserController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(UserCreateRequest $request)
 	{
 		
 	}
@@ -81,9 +87,15 @@ class UserController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
-	{
-		//
+	public function update($id,UserUpdateRequest $request)
+	{	
+		//$this->request = new UserUpdateRequest;
+		$user = $this->user->get($id)->save($request->all());
+		//$this->user->save( $request->all() );
+
+		//var_dump($id);
+		dd( $user );
+		//exit;
 	}
 
 	/**
