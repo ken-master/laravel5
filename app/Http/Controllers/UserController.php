@@ -56,7 +56,10 @@ class UserController extends Controller {
 	 */
 	public function store(UserCreateRequest $request)
 	{
-		
+		//dd( $request->all() );
+		$this->user->save( $request->all() );
+
+		return redirect( '/user' )->with('message', 'Sucessfully Created');
 	}
 
 	/**
@@ -78,7 +81,10 @@ class UserController extends Controller {
 	 */
 	public function edit($id)
 	{
-		return view( 'users.edit' );
+		
+
+		$data['user'] = $this->user->get($id);
+		return view( 'users.edit', $data );
 	}
 
 	/**
@@ -89,13 +95,8 @@ class UserController extends Controller {
 	 */
 	public function update($id,UserUpdateRequest $request)
 	{	
-		//$this->request = new UserUpdateRequest;
-		$user = $this->user->get($id)->save($request->all());
-		//$this->user->save( $request->all() );
-
-		//var_dump($id);
-		dd( $user );
-		//exit;
+		$this->user->save( $request->all() );
+		return redirect( '/user/'.$id.'/edit' )->with('message', 'Sucessfully Updated');
 	}
 
 	/**

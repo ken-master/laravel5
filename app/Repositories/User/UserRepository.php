@@ -18,24 +18,37 @@ class UserRepository implements UserInterface {
 		$this->user = $user;
 	}
 
-
-	public function get(int $id = null)
+	/**
+	 *  return object
+	 */
+	public function get($id = null)
 	{
 		$user = $this->user->all();
 		if (!is_null($id)){
-			$user = $this->user->all($id);
+			$user = $this->user->find($id);
 		}
 		return $user;
 	}
 
-	public function save(array $data)
+	/**
+	 * 
+	 * return Boolean
+	 */
+	public function save( $data )
 	{
+		
+		$user = $this->user;
+		//check if Id exist, then update
+		if( isset($data['id'])  && !empty($data['id']) ){
+			$user =	$this->user->find($data['id']);
+		}
 
-		if( $this->user->save() ){
-			return $this;	
+		//convert them to object
+		foreach($data as $key => $value){
+			$user->$key = $value;
 		}
 		
-		return false;
+		return $user->save();
 	}
 
 	public function delete(int $Id)

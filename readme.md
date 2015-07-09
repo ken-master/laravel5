@@ -25,9 +25,9 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ### TO DO LIST
 
-1. USERS CRUD
-2. MODIFY Database migration
+1. USERS CRUD - 50%
+2. MODIFY Database migration - DONE
 3. USER ROLES
-    a. Create Role
+	a. Create Role
     b. Middle wares
     c. Auth

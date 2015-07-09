@@ -10,29 +10,37 @@
         <h3 class="box-title">Create User</h3>
     </div><!-- /.box-header -->
     <!-- form start -->
-    <form role="form">
+    <form role="form" action="{{{ route('user.store') }}}" method="POST" >
         <div class="box-body">
             
+            <input type="hidden" name="_method" value="POST">
+            <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+            
+           
             <div class="form-group">
-
-                <label for="full_name">Full Name:</label> <span class="text-red">Input Error</span>
-                <input type="email" class="form-control" id="full_name" placeholder="Enter Full Name">
+                <label for="full_name">First Name:</label> <span class="text-red">{{ $errors->first('first_name') }}</span>
+                <input type="input" name="first_name" class="form-control" id="first_name" placeholder="Enter First Name" value="">
             </div>
 
             <div class="form-group">
-                <label for="exampleInputEmail1">Email Address:</label> <span class="text-red">Input Error</span>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                <label for="full_name">Last Name:</label> <span class="text-red">{{ $errors->first('last_name') }}</span>
+                <input type="input" name="last_name" class="form-control" id="last_name" placeholder="Enter Last Name" value="">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email Address:</label> <span class="text-red">{{ $errors->first('email') }}</span>
+                <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" value="">
             </div>
 
 
             <div class="form-group">
-                <label for="exampleInputPassword1">Password:</label> <span class="text-red">Input Error</span>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <label for="exampleInputPassword1">Password:</label> <span class="text-red">{{ $errors->first('password') }}</span>
+                <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
             </div>
 
            <div class="form-group">
-                <label for="comfirm_password">Confirm Password:</label> <span class="text-red">Input Error</span>
-                <input type="password" class="form-control" id="comfirm_password" placeholder="Confirm Password">
+                <label for="comfirm_password">Confirm Password:</label> <span class="text-red">{{ $errors->first('password_confirmation') }}</span>
+                <input type="password" name="password_confirmation" class="form-control" id="comfirm_password" placeholder="Confirm Password">
             </div>
 
         </div><!-- /.box-body -->

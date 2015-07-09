@@ -3,6 +3,8 @@
 use App\Repositories\User\UserRepository;
 use App\Http\Requests\RegisterUserRequest;
 
+//use Illuminate\Contracts\Hashing\Hasher as Hash;
+
 class UserService{
 
 	protected $user;
@@ -20,16 +22,18 @@ class UserService{
 
 	public function save(array $data)
 	{
-
-		if ( isset($data['id']) && is_int($data['id']) ) {
-			$this->user->id = $data['id'];
+		//dd($data);
+		if ( isset($data['id']) && !empty($data['id']) ) {
+			$user['id'] = $data['id'];
 		}
-
-		$this->user->name 		= $data['full_name'];
-		$this->user->email 		= $data['email'];
-		$this->user->password 	= Hash::make($data['password']);
 		
-		return $this->user->save($data);
+		$user['first_name'] = $data['first_name'];
+		$user['last_name'] 	= $data['last_name'];
+		$user['email']		= $data['email'];
+		$user['password'] 	= \Hash::make($data['password']);
+		
+		//dd( $user );
+		return $this->user->save($user);
 	}
 
 

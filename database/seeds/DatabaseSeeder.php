@@ -12,9 +12,13 @@ class DatabaseSeeder extends Seeder {
 	 */
 	public function run()
 	{
-		Model::unguard();
+		//Model::unguard();
 
-		// $this->call('UserTableSeeder');
+		//initialize user table seeder
+		$this->call('UserTableSeeder');
+
+		//you can another seeder class here
+		
 	}
 
 }
