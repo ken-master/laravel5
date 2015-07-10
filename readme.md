@@ -25,7 +25,9 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ### TO DO LIST
 
-1. USERS CRUD - 50%
+1. USERS CRUD - 100%
+	a. applied pagination - done
+	   -note: create pagination with dots
 2. MODIFY Database migration - DONE
 3. USER ROLES
 	a. Create Role

@@ -12,6 +12,8 @@ class UserRepository implements UserInterface {
 
 	protected $user;
 
+	protected $limit = 2;
+
 
 	public function __construct(User $user)
 	{
@@ -23,7 +25,7 @@ class UserRepository implements UserInterface {
 	 */
 	public function get($id = null)
 	{
-		$user = $this->user->all();
+		$user = $this->user->paginate($this->limit);
 		if (!is_null($id)){
 			$user = $this->user->find($id);
 		}

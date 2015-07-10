@@ -6,7 +6,7 @@
 <div class="box">
                 <div class="box-header with-border">
                   <h3 class="box-title">User Management</h3>
-                  <div class="box-tools">
+                   <div class="box-tools">
                     <div class="input-group">
                       <input type="text" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
                       <div class="input-group-btn">
@@ -18,7 +18,7 @@
                 <div class="box-body">
 
                
-
+                <h4 class="box-title"><a href="{{route('user.create')}}">create user</a></h4>
                   <table class="table table-bordered">
                     <tr>
                       <th style="width: 10px">#id</th>
@@ -53,15 +53,15 @@
                   </table>
                 </div><!-- /.box-body -->
                 <div class="box-footer clearfix">
+      
                   <ul class="pagination pagination-sm no-margin pull-right">
-                    <li><a href="#">&laquo;</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">...</a></li>
-                    <li><a href="#">57</a></li>
-                    <li><a href="#">58</a></li>
-                    <li><a href="#">&raquo;</a></li>
+                    <li><a href="{{$data->url(1)}}">&laquo;</a></li>
+                    <li><a href="{{ $data->previousPageUrl() }}">Prev</a></li>
+                    @for ( $i = 1; $i <= $data->lastPage(); $i++ )
+                    <li><a href="{{ $data->url($i) }}">{{$i}}</a></li>
+                    @endfor
+                    <li><a href="{{ $data->nextPageUrl() }}">Next</a></li>
+                    <li><a href="{{$data->url( $data->lastPage() )}}">&raquo;</a></li>
                   </ul>
                 </div>
               </div><!-- /.box -->

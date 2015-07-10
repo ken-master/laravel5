@@ -7,7 +7,7 @@
 <div class="col-md-8">
     <div class="box box-primary">
     <div class="box-header">
-        <h3 class="box-title">Edit User</h3>
+        <h3 class="box-title">Edit User</h3> - <a href="{{ route('user.index') }}">Go back</a>
     </div><!-- /.box-header -->
     <!-- form start -->
     <form role="form" action="{{{ route('user.update', $user->id) }}}" method="POST" >
