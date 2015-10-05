@@ -15,16 +15,16 @@ class CreateRolesHasAccessLevelTable extends Migration {
 		Schema::create('roles_has_access_level', function(Blueprint $table)
 		{
 
-			$table->integer('roles_id');
-			$table->integer('access_level_id');
+			//$table->integer('roles_id');
+			//$table->integer('access_level_id');
 
 			//set foreign keys
 			$table->integer('roles_id')->unsigned();
-			$table->foreign('roles_id')->references('id')->on('roles');
+			//$table->foreign('roles_id')->references('id')->on('roles');
 
 			//set foreign keys
 			$table->integer('access_level_id')->unsigned();
-			$table->foreign('access_level_id')->references('id')->on('access_level');
+			//$table->foreign('access_level_id')->references('id')->on('access_levels');
 
 		});
 	}
