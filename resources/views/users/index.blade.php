@@ -53,16 +53,17 @@
                   </table>
                 </div><!-- /.box-body -->
                 <div class="box-footer clearfix">
-      
-                  <ul class="pagination pagination-sm no-margin pull-right">
+                {!! $data->render() !!}
+                  <!-- <ul class="pagination pagination-sm no-margin pull-right">
                     <li><a href="{{$data->url(1)}}">&laquo;</a></li>
                     <li><a href="{{ $data->previousPageUrl() }}">Prev</a></li>
                     @for ( $i = 1; $i <= $data->lastPage(); $i++ )
-                    <li><a href="{{ $data->url($i) }}">{{$i}}</a></li>
+                      <li><a href="{{ $data->url($i) }}">{{$i}}</a></li>
                     @endfor
                     <li><a href="{{ $data->nextPageUrl() }}">Next</a></li>
                     <li><a href="{{$data->url( $data->lastPage() )}}">&raquo;</a></li>
-                  </ul>
+                  </ul> -->
+
                 </div>
               </div><!-- /.box -->
 	 
