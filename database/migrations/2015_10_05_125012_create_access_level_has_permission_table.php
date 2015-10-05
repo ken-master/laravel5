@@ -19,12 +19,12 @@ class CreateAccessLevelHasPermissionTable extends Migration {
 			//$table->integer('permissions_id');
 
 			//set foreign keys
-			$table->integer('access_level_id')->unsigned();
-			//$table->foreign('access_level_id')->references('id')->on('access_levels');
+			$table->integer('access_level_id')->unsigned()->index();
+			$table->foreign('access_level_id')->references('id')->on('access_levels');
 
 			//set foreign keys
-			$table->integer('permissions_id')->unsigned();
-			//$table->foreign('permissions_id')->references('id')->on('permissions_id');
+			$table->integer('permissions_id')->unsigned()->index();
+			$table->foreign('permissions_id')->references('id')->on('permissions');
 
 			
 		});

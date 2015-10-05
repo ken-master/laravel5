@@ -19,12 +19,12 @@ class CreateRolesHasAccessLevelTable extends Migration {
 			//$table->integer('access_level_id');
 
 			//set foreign keys
-			$table->integer('roles_id')->unsigned();
-			//$table->foreign('roles_id')->references('id')->on('roles');
+			$table->integer('roles_id')->unsigned()->index();
+			$table->foreign('roles_id')->references('id')->on('roles');
 
 			//set foreign keys
-			$table->integer('access_level_id')->unsigned();
-			//$table->foreign('access_level_id')->references('id')->on('access_levels');
+			$table->integer('access_level_id')->unsigned()->index();
+			$table->foreign('access_level_id')->references('id')->on('access_levels');
 
 		});
 	}
