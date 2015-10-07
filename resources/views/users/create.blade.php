@@ -17,7 +17,7 @@
             <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
             
 
-             <div class="form-group">
+            <div class="form-group">
                 <label for="full_name">Username:</label> <span class="text-red">{{ $errors->first('username') }}</span>
                 <input type="input" name="username" class="form-control" id="username" placeholder="Enter First Name" value="">
             </div>
