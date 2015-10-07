@@ -13,10 +13,14 @@ class AccessLevel extends Model {
 	protected $table = 'access_level';
 
 
-
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
 	public function permissions()
 	{
-		return $this->hasMany('App\AccessLevelHasPermissions');
+		return $this->hasMany('App\Permissions', 'AccessLevelHasPermissions', 'access_level_id','permission_id');
 	}
+
+
 
 }
