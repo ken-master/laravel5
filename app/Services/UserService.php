@@ -27,11 +27,23 @@ class UserService{
 			$user['id'] = $data['id'];
 		}
 		
-		$user['first_name'] = $data['first_name'];
-		$user['last_name'] 	= $data['last_name'];
-		$user['email']		= $data['email'];
-		$user['password'] 	= \Hash::make($data['password']);
+
+		$user['username'] 		= $data['username'];
+		$user['email']			= $data['email'];
+		$user['password'] 		= \Hash::make($data['password']);
+		$user['role_id'] 		= $data['role'];
+		$user['status_id'] 		= $data['status'];
+
+		$user['first_name'] 	= $data['first_name'];
+		$user['last_name'] 		= $data['last_name'];
+		$user['middle_name'] 	= $data['middle_name'];
 		
+		$user['department'] 	= $data['department'];
+		$user['division'] 		= $data['division'];
+		$user['section'] 		= $data['section'];
+		$user['posistion'] 		= $data['posistion'];
+		$user['status'] 		= $data['status'];
+	
 		//dd( $user );
 		return $this->user->save($user);
 	}

@@ -57,6 +57,7 @@
             <div class="form-group">
                 <label for="full_name">Role:</label> <span class="text-red">{{ $errors->first('role') }}</span>
                 <select name="role" class="form-control">
+                    <option value="0">-----</option>
                     <option value="1">Admin</option>
                     <option value="2">Editor</option>
                     <option value="3">Writer</option>
@@ -105,6 +106,7 @@
         <div class="form-group">
             <label for="full_name">Status:</label> <span class="text-red">{{ $errors->first('status') }}</span>
             <select name="status" class="form-control">
+                <option value="0">-----</option>
                 <option value="1">is Active</option>
                 <option value="2">something</option>
                 <option value="3">something</option>
