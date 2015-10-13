@@ -12,16 +12,21 @@ class Roles extends Model {
 	protected $table = 'roles';
 
 	/**
-	* Uncomment if needed OPTIONAL
-	*/
-	// public function users()
- //    {
- //        return $this->belongsToMany('App\Users');
- //    }
+	 * Invert reference to USERs Table/Model
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 */
+	public function users()
+	{
+		return $this->belongsToMany('App\Users');
+	}
 
+	/***
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
 	public function access_level()
     {
-        return $this->hasMany('App\RoleHasAccessLevel');
+        return $this->hasMany('App\RoleHasAccessLevel','RoleHasAccessLevel', 'roles_id', 'access_level_id');
     }
 
 

@@ -11,4 +11,14 @@ class Permissions extends Model {
 	 */
 	protected $table = 'permissions';
 
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+	/*public function accessLevel()
+	{
+		return $this->belongsToMany('App\AccessLevel');
+	}*/
+
+
+
 }
