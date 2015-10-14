@@ -89,7 +89,7 @@ class UserRepository implements UserInterface {
 				$this->userProfiles
 					->where('user_id',$user->id)
 					->first()
-					->toArray()
+					
 			) 
 		){
 			$userProfiles = $this->userProfiles->where('user_id',$user->id)->first();
