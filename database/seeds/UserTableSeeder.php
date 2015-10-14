@@ -23,8 +23,16 @@ class UserTableSeeder extends Seeder{
 
 
 
-		DB::table('users')->insert($user);
+		$userId = DB::table('users')->insert($user);
 
+		//$userId;
+
+		/**
+		 * TO DO
+		 *	
+		 *	- get user id
+		 *	- seed profile table base on id
+		 */
 	}
 
 }
