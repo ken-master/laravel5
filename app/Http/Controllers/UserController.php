@@ -97,7 +97,9 @@ class UserController extends Controller {
 	 */
 	public function update($id,UserUpdateRequest $request)
 	{	
-		$this->user->save( $request->all() );
+		
+
+		$s = $this->user->save( $request->all() );
 		return redirect( '/user/'.$id.'/edit' )->with('message', 'Sucessfully Updated');
 	}
 

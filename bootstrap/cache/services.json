@@ -26,7 +26,8 @@
         "App\\Providers\\BusServiceProvider",
         "App\\Providers\\ConfigServiceProvider",
         "App\\Providers\\EventServiceProvider",
-        "App\\Providers\\RouteServiceProvider"
+        "App\\Providers\\RouteServiceProvider",
+        "Collective\\Html\\HtmlServiceProvider"
     ],
     "eager": [
         "Illuminate\\Auth\\AuthServiceProvider",
@@ -127,7 +128,11 @@
         "auth.password": "Illuminate\\Auth\\Passwords\\PasswordResetServiceProvider",
         "auth.password.tokens": "Illuminate\\Auth\\Passwords\\PasswordResetServiceProvider",
         "translator": "Illuminate\\Translation\\TranslationServiceProvider",
-        "translation.loader": "Illuminate\\Translation\\TranslationServiceProvider"
+        "translation.loader": "Illuminate\\Translation\\TranslationServiceProvider",
+        "html": "Collective\\Html\\HtmlServiceProvider",
+        "form": "Collective\\Html\\HtmlServiceProvider",
+        "Collective\\Html\\HtmlBuilder": "Collective\\Html\\HtmlServiceProvider",
+        "Collective\\Html\\FormBuilder": "Collective\\Html\\HtmlServiceProvider"
     },
     "when": {
         "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider": [],
@@ -140,6 +145,7 @@
         "Illuminate\\Queue\\QueueServiceProvider": [],
         "Illuminate\\Redis\\RedisServiceProvider": [],
         "Illuminate\\Auth\\Passwords\\PasswordResetServiceProvider": [],
-        "Illuminate\\Translation\\TranslationServiceProvider": []
+        "Illuminate\\Translation\\TranslationServiceProvider": [],
+        "Collective\\Html\\HtmlServiceProvider": []
     }
 }

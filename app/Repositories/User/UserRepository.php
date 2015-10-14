@@ -57,8 +57,7 @@ class UserRepository implements UserInterface {
 	{
 		
 		$user = $this->user;
-		$userProfiles = $this->userProfiles;
-
+		
 		//check if Id exist, then update
 		if( isset($data['id'])  && !empty($data['id']) ){
 			$user =	$this->user->find($data['id']);
@@ -66,20 +65,40 @@ class UserRepository implements UserInterface {
 
 
 		//insert Users
-		$user->username 	= $data['username'];
-		$user->email 		= $data['email'];
-		$user->password 	= $data['password'];
-		$user->role_id 		= $data['role_id'];
+		
+		if( isset($data['username'])  && !empty($data['username']) ){
+			$user->username 	= $data['username'];
+		}
+
+		if( isset($data['email'])  && !empty($data['email']) ){
+			$user->email 		= $data['email'];
+		}
+
+		$user->password 		= $data['password'];
+		$user->role_id 			= $data['role_id'];
 		$user->status_id 		= $data['status_id'];
 		$user->save();
 
+		
+		//User Profiles
+		$userProfiles = $this->userProfiles;
 
-		//get UserId inserted
-		$id = $user->id;
 
-		//dd($id);
+
+		if( !is_null(
+				$this->userProfiles
+					->where('user_id',$user->id)
+					->first()
+					->toArray()
+			) 
+		){
+			$userProfiles = $this->userProfiles->where('user_id',$user->id)->first();
+		//dd($userProfiles);
+		}
+	
+
 		//insert UserProfiles
-		$userProfiles->user_id 		= $id;
+		$userProfiles->user_id 		= $user->id;
 		$userProfiles->first_name 	= $data['first_name'];
 		$userProfiles->last_name 	= $data['last_name'];
 		$userProfiles->middle_name 	= $data['middle_name'];
