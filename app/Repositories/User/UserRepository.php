@@ -16,9 +16,13 @@ class UserRepository implements UserInterface {
 
 	protected $userProfiles;
 
-	protected $limit = 2;
+	protected $limit = 10;
 
-
+	/**
+	 * Inject Model Objects then instantiate
+	 * @param User
+	 * @param UserProfiles
+	 */
 	public function __construct(User $user, UserProfiles $userProfiles)
 	{
 		$this->user = $user;
@@ -26,11 +30,18 @@ class UserRepository implements UserInterface {
 	}
 
 	/**
-	 *  return object
+	 * @param  User Id
+	 * @return Users object wiht paginated list
 	 */
 	public function get($id = null)
 	{
-		$user = $this->user->paginate($this->limit);
+
+		$user = $this->user->with('profile')->paginate($this->limit);
+
+		/*foreach($user as $key => $value){
+			dd($value->profile);
+		}*/
+
 		if (!is_null($id)){
 			$user = $this->user->find($id);
 		}
@@ -38,8 +49,9 @@ class UserRepository implements UserInterface {
 	}
 
 	/**
-	 * Insert New Record, if User ID exist then UPDATE record
-	 * return Boolean
+	 * Insert or Update User Information
+	 * @param  Array
+	 * @return Boolean
 	 */
 	public function save( $data )
 	{
@@ -89,6 +101,10 @@ class UserRepository implements UserInterface {
 
 	}
 
+	/**
+	 * @param  int
+	 * @return Boolean
+	 */
 	public function delete(int $Id)
 	{
 		return false;

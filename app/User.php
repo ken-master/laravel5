@@ -48,7 +48,7 @@ class User extends Model {
 
 	public function profile()
     {
-        return $this->hasOne('App\UserProfiles');
+        return $this->hasOne('App\UserProfiles','user_id');
     }
 
     public function role()

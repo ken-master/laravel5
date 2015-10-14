@@ -19,28 +19,28 @@
 
             <div class="form-group">
                 <label for="full_name">Username:</label> <span class="text-red">{{ $errors->first('username') }}</span>
-                <input type="input" name="username" class="form-control" id="username" placeholder="Enter First Name" value="">
+                <input type="input" name="username" class="form-control" id="username" placeholder="Enter First Name" value="{{ old('username') }}">
             </div>
 
 
              <div class="form-group">
                 <label for="exampleInputEmail1">Email Address:</label> <span class="text-red">{{ $errors->first('email') }}</span>
-                <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" value="">
+                <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" value="{{ old('email') }}">
             </div>
            
             <div class="form-group">
                 <label for="full_name">First Name:</label> <span class="text-red">{{ $errors->first('first_name') }}</span>
-                <input type="input" name="first_name" class="form-control" id="first_name" placeholder="Enter First Name" value="">
+                <input type="input" name="first_name" class="form-control" id="first_name" placeholder="Enter First Name" value="{{ old('first_name') }}">
             </div>
 
             <div class="form-group">
                 <label for="full_name">Last Name:</label> <span class="text-red">{{ $errors->first('last_name') }}</span>
-                <input type="input" name="last_name" class="form-control" id="last_name" placeholder="Enter Last Name" value="">
+                <input type="input" name="last_name" class="form-control" id="last_name" placeholder="Enter Last Name" value="{{ old('last_name') }}">
             </div>
 
              <div class="form-group">
                 <label for="full_name">Middle Name:</label> <span class="text-red">{{ $errors->first('middle_name') }}</span>
-                <input type="input" name="middle_name" class="form-control" id="middle_name" placeholder="Enter Middle Name" value="">
+                <input type="input" name="middle_name" class="form-control" id="middle_name" placeholder="Enter Middle Name" value="{{ old('middle_name') }}">
             </div>
 
 

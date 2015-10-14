@@ -22,18 +22,24 @@
                   <table class="table table-bordered">
                     <tr>
                       <th style="width: 10px">#id</th>
-                      <th>Full Name</th>
+                      <th>Username</th>
+                      <th>Name</th>
+                      <th>Section</th>
+                      <th>Posistion</th>
                       <th>Roles</th>
-                      <th class="pull-right">Action</th>
+                      <th>Status</th>
+                      <th class="pull-right">Actions</th>
                     </tr>
 
                     @foreach($data as $user)
                     <tr>
                       <td>{{ $user->id  }}.</td>
-                      <td>{{ $user->first_name ." ".$user->last_name }}</td>
-                      <td>
-                        Administrator
-                      </td>
+                      <td>{{ $user->username  }}</td>
+                      <td>{{ $user->profile->first_name ." ".$user->profile->last_name }}</td>
+                      <td>{{ $user->profile->section  }}</td>
+                      <td>{{ $user->profile->posistion }}</td>
+                      <td>{{ $user->role_id  }}</td>
+                      <td>{{ $user->status_id  }}</td>
                       <td>
                       	<div class="btn-group pull-right">
 	                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action <span class="fa fa-caret-down"></span></button>
