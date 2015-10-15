@@ -16,9 +16,13 @@ class UserRepository implements UserInterface {
 
 	protected $userProfiles;
 
-	protected $limit = 2;
+	protected $limit = 10;
 
-
+	/**
+	 * Inject Model Objects then instantiate
+	 * @param User
+	 * @param UserProfiles
+	 */
 	public function __construct(User $user, UserProfiles $userProfiles)
 	{
 		$this->user = $user;
@@ -26,11 +30,18 @@ class UserRepository implements UserInterface {
 	}
 
 	/**
-	 *  return object
+	 * @param  User Id
+	 * @return Users object wiht paginated list
 	 */
 	public function get($id = null)
 	{
-		$user = $this->user->paginate($this->limit);
+
+		$user = $this->user->with('profile')->paginate($this->limit);
+
+		/*foreach($user as $key => $value){
+			dd($value->profile);
+		}*/
+
 		if (!is_null($id)){
 			$user = $this->user->find($id);
 		}
@@ -38,15 +49,15 @@ class UserRepository implements UserInterface {
 	}
 
 	/**
-	 * Insert New Record, if User ID exist then UPDATE record
-	 * return Boolean
+	 * Insert or Update User Information
+	 * @param  Array
+	 * @return Boolean
 	 */
 	public function save( $data )
 	{
 		
 		$user = $this->user;
-		$userProfiles = $this->userProfiles;
-
+		
 		//check if Id exist, then update
 		if( isset($data['id'])  && !empty($data['id']) ){
 			$user =	$this->user->find($data['id']);
@@ -54,20 +65,40 @@ class UserRepository implements UserInterface {
 
 
 		//insert Users
-		$user->username 	= $data['username'];
-		$user->email 		= $data['email'];
-		$user->password 	= $data['password'];
-		$user->role_id 		= $data['role_id'];
+		
+		if( isset($data['username'])  && !empty($data['username']) ){
+			$user->username 	= $data['username'];
+		}
+
+		if( isset($data['email'])  && !empty($data['email']) ){
+			$user->email 		= $data['email'];
+		}
+
+		$user->password 		= $data['password'];
+		$user->role_id 			= $data['role_id'];
 		$user->status_id 		= $data['status_id'];
 		$user->save();
 
+		
+		//User Profiles
+		$userProfiles = $this->userProfiles;
 
-		//get UserId inserted
-		$id = $user->id;
 
-		//dd($id);
+
+		if( !is_null(
+				$this->userProfiles
+					->where('user_id',$user->id)
+					->first()
+					
+			) 
+		){
+			$userProfiles = $this->userProfiles->where('user_id',$user->id)->first();
+		//dd($userProfiles);
+		}
+	
+
 		//insert UserProfiles
-		$userProfiles->user_id 		= $id;
+		$userProfiles->user_id 		= $user->id;
 		$userProfiles->first_name 	= $data['first_name'];
 		$userProfiles->last_name 	= $data['last_name'];
 		$userProfiles->middle_name 	= $data['middle_name'];
@@ -89,6 +120,10 @@ class UserRepository implements UserInterface {
 
 	}
 
+	/**
+	 * @param  int
+	 * @return Boolean
+	 */
 	public function delete(int $Id)
 	{
 		return false;

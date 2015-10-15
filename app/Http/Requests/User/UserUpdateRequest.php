@@ -23,13 +23,13 @@ class UserUpdateRequest extends Request {
 	{
 		//http://laravel.com/docs/5.0/validation#rule-unique
 		return [
-			'username' => 'required|unique:users,username',
-			'email' => 'required|email|unique:users',
+			//'username' => 'required|unique:users,username',
+			//'email' => 'required|email|unique:users',
 			'first_name' => 'required',
 			'last_name' => 'required',
 			'middle_name' => 'required',		
-			'password' => 'required|min:6|',
-			'password_confirmation' => 'required|min:6|same:password',
+			'password' => 'min:6|',
+			'password_confirmation' => 'min:6|same:password',
 			'role' => 'required|not_in:0',
 			'status' => 'required|not_in:0'
 

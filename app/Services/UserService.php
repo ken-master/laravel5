@@ -27,9 +27,14 @@ class UserService{
 			$user['id'] = $data['id'];
 		}
 		
+		if ( isset($data['username']) && !empty($data['username']) ) {
+			$user['username'] 		= $data['username'];
+		}
 
-		$user['username'] 		= $data['username'];
-		$user['email']			= $data['email'];
+		if ( isset($data['email']) && !empty($data['email']) ) {
+			$user['email']			= $data['email'];
+		}
+
 		$user['password'] 		= \Hash::make($data['password']);
 		$user['role_id'] 		= $data['role'];
 		$user['status_id'] 		= $data['status'];

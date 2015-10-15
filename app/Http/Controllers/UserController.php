@@ -11,7 +11,9 @@ use App\Services\UserService;
 use App\Http\Requests\User\UserCreateRequest;
 use App\Http\Requests\User\UserUpdateRequest;
 use App\Http\Requests;
+
 //use Illuminate\Http\Request;
+
 
 
 class UserController extends Controller {
@@ -34,7 +36,7 @@ class UserController extends Controller {
 	{
 		
 		$data = $this->user->get();
-
+		//dd($data);
 		return view( 'users.index' )->with('data' , $data);
 	}
 
@@ -50,7 +52,7 @@ class UserController extends Controller {
 	}
 
 	/**
-	 * Store a newly created resource in storage.
+	 * Store a newly created User in storage.
 	 *
 	 * @return Response
 	 */
@@ -63,7 +65,7 @@ class UserController extends Controller {
 	}
 
 	/**
-	 * Display the specified resource.
+	 * Display the specified User by Id.
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -74,7 +76,7 @@ class UserController extends Controller {
 	}
 
 	/**
-	 * Show the form for editing the specified resource.
+	 * Show the form for editing the specified User by Id.
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -88,14 +90,16 @@ class UserController extends Controller {
 	}
 
 	/**
-	 * Update the specified resource in storage.
+	 * Update the specified User in storage.
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
 	public function update($id,UserUpdateRequest $request)
 	{	
-		$this->user->save( $request->all() );
+		
+
+		$s = $this->user->save( $request->all() );
 		return redirect( '/user/'.$id.'/edit' )->with('message', 'Sucessfully Updated');
 	}
 
