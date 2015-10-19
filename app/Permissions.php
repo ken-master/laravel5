@@ -14,10 +14,10 @@ class Permissions extends Model {
 	/**
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-	/*public function accessLevel()
+	public function accessLevel()
 	{
-		return $this->belongsToMany('App\AccessLevel');
-	}*/
+		return $this->belongsToMany('App\AccessLevel','access_level_has_permission', 'access_level_id','permissions_id');
+	}
 
 
 

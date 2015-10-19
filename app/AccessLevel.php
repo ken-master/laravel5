@@ -10,7 +10,7 @@ class AccessLevel extends Model {
 	 *
 	 * @var string
 	 */
-	protected $table = 'access_level';
+	protected $table = 'access_levels';
 
 
 	/**
@@ -18,7 +18,7 @@ class AccessLevel extends Model {
 	 */
 	public function permissions()
 	{
-		return $this->hasMany('App\Permissions', 'AccessLevelHasPermissions', 'access_level_id','permission_id');
+		return $this->belongsToMany('App\Permissions', 'access_level_has_permission', 'access_level_id','permissions_id');
 	}
 
 
