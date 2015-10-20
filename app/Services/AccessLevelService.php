@@ -32,7 +32,7 @@ class AccessLevelService{
 	
 		$accessLevel['name'] 			= $data['name'];
 		$accessLevel['description'] 	= $data['description'];
-		
+		$accessLevel['permission']		= $data['permission'];
 
 		//delete permissions
 		

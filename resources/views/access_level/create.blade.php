@@ -19,13 +19,13 @@
 
             <div class="form-group">
                 <label for="full_name">Access Level Name:</label> <span class="text-red">{{ $errors->first('name') }}</span>
-                <input type="input" name="name" class="form-control" id="name" placeholder="Enter Access Level Name" value="{{ old('username') }}">
+                <input type="input" name="name" class="form-control" id="name" placeholder="Enter Access Level Name" value="{{ old('name') }}">
             </div>
 
 
              <div class="form-group">
                 <label for="exampleInputEmail1">Description:</label> <span class="text-red">{{ $errors->first('description') }}</span>
-                <input type="input" name="description" class="form-control" id="description" placeholder="Enter Description" value="{{ old('email') }}">
+                <input type="input" name="description" class="form-control" id="description" placeholder="Enter Description" value="{{ old('description') }}">
             </div>
            
 <!--             <div class="form-group">

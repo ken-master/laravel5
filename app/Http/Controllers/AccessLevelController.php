@@ -40,7 +40,10 @@ class AccessLevelController extends Controller
      */
     public function index()
     {
-        //
+
+       $data = $this->accessLevel->get();
+
+        return view('access_level.index')->with('data',$data);
     }
 
     /**
