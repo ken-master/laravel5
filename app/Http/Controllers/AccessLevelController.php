@@ -90,9 +90,15 @@ class AccessLevelController extends Controller
      */
     public function edit($id)
     {
-        $data = array();
-        return view('access_level.create', $data);
+        $data['access_level']   = $this->accessLevel->get($id);
+
+        $data['permissions']    = $this->permission->get();
+        
+
+        return view('access_level.edit', $data);
     }
+
+
 
     /**
      * Update the specified resource in storage.
@@ -101,10 +107,15 @@ class AccessLevelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AccessLevelUpdateRequest $request, $id)
+    public function update($id, AccessLevelUpdateRequest $request)
     {
-        //
+       
+        $s = $this->accessLevel->save( $request->all() );
+        return redirect( '/access_level/'.$id.'/edit' )->with('message', 'Sucessfully Updated');
     }
+
+
+
 
     /**
      * Remove the specified resource from storage.

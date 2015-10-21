@@ -2,6 +2,7 @@
 
 use App\Repositories\AccessLevel\AccessLevelRepository;
 
+
 //use App\Http\Requests\RegisterUserRequest;
 //use Illuminate\Contracts\Hashing\Hasher as Hash;
 
@@ -34,14 +35,11 @@ class AccessLevelService{
 		$accessLevel['description'] 	= $data['description'];
 		$accessLevel['permission']		= $data['permission'];
 
-		//delete permissions
-		
-		//insert permisison
-		
-	
-		//dd( $user );
 		return $this->accessLevel->save($accessLevel);
 	}
 
-
+	public function delete($id)
+	{
+		$this->accessLevel->delete($id);
+	}
 }

@@ -42,7 +42,7 @@ class AccessLevelRepository implements AccessLevelInterface{
 		}*/
 
 		if (!is_null($id)){
-			$accessLevel = $this->accessLevel->find($id);
+			$accessLevel = $this->accessLevel->with('permissions')->find($id);
 		}
 		return $accessLevel;
 	
@@ -61,21 +61,15 @@ class AccessLevelRepository implements AccessLevelInterface{
 		$accessLevel->name 			= $data['name'];
 		$accessLevel->description 	= $data['description'];
 		
-		//insert to pivot table
-		
-
 		$accessLevel->save();
-
-		return $accessLevel->permissions()->attach( $data['permission']);
-
-		
-		// $al->permissions()->attach( [ 6,7  ]);
-		//return false;
+		//ALL MIGHTY ->SYNC() is the way of light!
+		return $accessLevel->permissions()->sync( $data['permission']);
 	}
 
 	public function delete(int $id)
-	{
-		return false;
+	{	
+		$accessLevel =  $this->accessLevel->find($id);
+		return  $accessLevel->delete($id);
 	}
 
 }
