@@ -1,7 +1,7 @@
 <?php namespace App\Services;
 
 use App\Repositories\User\UserRepository;
-use App\Http\Requests\RegisterUserRequest;
+//use App\Http\Requests\RegisterUserRequest;
 
 //use Illuminate\Contracts\Hashing\Hasher as Hash;
 

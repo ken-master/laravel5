@@ -29,4 +29,9 @@ Route::controllers([
 Route::resource( 'user', 'UserController' );
 // /Route::post('user/{id}','UserController@update');
 
+Route::resource( 'role', 'RoleController' );
+Route::resource( 'access_level', 'AccessLevelController' );
 Route::resource( 'vendor', 'VendorController' );
+Route::resource( 'product', 'ProductController' );
+Route::resource( 'location', 'LocationController' );
+

@@ -13,7 +13,7 @@ class PermissionsTableSeeder extends Seeder{
 		DB::table('permissions')->delete();
 
 		//create  users
-		$user = array( 
+		$permissions = array( 
 
 			['name' => 'create', 'description'=> 'A user can Create'],
 			['name' => 'update', 'description'=> 'A user can Update'],
@@ -29,7 +29,7 @@ class PermissionsTableSeeder extends Seeder{
 
 
 
-		DB::table('permissions')->insert($user);
+		DB::table('permissions')->insert($permissions);
 
 	}
 
