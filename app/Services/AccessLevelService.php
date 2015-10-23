@@ -3,6 +3,9 @@
 use App\Repositories\AccessLevel\AccessLevelRepository;
 
 
+use Illuminate\Support\Facades\Route;
+
+
 //use App\Http\Requests\RegisterUserRequest;
 //use Illuminate\Contracts\Hashing\Hasher as Hash;
 
@@ -10,10 +13,12 @@ use App\Repositories\AccessLevel\AccessLevelRepository;
 class AccessLevelService{
 
 	protected $accessLevel;
+	
 
-	public function __construct( AccessLevelRepository $accessLevel )
+	public function __construct( AccessLevelRepository $accessLevel)
 	{
 		$this->accessLevel = $accessLevel;
+	
 	}
 
 
@@ -45,4 +50,20 @@ class AccessLevelService{
 		// HTTP DELETE Protocol
 		$this->accessLevel->delete($id);
 	}
+
+
+	public function getRouteList(  )
+	{	
+		$routes = Route::getRoutes();
+
+		foreach( $routes as $value ){
+			if( !is_null($value->getName()) ){
+				$r[] = $value->getAction();
+			}
+			
+		}
+
+		return $routes ;
+	}
+
 }
