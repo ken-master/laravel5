@@ -38,11 +38,11 @@
                 <label for="full_name">Permissions:</label>
 
                 <div class="checkbox">
-                 @foreach( $permissions as $value ) 
+                 @foreach( $permissions as $routeName ) 
                     <div>
                     <label>
-                    {!! Form::checkbox('permission[]', $value->id) !!}
-                        {{ $value->name }}
+                    {!! Form::checkbox('permission[]', $routeName) !!}
+                        {{ $routeName }}
                     </label>
                     </div>
                  @endforeach

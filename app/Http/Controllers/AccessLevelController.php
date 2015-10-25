@@ -53,8 +53,8 @@ class AccessLevelController extends Controller
      */
     public function create()
     {
-        $data['permissions'] = $this->permission->get();
-        
+        //dd($this->accessLevel->getRouteList());
+        $data['permissions'] = $this->accessLevel->getRouteList();
         return view('access_level.create', $data);
     }
 
@@ -90,12 +90,12 @@ class AccessLevelController extends Controller
      */
     public function edit($id)
     {
+        //dd($this->accessLevel->get($id));
+
         $data['access_level']   = $this->accessLevel->get($id);
-
-        $data['permissions']    = $this->permission->get();
+        $data['permissions'] = $this->accessLevel->getRouteList();
         
-
-        return view('access_level.edit', $data);
+         return view('access_level.edit', $data);
     }
 
 

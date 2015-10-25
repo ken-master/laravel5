@@ -23,9 +23,15 @@ class AccessLevel extends Model {
 	 */
 	public function permissions()
 	{
-		return $this->belongsToMany('App\Permissions', 'access_level_has_permission', 'access_level_id','permissions_id');
+		//return $this->hasMany('App\AccessLevelHasPermissions');
+		//return $this->hasMany('App\Permissions');
+		//return $this->belongsToMany('App\Permissions', 'access_level_has_permission', 'access_level_id','permissions_id');
+		return $this->belongsToMany('App\Permissions', 'access_level_has_permission', 'access_level_id','route_name');
 	}
 
-
+	public function routes()
+	{
+		return $this->hasMany('App\AccessLevelHasPermissions');
+	}
 
 }

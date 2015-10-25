@@ -33,7 +33,7 @@ class AccessLevelRepository implements AccessLevelInterface{
 	 */
 	public function get($id = null){
 
-		$accessLevel = $this->accessLevel->with('permissions')->paginate($this->limit);
+		$accessLevel = $this->accessLevel->with('routes')->paginate($this->limit);
 
 		//$accessLevel = $this->accessLevel->all();
 
@@ -42,7 +42,7 @@ class AccessLevelRepository implements AccessLevelInterface{
 		}*/
 
 		if (!is_null($id)){
-			$accessLevel = $this->accessLevel->with('permissions')->find($id);
+			$accessLevel = $this->accessLevel->with('routes')->find($id);
 		}
 		return $accessLevel;
 	

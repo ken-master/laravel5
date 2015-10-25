@@ -51,19 +51,21 @@ class AccessLevelService{
 		$this->accessLevel->delete($id);
 	}
 
-
-	public function getRouteList(  )
+	/**
+	 * Get current Listed Route Names
+	 * @return Array name.action
+	 */
+	public function getRouteList()
 	{	
 		$routes = Route::getRoutes();
 
 		foreach( $routes as $value ){
 			if( !is_null($value->getName()) ){
-				$r[] = $value->getAction();
+				$r[] = $value->getName();
 			}
-			
 		}
 
-		return $routes ;
+		return $r ;
 	}
 
 }

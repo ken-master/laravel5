@@ -37,13 +37,13 @@
             <div class="form-group">
            
                 <label for="full_name">Permissions:</label>
-                    <?php //dd( array_fetch($access_level->permissions->toArray(), 'id' )  ); ?>
+                    <?php //dd( $access_level->routes->toArray()  ); ?>
                 <div class="checkbox">
-                @foreach( $permissions as $key => $value ) 
+                @foreach( $permissions as $value ) 
                     <div>
                     <label>      
-                        {!! Form::checkbox('permission[]', $value->id, in_array( $value->id, array_fetch($access_level->permissions->toArray(), 'id') ) ) !!}
-                        {{ $value->name }}
+                        {!! Form::checkbox('permission[]', $value, in_array( $value, array_fetch( $access_level->routes->toArray(), 'route_name') ) ) !!}
+                        {{ $value }}
                     </label>
                     </div>
                 @endforeach
