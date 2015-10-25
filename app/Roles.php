@@ -24,13 +24,10 @@ class Roles extends Model {
 	 *
 	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
 	 */
-	public function access_level()
+	public function accessLevel()
     {
-        return $this->hasMany('App\RoleHasAccessLevel','RoleHasAccessLevel', 'roles_id', 'access_level_id');
+        return $this->hasMany('App\AccessLevel');
     }
-
-
-
 
 
 

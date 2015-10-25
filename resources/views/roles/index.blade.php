@@ -15,51 +15,52 @@
                     </div>
                   </div>
                 </div><!-- /.box-header -->
+
+
+               
                 <div class="box-body">
 
                
-                <h4 class="box-title"><a href="{{route('role.create')}}">create role</a></h4>
+                <h4 class="box-title"><a href="{{route('role.create')}}">create Role</a></h4>
                   <table class="table table-bordered">
                     <tr>
                       <th style="width: 10px">#id</th>
                       <th>Role Name</th>
                       <th>Description</th>
-                      <th>Is Active</th>
-                      <th>Date Created</th>
-                      <th>Date Modified</th>
                      
+                    
                       <th class="pull-right">Actions</th>
                     </tr>
+                    @if( !empty($data) && !is_null($data) )
+                      @foreach($data as $role)
+                      <tr>
+                        <td>{{ $role->id  }}.</td>
+                        <td>{{ $role->name  }}</td>
+                        <td>{{ $role->description  }}</td>
+                       
 
-                    @foreach($data as $role)
-                    <tr>
-                      <td>{{ $role->id  }}.</td>
-                      <td>{{ $role->rolename  }}</td>
-                      <td>{{ $role->profile->first_name ." ".$role->profile->last_name }}</td>
-                      <td>{{ $role->profile->section  }}</td>
-                      <td>{{ $role->profile->posistion }}</td>
-                      <td>{{ $role->role_id  }}</td>
-                    
-                      <td>
-                      	<div class="btn-group pull-right">
-	                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action <span class="fa fa-caret-down"></span></button>
-	                   		<ul class="dropdown-menu">
-	                        <li><a href="{{ route('role.show', $role->id) }}">View</a></li>
-	                        <li><a href="{{ route('role.edit', $role->id) }}">Edit</a></li>
-	                        <li class="divider"></li>
-	                        <li><a href="{{ route('role.destroy', $role->id) }}">Remove</a></li>
-	                      </ul>
-	                    </div>            		
-	                   </td>
-                    </tr>
-                   	@endforeach
-                   
+                        <td>
+                        	<div class="btn-group pull-right">
+  	                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action <span class="fa fa-caret-down"></span></button>
+  	                   		<ul class="dropdown-menu">
+  	                        <li><a href="{{ route('role.show', $role->id) }}">View</a></li>
+  	                        <li><a href="{{ route('role.edit', $role->id) }}">Edit</a></li>
+  	                        <li class="divider"></li>
+  	                        <li><a href="{{ route('role.destroy', $role->id) }}">Remove</a></li>
+  	                      </ul>
+  	                    </div>            		
+  	                   </td>
+                      </tr>
+                     	@endforeach
+                   @endif
 
 
                   </table>
                 </div><!-- /.box-body -->
                 <div class="box-footer clearfix">
-                {!! $data->render() !!}
+                 
+                  {!! $data->render() !!}
+               
                   <!-- <ul class="pagination pagination-sm no-margin pull-right">
                     <li><a href="{{$data->url(1)}}">&laquo;</a></li>
                     <li><a href="{{ $data->previousPageUrl() }}">Prev</a></li>
@@ -71,9 +72,8 @@
                   </ul> -->
 
                 </div>
-              </div><!-- /.box -->
+</div><!-- /.box -->
 	 
-    
 
 @endsection
 
