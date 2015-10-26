@@ -11,7 +11,7 @@ class AccessLevel extends Model {
 	 * @var string
 	 */
 	protected $table = 'access_levels';
-
+	//protected $fillable  = ['roles_id', 'access_level_id'];
 	/**
 	 * Soft Deleting, so soft that you could put your face to it. so smoothy soft!
 	 * @var string
@@ -44,7 +44,7 @@ class AccessLevel extends Model {
 	 */
 	public function roles()
 	{
-		return $this->belongsToMany('App\Roles', 'role_has_access_level', 'roles_id', 'access_level_id');
+		return $this->belongsToMany('App\Roles', 'roles_has_access_level', 'roles_id', 'access_level_id');
 	}
 
 }

@@ -26,8 +26,9 @@ class Roles extends Model {
 	 */
 	public function accessLevel()
     {
-        return $this->hasMany('App\AccessLevel');
+        return $this->belongsToMany('App\AccessLevel', 'roles_has_access_level', 'roles_id', 'access_level_id');
     }
+
 
 
 

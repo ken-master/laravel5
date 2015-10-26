@@ -90,7 +90,12 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['role'] = $this->role->get($id);
+        $data['accessLevels'] = $this->accessLevel->get();
+
+        //dd($data['accessLevels']);
+        
+        return view('roles.edit',$data);
     }
 
     /**
@@ -102,7 +107,8 @@ class RoleController extends Controller
      */
     public function update(RoleUpdateRequest $request, $id)
     {
-        //
+        $s = $this->role->save( $request->all() );
+        return redirect( '/role/'.$id.'/edit' )->with('message', 'Sucessfully Updated');
     }
 
     /**

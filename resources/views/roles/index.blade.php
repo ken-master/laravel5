@@ -43,7 +43,7 @@
                         	<div class="btn-group pull-right">
   	                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action <span class="fa fa-caret-down"></span></button>
   	                   		<ul class="dropdown-menu">
-  	                        <li><a href="{{ route('role.show', $role->id) }}">View</a></li>
+  	                        <!-- <li><a href="{{ route('role.show', $role->id) }}">View</a></li> -->
   	                        <li><a href="{{ route('role.edit', $role->id) }}">Edit</a></li>
   	                        <li class="divider"></li>
   	                        <li><a href="{{ route('role.destroy', $role->id) }}">Remove</a></li>

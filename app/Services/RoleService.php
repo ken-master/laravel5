@@ -3,7 +3,7 @@
 use App\Repositories\Role\RoleRepository;
 //use App\Repositories\AccessLevel\AccessLevelRepository;
 
-use Illuminate\Support\Facades\Route;
+//use Illuminate\Support\Facades\Route;
 
 
 //use App\Http\Requests\RegisterUserRequest;
@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 class RoleService{
 
 	protected $role;
-	protected $accessLevel;
+	//protected $accessLevel;
 
 	public function __construct( RoleRepository $role)
 	{
@@ -21,8 +21,6 @@ class RoleService{
 		
 	
 	}
-
-
 
 	public function get($id = null){
 		return $this->role->get($id);
@@ -51,21 +49,6 @@ class RoleService{
 		$this->role->delete($id);
 	}
 
-	/**
-	 * Get current Listed Route Names
-	 * @return Array name.action
-	 */
-	public function getRouteList()
-	{	
-		$routes = Route::getRoutes();
-
-		foreach( $routes as $value ){
-			if( !is_null($value->getName()) ){
-				$r[] = $value->getName();
-			}
-		}
-
-		return $r ;
-	}
+	
 
 }

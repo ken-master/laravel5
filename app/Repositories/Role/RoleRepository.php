@@ -50,29 +50,29 @@ class RoleRepository implements RoleInterface{
 
 	public function save($data)
 	{
-		
+		//dd($data);
 		$role = $this->role;
 
 		//check if Id exist, then update
 		if( isset($data['id'])  && !empty($data['id']) ){
-			$role =	$this->role->find($data['id']);
+			$role =	$this->role->find( $data['id']);
 			//there is no SYNC in one-to-many
 			//delete them ALL, WIPE THEM ALL! KILL THEM ALL! PURGE THEM ALL!
-			$role->accessLevel()->delete();
+			//$role->accessLevel()->delete();
 		}
 
 		$role->name 		= $data['name'];
 		$role->description 	= $data['description'];
 		$role->save();
 		
-		$access_level = [];
+		/*$access_level = [];
 		foreach ($data['access_level'] as $key => $value) {
 			$access_level[] = new RoleHasAccessLevel( ['roles_id' => $role->id ], ['access_level_id' => $value] );
-		}
+		}*/
 
-		return $role->accessLevel()->saveMany( $access_level );
+		//return $role->accessLevel()->saveMany( $access_level );
 		//ALL MIGHTY ->SYNC() is the way of light!
-		//return $role->accessLevel()->sync( $data['access_level']);
+		return $role->accessLevel()->sync( $data['access_level'] );
 	}
 
 	public function delete(int $id)

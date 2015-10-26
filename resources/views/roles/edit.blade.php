@@ -4,11 +4,11 @@
 
 @section('content')
 
-<form role="form" action="{{{ route('access_level.update', $access_level->id) }}}" method="POST" >
+<form role="form" action="{{{ route('role.update', $role->id) }}}" method="POST" >
 <div class="col-md-8">
     <div class="box box-primary">
     <div class="box-header">
-        <h3 class="box-title">Edit Access Level</h3> - <a href="{{ route('access_level.index') }}">Go back</a>
+        <h3 class="box-title">Edit Role</h3> - <a href="{{ route('role.index') }}">Go back</a>
     </div><!-- /.box-header -->
     <!-- form start -->
    
@@ -16,17 +16,17 @@
             
             <input type="hidden" name="_method" value="PUT">
             <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
-            <input type="hidden" name="id" value="{{$access_level->id}}" />
+            <input type="hidden" name="id" value="{{$role->id}}" />
 
             <div class="form-group">
-                <label for="full_name">Access Level Name:</label> <span class="text-red">{{ $errors->first('name') }}</span>
-                <input type="input" name="name" class="form-control" id="name" placeholder="Enter Access Level Name" value="{{ old('name', $access_level->name) }}">
+                <label for="full_name">Role Name:</label> <span class="text-red">{{ $errors->first('name') }}</span>
+                <input type="input" name="name" class="form-control" id="name" placeholder="Enter Role Name" value="{{ old('name', $role->name) }}">
             </div>
 
 
              <div class="form-group">
                 <label for="exampleInputEmail1">Description:</label> <span class="text-red">{{ $errors->first('description') }}</span>
-                <input type="input" name="description" class="form-control" id="description" placeholder="Enter Description" value="{{ old('description',$access_level->description) }}">
+                <input type="input" name="description" class="form-control" id="description" placeholder="Enter Description" value="{{ old('description',$role->description) }}">
             </div>
            
 <!--             <div class="form-group">
@@ -36,14 +36,14 @@
            
             <div class="form-group">
            
-                <label for="full_name">Permissions:</label>
-                    <?php //dd( $access_level->routes->toArray()  ); ?>
+                <label for="full_name">Access Levels::</label>
+                    <?php //dd( $role->accessLevel->toArray() ); ?>
                 <div class="checkbox">
-                @foreach( $permissions as $value ) 
+                @foreach( $accessLevels as $accessLevel ) 
                     <div>
-                    <label>      
-                        {!! Form::checkbox('permission[]', $value, in_array( $value, array_fetch( $access_level->routes->toArray(), 'route_name') ) ) !!}
-                        {{ $value }}
+                    <label>
+                    {!! Form::checkbox('access_level[]', $accessLevel->id, in_array( $accessLevel->id, array_fetch($role->accessLevel->toArray(), 'id') )) !!}
+                        {{ $accessLevel->name }}
                     </label>
                     </div>
                 @endforeach
