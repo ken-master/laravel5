@@ -76,7 +76,7 @@ class UserRepository implements UserInterface {
 
 		$user->password 		= $data['password'];
 		$user->role_id 			= $data['role_id'];
-		$user->status_id 		= $data['status_id'];
+		$user->status 		= $data['status'];
 		$user->save();
 
 		

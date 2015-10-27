@@ -31,9 +31,14 @@ class RoleRepository implements RoleInterface{
 	 * @param  Permission $id [description]
 	 * @return Obecjt|Array  Access Level data
 	 */
-	public function get($id = null){
+	public function get($id = null, $paginate = true){
 
-		$role = $this->role->with('accessLevel')->paginate($this->limit);
+		if( $paginate ){
+			$role = $this->role->with('accessLevel')->paginate($this->limit);
+		}else{
+			$role = $this->role->all();
+		}
+		
 
 		//$role = $this->role->all();
 

@@ -56,11 +56,13 @@
 
             <div class="form-group">
                 <label for="full_name">Role:</label> <span class="text-red">{{ $errors->first('role') }}</span>
-
+                <?php
+                    
+                    //dd( $roles );  ?>
                 {!! 
                     Form::select(
                         'role', 
-                        ['0' => '-----', '1' => 'Admin', '2' => 'Editor', '3' => 'Writer'], 
+                        $roles, 
                         old('role'),
                         ['class' => 'form-control'] 
                     ) 
@@ -118,7 +120,7 @@
              {!! 
                 Form::select(
                     'status', 
-                    ['0' => '-----', '1' => 'is Active', '2' => 'Disabled', '3' => 'other status'], 
+                    $status, 
                     old('status'),
                     ['class' => 'form-control'] 
                 ) 

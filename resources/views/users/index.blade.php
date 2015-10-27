@@ -39,7 +39,7 @@
                       <td>{{ $user->profile->section  }}</td>
                       <td>{{ $user->profile->posistion }}</td>
                       <td>{{ $user->role_id  }}</td>
-                      <td>{{ $user->status_id  }}</td>
+                      <td>{{ $user->status  }}</td>
                       <td>
                       	<div class="btn-group pull-right">
 	                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action <span class="fa fa-caret-down"></span></button>

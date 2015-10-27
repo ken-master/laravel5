@@ -7,7 +7,7 @@ namespace App\Repositories\Role;
 interface RoleInterface {
 
 
-	public function get($id = null);
+	public function get($id = null, $paginate = true );
 
 	public function save($data);
 

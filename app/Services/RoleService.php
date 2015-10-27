@@ -50,5 +50,17 @@ class RoleService{
 	}
 
 	
+	public function getRolesIdName()
+	{
+		//get all roles
+		$roles = $this->role->get(null, false);
+		if(!empty($roles)){
+			$r = [];
+			foreach($roles as $value ){
+				$r[$value->id] = $value->name;
+	 		}
+ 		}
+		return $r;
+	}
 
 }
