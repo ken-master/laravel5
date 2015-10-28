@@ -1,7 +1,13 @@
 <?php namespace App\Http\Controllers;
 
 
-use App\Repositories\User\UserInterface;
+
+use App\Services\UserService;
+
+use Auth;
+
+
+
 
 class HomeController extends Controller {
 
@@ -21,7 +27,7 @@ class HomeController extends Controller {
 	 *
 	 * @return void
 	 */
-	public function __construct(UserInterface $user)
+	public function __construct(UserService $user)
 	{
 		$this->user = $user;
 	}
@@ -34,7 +40,8 @@ class HomeController extends Controller {
 	public function getIndex()
 	{
 
-
+		//the example code to fetch user with access level
+		dd( Auth::user()->role->with('accessLevel')->find( 30 ) );
 
 		//dd($this->user->get());
 		return view('home');
