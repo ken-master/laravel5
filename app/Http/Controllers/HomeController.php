@@ -41,7 +41,7 @@ class HomeController extends Controller {
 	{
 
 		//the example code to fetch user with access level
-		dd( Auth::user()->role->with('accessLevel')->find( 30 ) );
+		//dd( Auth::user()->role->with('accessLevel')->find( 30 ) );
 
 		//dd($this->user->get());
 		return view('home');
