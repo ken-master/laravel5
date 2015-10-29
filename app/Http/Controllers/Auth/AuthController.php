@@ -73,6 +73,7 @@ class AuthController extends Controller {
 	public function getLogout()
 	{
 		Auth::logout();
+		return redirect('auth')->with('message', "Successfully Logout!");
 	}
 
 }

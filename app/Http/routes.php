@@ -11,24 +11,50 @@
 |
 */
 
-Route::get('/', 'HomeController@getIndex');
-
-//Route::resource( 'admin', 'Admin\AdminController' );
-
-
-
-
-//implicit controllers
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'home' => 'HomeController'
-	//'password' => 'Auth\PasswordController',
+//DEFAULT PAGE
+Route::get('/', [
+	'middleware' => 'auth',
+	'uses' => 'HomeController@getIndex'
 ]);
 
 
-Route::resource( 'user', 'UserController' );
-// /Route::post('user/{id}','UserController@update');
+
+/**
+ *  Middleware "guest" meaning is that the user is already logged-in
+ */
+Route::group(['middleware' => 'guest'],function(){
+
+	Route::get('auth','Auth\AuthController@getIndex');
+	Route::post('auth/login','Auth\AuthController@postLogin');
+
+});
+
+	
+
+/**
+ *  RESTRICTED AREA GROUP
+ */
+Route::group( ['middleware' => 'auth'],function(){
 
 
-Route::resource( 'role', 'RoleController' );
-Route::resource( 'access_level', 'AccessLevelController' );
+	Route::get('auth/logout','Auth\AuthController@getLogout');
+
+	//implicit controllers
+	Route::controllers([
+		//'auth' => 'Auth\AuthController',
+		'home' => 'HomeController'
+		//'password' => 'Auth\PasswordController',
+	]);
+
+
+	Route::resource( 'user', 'UserController' );
+	// /Route::post('user/{id}','UserController@update');
+
+
+	Route::resource( 'role', 'RoleController' );
+	Route::resource( 'access_level', 'AccessLevelController' );
+
+
+
+} );
+
