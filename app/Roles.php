@@ -17,19 +17,17 @@ class Roles extends Model {
 	 */
 	public function users()
 	{
-		return $this->belongsToMany('App\Users');
+		return $this->hasOne('App\User');
 	}
 
 	/***
 	 *
 	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
 	 */
-	public function access_level()
+	public function accessLevel()
     {
-        return $this->hasMany('App\RoleHasAccessLevel','RoleHasAccessLevel', 'roles_id', 'access_level_id');
+        return $this->belongsToMany('App\AccessLevel', 'roles_has_access_level', 'roles_id', 'access_level_id');
     }
-
-
 
 
 

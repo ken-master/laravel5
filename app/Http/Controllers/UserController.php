@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 
 //repository
 use App\Services\UserService;
-
+use App\Services\RoleService;
 //requests
 
 use App\Http\Requests\User\UserCreateRequest;
@@ -20,10 +20,12 @@ class UserController extends Controller {
 
 
 	protected $user;
+	protected $role;
 
-	public function __construct(UserService $user)
+	public function __construct(UserService $user, RoleService $role)
 	{
 		$this->user = $user;
+		$this->role = $role;
 	}
 
 
@@ -47,8 +49,10 @@ class UserController extends Controller {
 	 */
 	public function create()
 	{
-		//
-		return view( 'users.create' );
+		$data['roles'] = $this->role->getRolesIdName();
+		$data['status'] = $this->user->getStatuses();
+
+		return view( 'users.create',$data );
 	}
 
 	/**
@@ -85,7 +89,10 @@ class UserController extends Controller {
 	{
 		
 
-		$data['user'] = $this->user->get($id);
+		$data['user'] 	= $this->user->get($id);
+		$data['roles'] 	= $this->role->getRolesIdName();
+		$data['status'] = $this->user->getStatuses();
+
 		return view( 'users.edit', $data );
 	}
 

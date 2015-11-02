@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration {
 			$table->string('password', 60);
 			$table->integer('role_id');
 			//$table->integer('is_active');
-			$table->integer('status_id');
+			$table->string('status',15);
 			$table->softDeletes();
 			$table->rememberToken();
 			$table->timestamps();

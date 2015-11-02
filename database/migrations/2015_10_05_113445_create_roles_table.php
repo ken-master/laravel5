@@ -18,11 +18,10 @@ class CreateRolesTable extends Migration {
 			$table->string('name');
 			$table->string('description',225);
 			$table->timestamps();
-
-
+			
 			//set foreign keys
-			$table->integer('user_id')->unsigned();
-			$table->foreign('user_id')->references('id')->on('users');
+			//$table->integer('user_id')->unsigned();
+			//$table->foreign('user_id')->references('id')->on('users');
 
 			
 

@@ -60,7 +60,7 @@
                 {!! 
                     Form::select(
                         'role', 
-                        ['1' => 'Admin', '2' => 'Editor', '3' => 'Writer'], 
+                        $roles, 
                         old('role', $user->role_id),  
                         ['class' => 'form-control'] 
                     ) 
@@ -120,8 +120,8 @@
             {!! 
                 Form::select(
                     'status', 
-                    ['0' => '-----', '1' => 'is Active', '2' => 'Disabled', '3' => 'other status'], 
-                    old('status',$user->status_id),
+                    $status, 
+                    old('status',$user->status),
                     ['class' => 'form-control'] 
                 ) 
             !!}

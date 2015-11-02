@@ -3,11 +3,11 @@
 
 
 @section('content')
-<form role="form" action="{{{ route('user.store') }}}" method="POST" >
+<form role="form" action="{{{ route('role.store') }}}" method="POST" >
 <div class="col-md-4">
     <div class="box box-primary">
     <div class="box-header">
-        <h3 class="box-title">Create User</h3> - <a href="{{ route('user.index') }}">Go back</a>
+        <h3 class="box-title">Access Level List</h3> - <a href="{{ route('role.index') }}">Go back</a>
     </div><!-- /.box-header -->
     <!-- form start -->
    
@@ -18,120 +18,52 @@
             
 
             <div class="form-group">
-                <label for="full_name">Username:</label> <span class="text-red">{{ $errors->first('username') }}</span>
-                <input type="input" name="username" class="form-control" id="username" placeholder="Enter First Name" value="{{ old('username') }}">
+                <label for="full_name">Role Name:</label> <span class="text-red">{{ $errors->first('name') }}</span>
+                <input type="input" name="name" class="form-control" id="name" placeholder="Enter Access Level Name" value="{{ old('name') }}">
             </div>
 
 
              <div class="form-group">
-                <label for="exampleInputEmail1">Email Address:</label> <span class="text-red">{{ $errors->first('email') }}</span>
-                <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" value="{{ old('email') }}">
+                <label for="exampleInputEmail1">Description:</label> <span class="text-red">{{ $errors->first('description') }}</span>
+                <input type="input" name="description" class="form-control" id="description" placeholder="Enter Description" value="{{ old('description') }}">
             </div>
            
+<!--             <div class="form-group">
+                <label for="full_name">Is Active:</label>
+                {!! Form::checkbox('is_active', '1') !!}
+            </div> -->
+           
             <div class="form-group">
-                <label for="full_name">First Name:</label> <span class="text-red">{{ $errors->first('first_name') }}</span>
-                <input type="input" name="first_name" class="form-control" id="first_name" placeholder="Enter First Name" value="{{ old('first_name') }}">
+           
+                <label for="full_name">Access Levels:</label>
+
+                <div class="checkbox">
+                 @foreach( $accessLevels as $accessLevel ) 
+                    <div>
+                    <label>
+                    {!! Form::checkbox('access_level[]', $accessLevel->id) !!}
+                        {{ $accessLevel->name }}
+                    </label>
+                    </div>
+                 @endforeach
+                </div>
+                
             </div>
 
-            <div class="form-group">
-                <label for="full_name">Last Name:</label> <span class="text-red">{{ $errors->first('last_name') }}</span>
-                <input type="input" name="last_name" class="form-control" id="last_name" placeholder="Enter Last Name" value="{{ old('last_name') }}">
-            </div>
 
-             <div class="form-group">
-                <label for="full_name">Middle Name:</label> <span class="text-red">{{ $errors->first('middle_name') }}</span>
-                <input type="input" name="middle_name" class="form-control" id="middle_name" placeholder="Enter Middle Name" value="{{ old('middle_name') }}">
-            </div>
-
-
-            <div class="form-group">
-                <label for="exampleInputPassword1">Password:</label> <span class="text-red">{{ $errors->first('password') }}</span>
-                <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-            </div>
-
-           <div class="form-group">
-                <label for="comfirm_password">Confirm Password:</label> <span class="text-red">{{ $errors->first('password_confirmation') }}</span>
-                <input type="password" name="password_confirmation" class="form-control" id="comfirm_password" placeholder="Confirm Password">
-            </div>
-
-            <div class="form-group">
-                <label for="full_name">Role:</label> <span class="text-red">{{ $errors->first('role') }}</span>
-
-                {!! 
-                    Form::select(
-                        'role', 
-                        ['0' => '-----', '1' => 'Admin', '2' => 'Editor', '3' => 'Writer'], 
-                        old('role'),
-                        ['class' => 'form-control'] 
-                    ) 
-                !!}
-
-                <!-- <select name="role" class="form-control">
-                    <option value="0">-----</option>
-                    <option value="1">Admin</option>
-                    <option value="2">Editor</option>
-                    <option value="3">Writer</option>
-                </select> -->
-            </div>
 
         </div><!-- /.box-body -->
 
+        <div class="box-footer">
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
        
     
     </div>
 </div>
 
 
-<div class="col-md-4">
-     <div class="box box-primary">
-    <div class="box-header">
-        <h3 class="box-title">User Profile</h3> 
-    </div><!-- /.box-header -->
 
-    <!-- USER PROFILE SECTIOn -->
-    <div class="box-body">
-        <div class="form-group">
-            <label for="full_name">Division:</label> <span class="text-red">{{ $errors->first('division') }}</span>
-            <input type="input" name="division" class="form-control" id="division" placeholder="Enter Division" value="">
-        </div>
-
-
-        <div class="form-group">
-            <label for="full_name">Department:</label> <span class="text-red">{{ $errors->first('department') }}</span>
-            <input type="input" name="department" class="form-control" id="department" placeholder="Enter Department" value="">
-        </div>
-
-        <div class="form-group">
-            <label for="full_name">Section:</label> <span class="text-red">{{ $errors->first('section') }}</span>
-            <input type="input" name="section" class="form-control" id="section" placeholder="Enter Section" value="">
-        </div>
-
-        <div class="form-group">
-            <label for="full_name">Posistion:</label> <span class="text-red">{{ $errors->first('posistion') }}</span>
-            <input type="input" name="posistion" class="form-control" id="posistion" placeholder="Enter Posistion" value="">
-        </div>
-
-
-
-        <div class="form-group">
-            <label for="full_name">Status:</label> <span class="text-red">{{ $errors->first('status') }}</span>
-             {!! 
-                Form::select(
-                    'status', 
-                    ['0' => '-----', '1' => 'is Active', '2' => 'Disabled', '3' => 'other status'], 
-                    old('status'),
-                    ['class' => 'form-control'] 
-                ) 
-            !!}
-
-        </div>
-    </div>
-
-    <div class="box-footer">
-        <button type="submit" class="btn btn-primary">Save</button>
-    </div>
-
-</div>
 
 </form>
 @endsection

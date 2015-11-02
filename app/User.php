@@ -6,10 +6,12 @@ use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-class User extends Model {
+
+
+class User extends Model implements AuthenticatableContract, CanResetPasswordContract{
 
 	
-
+	use Authenticatable, CanResetPassword;
 	/**
 	 * The database table used by the model.
 	 *
@@ -53,8 +55,11 @@ class User extends Model {
 
     public function role()
     {
-        return $this->hasOne('App\Roles');
+        return $this->belongsTo('App\Roles');
     }
+
+
+
 
 
 }

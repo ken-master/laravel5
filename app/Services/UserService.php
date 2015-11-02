@@ -5,6 +5,9 @@ use App\Repositories\User\UserRepository;
 
 //use Illuminate\Contracts\Hashing\Hasher as Hash;
 
+//Illuminate Classes|Object|Facades
+use Illuminate\Support\Facades\Config;
+
 class UserService{
 
 	protected $user;
@@ -53,5 +56,9 @@ class UserService{
 		return $this->user->save($user);
 	}
 
+	public function getStatuses()
+	{
+		return Config::get('supplychain.status');
 
+	} 
 }
