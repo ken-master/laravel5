@@ -6,7 +6,7 @@ class RoleHasAccessLevel extends Model {
 
 	//
 
-	protected $table = 'role_has_access_level';
+	protected $table = 'roles_has_access_level';
 
     //protected $fillable  = ['roles_id', 'access_level_id'];
 

@@ -29,7 +29,9 @@ class Roles extends Model {
         return $this->belongsToMany('App\AccessLevel', 'roles_has_access_level', 'roles_id', 'access_level_id');
     }
 
-
-
+    /*public function permissions()
+    {
+    	return $this->belongsToMany('App\AccessLevel', 'roles_has_access_level', 'access_level_id', 'access_level_id' );
+    }*/
 
 }

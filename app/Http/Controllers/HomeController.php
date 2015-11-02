@@ -41,7 +41,13 @@ class HomeController extends Controller {
 	{
 
 		//the example code to fetch user with access level
-		//dd( Auth::user()->role->with('accessLevel')->find( 30 ) );
+		
+		/*dd( Auth::user()->join('roles_has_access_level','roles_has_access_level.access_level_id', '=' ,'access_level_has_permission.access_level_id')
+				->where( 'roles_has_access_level.roles_id', Auth::user()->roles_id )
+				->get() );*/
+		
+		//$test = Auth::user()->role->with('accessLevel')->find( 30 )->toArray();
+		//dd( Auth::user()->role->with(['accessLevel.routes'])->find( Auth::user()->roles_id )->toArray() );
 
 		//dd($this->user->get());
 		return view('home');

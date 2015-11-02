@@ -13,5 +13,10 @@ class AccessLevelHasPermissions extends Model {
     }
 */
 
+    public function scopePermissions($query, $data)
+    {
+    	return $query->whereIn('access_level_id', $data);
+    }
+
 
 }
