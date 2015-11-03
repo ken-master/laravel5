@@ -9,27 +9,37 @@ class PermissionsTableSeeder extends Seeder{
 	public function run()
 	{
 
+		/**
+		 *  POPULATE ACCESS LEVEL
+		 */
+		DB::table('access_levels')->delete();
+
+		$access_level = array([
+			'name' 			=> 'Super Admin',
+			'description' 	=> 'This User has Access to All Permissions' 
+		]);
+
+
+		DB::table('access_levels')->insert($access_level);
+
+		/**
+		 *  POPULATE ROUTES PERMISSIONS
+		 */
+
+		//get routes
+		$routes = \Route::getRoutes();
+
+		foreach( $routes as $value ){
+			if( !is_null($value->getName()) ){
+				$permissions[] = [ 'access_level_id' => 1, 'route_name' => $value->getName()];
+			}
+		}
+
+
+
 		//wipe user tables before seeding
-		DB::table('permissions')->delete();
-
-		//create  users
-		$permissions = array( 
-
-			['name' => 'create', 'description'=> 'A user can Create'],
-			['name' => 'update', 'description'=> 'A user can Update'],
-			['name' => 'show', 'description'=> 'A user can Access'],
-			['name' => 'destroy', 'description'=> 'A user can Delete']
-
-			/*['first_name' => 'Admin', 'last_name' => 'istrator', 'email' => 'admin@admin.com', 'password' => \Hash::make('password')],
-			['first_name' => 'Ken', 'last_name' => 'Master', 'email' => 'kenn@ken.com', 'password' => \Hash::make('password')],
-			['first_name' => 'Rankin', 'last_name' => 'Dela Rama', 'email' => 'kendelarama@gmail.com', 'password' => \Hash::make('password')],
-			['first_name' => 'User1', 'last_name' => 'Surname 1', 'email' => 'user1@test.com', 'password' => \Hash::make('password')],
-			['first_name' => 'User2', 'last_name' => 'Surname 2', 'email' => 'user2@test.com', 'password' => \Hash::make('password')],*/
-		);
-
-
-
-		DB::table('permissions')->insert($permissions);
+		DB::table('access_level_has_permission')->delete();
+		DB::table('access_level_has_permission')->insert($permissions);
 
 	}
 

@@ -22,10 +22,10 @@ class RoutePermission
     public function handle($request, Closure $next)
     {
         //fetch user info by role
-        $xxx = Auth::user()->role->with('accessLevel')->find( Auth::user()->roles_id  );
+        $accessLevel = Auth::user()->role->with('accessLevel')->find( Auth::user()->roles_id  );
 
         //fetch user access_level_id
-        $x = array_fetch($xxx->accessLevel->toArray(), 'id');
+        $x = array_fetch($accessLevel->accessLevel->toArray(), 'id');
 
         //get route_name in the array
         $routes = array_fetch(AccessLevelHasPermissions::permissions($x)->get()->toArray(), 'route_name');

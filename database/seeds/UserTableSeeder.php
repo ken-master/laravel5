@@ -14,17 +14,29 @@ class UserTableSeeder extends Seeder{
 
 		//create  users
 		$user = array( 
-			['first_name' => 'Admin', 'last_name' => 'istrator', 'email' => 'admin@admin.com', 'password' => \Hash::make('password')],
-			['first_name' => 'Ken', 'last_name' => 'Master', 'email' => 'kenn@ken.com', 'password' => \Hash::make('password')],
-			['first_name' => 'Rankin', 'last_name' => 'Dela Rama', 'email' => 'kendelarama@gmail.com', 'password' => \Hash::make('password')],
-			['first_name' => 'User1', 'last_name' => 'Surname 1', 'email' => 'user1@test.com', 'password' => \Hash::make('password')],
-			['first_name' => 'User2', 'last_name' => 'Surname 2', 'email' => 'user2@test.com', 'password' => \Hash::make('password')],
+			'username' => 'admin',
+			'email' => 'admin@admin.com',
+			'password' => \Hash::make('password1q2w'),
+			'roles_id' => 1,
+			'status' => 'active',
+			
 		);
 
+		$userId = DB::table('users')->insertGetId($user);
 
+		
 
-		$userId = DB::table('users')->insert($user);
-
+		/**
+		 *  PROFILES 
+		 */
+		DB::table('user_profiles')->delete();
+		$profiles = array( 
+			'first_name' => 'Super',
+			'last_name' => 'Administrator',
+			'middle_name' => 'Danger',
+			'user_id' => $userId,
+		);
+		DB::table('user_profiles')->insert($profiles);
 		//$userId;
 
 		/**
