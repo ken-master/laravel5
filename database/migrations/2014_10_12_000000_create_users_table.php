@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration {
 			$table->string('username',45);
 			$table->string('email')->unique();
 			$table->string('password', 60);
-			$table->integer('role_id');
+			$table->integer('roles_id');
 			//$table->integer('is_active');
 			$table->string('status',15);
 			$table->softDeletes();

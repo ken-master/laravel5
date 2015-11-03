@@ -13,8 +13,9 @@
 
 //DEFAULT PAGE
 Route::get('/', [
-	'middleware' => 'auth',
-	'uses' => 'HomeController@getIndex'
+	'middleware' => ['auth'],
+	'uses' => 'HomeController@getIndex',
+	//'as' => 'home'
 ]);
 
 
@@ -34,7 +35,7 @@ Route::group(['middleware' => 'guest'],function(){
 /**
  *  RESTRICTED AREA GROUP
  */
-Route::group( ['middleware' => 'auth'],function(){
+Route::group( ['middleware' => ['auth','route.permission'] ],function(){
 
 
 	Route::get('auth/logout','Auth\AuthController@getLogout');
