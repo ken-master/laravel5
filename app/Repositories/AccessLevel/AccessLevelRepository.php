@@ -66,10 +66,10 @@ class AccessLevelRepository implements AccessLevelInterface{
 		return $accessLevel->permissions()->sync( $data['permission']);
 	}
 
-	public function delete(int $id)
+	public function delete($id)
 	{	
 		$accessLevel =  $this->accessLevel->find($id);
-		return  $accessLevel->delete($id);
+		return  $accessLevel->delete();
 	}
 
 }

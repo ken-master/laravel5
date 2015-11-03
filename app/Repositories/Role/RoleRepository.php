@@ -80,10 +80,10 @@ class RoleRepository implements RoleInterface{
 		return $role->accessLevel()->sync( $data['access_level'] );
 	}
 
-	public function delete(int $id)
+	public function delete($id)
 	{	
 		$role =  $this->role->find($id);
-		return  $role->delete($id);
+		return  $role->delete();
 	}
 
 }

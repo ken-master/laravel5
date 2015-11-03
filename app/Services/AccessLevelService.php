@@ -48,7 +48,7 @@ class AccessLevelService{
 		//TO DO:
 		// CRAETE FORM HELPER FOR DELETE FORM to pass 
 		// HTTP DELETE Protocol
-		$this->accessLevel->delete($id);
+		return $this->accessLevel->delete($id);
 	}
 
 	/**

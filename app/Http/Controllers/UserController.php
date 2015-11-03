@@ -118,7 +118,8 @@ class UserController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$s = $this->user->delete( $id );
+        return redirect( '/user' )->with('message', 'Sucessfully Deleted');
 	}
 
 }

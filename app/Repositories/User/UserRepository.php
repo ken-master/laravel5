@@ -124,8 +124,10 @@ class UserRepository implements UserInterface {
 	 * @param  int
 	 * @return Boolean
 	 */
-	public function delete(int $Id)
+	public function delete($Id)
 	{
-		return false;
+		$user =  $this->user->find($id);
+		return  $user->delete();
+		
 	}
 }
