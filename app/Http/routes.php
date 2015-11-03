@@ -11,7 +11,7 @@
 |
 */
 
-//DEFAULT PAGE
+//DEFAULT HOME PAGE
 Route::get('/', [
 	'middleware' => ['auth'],
 	'uses' => 'HomeController@getIndex',
@@ -19,6 +19,10 @@ Route::get('/', [
 ]);
 
 
+
+
+
+Route::get('auth/logout','Auth\AuthController@getLogout');
 
 /**
  *  Middleware "guest" meaning is that the user is already logged-in
@@ -28,24 +32,28 @@ Route::group(['middleware' => 'guest'],function(){
 	Route::get('auth','Auth\AuthController@getIndex');
 	Route::post('auth/login','Auth\AuthController@postLogin');
 
-});
-
 	
 
+});
+
 /**
- *  RESTRICTED AREA GROUP
+ *  Deafault Auth Group
  */
-Route::group( ['middleware' => ['auth','route.permission'] ],function(){
-
-
-	Route::get('auth/logout','Auth\AuthController@getLogout');
-
+Route::group( ['middleware' => ['auth'] ],function(){
 	//implicit controllers
 	Route::controllers([
 		//'auth' => 'Auth\AuthController',
 		'home' => 'HomeController'
 		//'password' => 'Auth\PasswordController',
 	]);
+});
+
+
+
+/**
+ *  RESTRICTED AREA GROUP
+ */
+Route::group( ['middleware' => ['auth','route.permission'] ],function(){
 
 
 	Route::resource( 'user', 'UserController' );

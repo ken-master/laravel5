@@ -125,7 +125,9 @@ class AccessLevelController extends Controller
      */
     public function destroy($id)
     {
-        dd($id);
+        //cast it as Integer
+        //$id = (int) $id;
+        //dd($id);
         $s = $this->accessLevel->delete( $id );
         return redirect( '/access_level' )->with('message', 'Sucessfully Deleted');
     }

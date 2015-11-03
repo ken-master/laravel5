@@ -11,6 +11,6 @@ interface UserInterface {
 
 	public function save($data);
 
-	public function delete(int $id);
+	public function delete($id);
 
 }

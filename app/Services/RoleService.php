@@ -43,9 +43,6 @@ class RoleService{
 
 	public function delete($id)
 	{
-		//TO DO:
-		// CRAETE FORM HELPER FOR DELETE FORM to pass 
-		// HTTP DELETE Protocol
 		$this->role->delete($id);
 	}
 

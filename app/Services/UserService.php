@@ -56,6 +56,14 @@ class UserService{
 		return $this->user->save($user);
 	}
 
+	public function delete($id)
+	{
+		//TO DO:
+		// CRAETE FORM HELPER FOR DELETE FORM to pass 
+		// HTTP DELETE Protocol
+		$this->user->delete($id);
+	}
+
 	public function getStatuses()
 	{
 		return Config::get('supplychain.status');

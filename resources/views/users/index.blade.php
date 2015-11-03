@@ -47,7 +47,10 @@
 	                        <li><a href="{{ route('user.show', $user->id) }}">View</a></li>
 	                        <li><a href="{{ route('user.edit', $user->id) }}">Edit</a></li>
 	                        <li class="divider"></li>
-	                        <li><a href="{{ route('user.destroy', $user->id) }}">Remove</a></li>
+                          {!! Form::open(array('route' => array('user.destroy', $user->id), 'method' => 'delete')) !!}
+                              <a href="javascript:void(0);" onclick="$(this).closest('form').submit();">Remove</a>
+                          {!! Form::close() !!}
+	                       
 	                      </ul>
 	                    </div>            		
 	                   </td>
@@ -79,7 +82,8 @@
 
 
 @section('footer_scripts')
-              
+     <?php     
+     /*     
     <script src="/plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
     <script src="/plugins/datatables/dataTables.bootstrap.min.js" type="text/javascript"></script>
     <!-- SlimScroll -->
@@ -89,6 +93,7 @@
     
 
     <script src='/plugins/fastclick/fastclick.min.js'></script>
-
+    */
+    ?>
 	
 @endsection

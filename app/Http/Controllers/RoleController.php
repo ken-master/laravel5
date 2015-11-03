@@ -119,6 +119,7 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $s = $this->role->delete( $id );
+        return redirect( '/role' )->with('message', 'Sucessfully Deleted');
     }
 }

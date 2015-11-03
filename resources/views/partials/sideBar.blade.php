@@ -6,7 +6,7 @@
               <img src="/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
             </div>
             <div class="pull-left info">
-              <p>Alexander Pierce</p>
+              <p>{{ Auth::user()->profile->first_name}} {{Auth::user()->profile->last_name}}</p>
 
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
@@ -29,10 +29,13 @@
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-                <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+                <li class="active"><a href="/home"><i class="fa fa-circle-o"></i> Home / Dashboard</a></li>
+                <li><a href="/user"><i class="fa fa-circle-o"></i>Users</a></li>
+                <li><a href="/role"><i class="fa fa-circle-o"></i>Roles</a></li>
+                <li><a href="/access_level"><i class="fa fa-circle-o"></i>Access Levels</a></li>
               </ul>
             </li>
+            
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-files-o"></i>
@@ -51,6 +54,7 @@
                 <i class="fa fa-th"></i> <span>Widgets</span> <small class="label pull-right bg-green">new</small>
               </a>
             </li>
+
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-pie-chart"></i>
@@ -64,6 +68,9 @@
                 <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
               </ul>
             </li>
+
+
+<!-- 
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-laptop"></i>
@@ -154,7 +161,7 @@
             <li class="header">LABELS</li>
             <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
             <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-            <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+            <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li> -->
           </ul>
         </section>
         <!-- /.sidebar -->

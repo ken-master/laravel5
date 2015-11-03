@@ -46,7 +46,13 @@
   	                        <!-- <li><a href="{{ route('access_level.show', $access_level->id) }}">View</a></li> -->
   	                        <li><a href="{{ route('access_level.edit', $access_level->id) }}">Edit</a></li>
   	                        <li class="divider"></li>
-  	                        <li><a href="{{ route('access_level.destroy', $access_level->id) }}">Remove</a></li>
+                            
+  	                        <li>
+                              {!! Form::open(array('route' => array('access_level.destroy', $access_level->id), 'method' => 'delete')) !!}
+                              <a href="javascript:void(0);" onclick="$(this).closest('form').submit();">Remove</a>
+                              {!! Form::close() !!}
+                            </li>
+                            
   	                      </ul>
   	                    </div>            		
   	                   </td>
@@ -75,11 +81,16 @@
 </div><!-- /.box -->
 	 
 
+
+
+
+
 @endsection
 
 
 @section('footer_scripts')
-              
+              <?php     
+     /*     
     <script src="/plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
     <script src="/plugins/datatables/dataTables.bootstrap.min.js" type="text/javascript"></script>
     <!-- SlimScroll -->
@@ -89,6 +100,6 @@
     
 
     <script src='/plugins/fastclick/fastclick.min.js'></script>
-
+ */ ?>
 	
 @endsection
