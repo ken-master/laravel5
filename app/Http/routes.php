@@ -59,8 +59,6 @@ Route::group( ['middleware' => ['auth','route.permission'] ],function(){
 
 } );
 
-Route::resource( 'role', 'RoleController' );
-Route::resource( 'access_level', 'AccessLevelController' );
 Route::resource( 'vendor', 'VendorController' );
 Route::resource( 'product', 'ProductController' );
 Route::resource( 'location', 'LocationController' );
