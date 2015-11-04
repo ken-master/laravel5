@@ -75,7 +75,7 @@ class UserRepository implements UserInterface {
 		}
 
 		$user->password 		= $data['password'];
-		$user->role_id 			= $data['role_id'];
+		$user->roles_id 			= $data['role_id'];
 		$user->status 		= $data['status'];
 		$user->save();
 
@@ -124,7 +124,7 @@ class UserRepository implements UserInterface {
 	 * @param  int
 	 * @return Boolean
 	 */
-	public function delete($Id)
+	public function delete($id)
 	{
 		$user =  $this->user->find($id);
 		return  $user->delete();
