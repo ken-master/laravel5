@@ -3,7 +3,7 @@
 
 
 @section('content')
-
+<div class="row">
 <form role="form" action="{{{ route('user.update', $user->id) }}}" method="POST" >
 <div class="col-md-8">
     <div class="box box-primary">
@@ -137,4 +137,5 @@
 
 
 </form>
+</div>
 @endsection

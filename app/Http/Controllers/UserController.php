@@ -88,6 +88,10 @@ class UserController extends Controller {
 	public function edit($id)
 	{
 		
+		//check if super admin
+		if( $this->user->get($id)->is_superadmin == 1 ){
+			return abort(401);
+		}
 
 		$data['user'] 	= $this->user->get($id);
 		$data['roles'] 	= $this->role->getRolesIdName();
@@ -104,7 +108,10 @@ class UserController extends Controller {
 	 */
 	public function update($id,UserUpdateRequest $request)
 	{	
-		
+		//check if super admin
+		if( $this->user->get($id)->is_superadmin == 1 ){
+			return abort(401);
+		}
 
 		$s = $this->user->save( $request->all() );
 		return redirect( '/user/'.$id.'/edit' )->with('message', 'Sucessfully Updated');
@@ -118,6 +125,11 @@ class UserController extends Controller {
 	 */
 	public function destroy($id)
 	{
+		//check if super admin
+		if( $this->user->get($id)->is_superadmin == 1 ){
+			return abort(401);
+		}
+		
 		$s = $this->user->delete( $id );
         return redirect( '/user' )->with('message', 'Sucessfully Deleted');
 	}

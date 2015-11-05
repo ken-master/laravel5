@@ -15,8 +15,8 @@ class PermissionsTableSeeder extends Seeder{
 		DB::table('access_levels')->delete();
 
 		$access_level = array([
-			'name' 			=> 'Super Admin',
-			'description' 	=> 'This User has Access to All Permissions' 
+			'name' 			=> 'Manager',
+			'description' 	=> 'This User has Manage Users' 
 		]);
 
 

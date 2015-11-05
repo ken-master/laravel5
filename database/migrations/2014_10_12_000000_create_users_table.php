@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration {
 			$table->string('email')->unique();
 			$table->string('password', 60);
 			$table->integer('roles_id');
-			//$table->integer('is_active');
+			$table->integer('is_superadmin');
 			$table->string('status',15);
 			$table->softDeletes();
 			$table->rememberToken();

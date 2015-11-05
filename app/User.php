@@ -7,17 +7,23 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
 
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract{
 
 	
 	use Authenticatable, CanResetPassword;
+	use SoftDeletes;
+
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
 	protected $table = 'users';
+
+    protected $dates = ['deleted_at'];
 
 	/**
 	 * The attributes that are mass assignable.
@@ -31,7 +37,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 			'first_name',
 			'last_name',
 			'middle_name',
-			'role_id',
+			'roles_id',
+			'is_superadmin',
 			'status_id',
 			'section',
 			'division',
