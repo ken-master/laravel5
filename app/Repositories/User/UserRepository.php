@@ -36,7 +36,7 @@ class UserRepository implements UserInterface {
 	public function get($id = null)
 	{
 
-		$user = $this->user->with('profile')->paginate($this->limit);
+		$user = $this->user->with('profile')->where('is_superadmin', '=', 0 )->paginate($this->limit);
 
 		/*foreach($user as $key => $value){
 			dd($value->profile);

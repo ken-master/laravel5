@@ -21,19 +21,28 @@ class RoutePermission
      */
     public function handle($request, Closure $next)
     {
-        //fetch user info by role
-        $accessLevel = Auth::user()->role->with('accessLevel')->find( Auth::user()->roles_id  );
 
-        //fetch user access_level_id
-        $x = array_fetch($accessLevel->accessLevel->toArray(), 'id');
+        if( Auth::user()->find(Auth::user()->id)->is_superadmin == 1 ){
+            return $next($request);
+        }else{
 
-        //get route_name in the array
-        $routes = array_fetch(AccessLevelHasPermissions::permissions($x)->get()->toArray(), 'route_name');
+            //fetch user info by role
+            $accessLevel = Auth::user()->role->with('accessLevel')->find( Auth::user()->roles_id  );
 
-//dd($routes);
-        if( !in_array($request->route()->getName(), $routes) ){
-            return response('Unauthorized.', 401);
+            //fetch user access_level_id
+            $x = array_fetch($accessLevel->accessLevel->toArray(), 'id');
+
+            //get route_name in the array
+            $routes = array_fetch(AccessLevelHasPermissions::permissions($x)->get()->toArray(), 'route_name');
+
+
+            if( !in_array($request->route()->getName(), $routes) ){
+                return abort(401);
+            }
+
+            return $next($request);
         }
-        return $next($request);
+
+       
     }
 }

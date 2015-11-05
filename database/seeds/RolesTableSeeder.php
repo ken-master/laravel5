@@ -15,7 +15,7 @@ class RolesTableSeeder extends Seeder{
 		DB::table('roles')->delete();
 
 		$roles = array(
-			'name' 			=> 'Super Admin',
+			'name' 			=> 'Admin',
 			'description' 	=> 'Super Admin Role' 
 		);
 

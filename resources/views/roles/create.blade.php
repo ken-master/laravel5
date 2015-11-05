@@ -3,6 +3,7 @@
 
 
 @section('content')
+<div class="row">
 <form role="form" action="{{{ route('role.store') }}}" method="POST" >
 <div class="col-md-4">
     <div class="box box-primary">
@@ -66,4 +67,5 @@
 
 
 </form>
+</div>
 @endsection
