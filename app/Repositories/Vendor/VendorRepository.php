@@ -35,7 +35,7 @@ class VendorRepository implements VendorInterface{
 	 */
 	public function get($id = null){
 
-		$vendor = $this->vendor->with('routes')->paginate($this->limit);
+		$vendor = $this->vendor->paginate($this->limit);
 
 		//$vendor = $this->vendor->all();
 
@@ -44,7 +44,7 @@ class VendorRepository implements VendorInterface{
 		}*/
 
 		if (!is_null($id)){
-			$vendor = $this->vendor->with('routes')->find($id);
+			$vendor = $this->vendor->find($id);
 		}
 		return $vendor;
 	
