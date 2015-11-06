@@ -6,7 +6,7 @@ use App\Repositories\Vendor\VendorInterface;
 
 
 //Models
-use App\Vendor;
+use App\Vendor, App\Address;
 
 
 
@@ -15,13 +15,15 @@ class VendorRepository implements VendorInterface{
 	protected $limit = 10;
 
 	protected $vendor;
+    protected $address;
 	//protected $permissions;
 
 	/**
 	 *  Permissions
 	 */
-	public function __construct( Vendor $vendor ){
-		$this->vendor = $vendor;
+	public function __construct( Vendor $vendor, Address $address){
+		$this->vendor  = $vendor;
+        $this->address = $address;
 		//$this->permission  = $permission;
 	}
 
@@ -54,16 +56,46 @@ class VendorRepository implements VendorInterface{
 		$vendor = $this->vendor;
 
 		//check if Id exist, then update
-		if( isset($data['id'])  && !empty($data['id']) ){
-			$vendor =	$this->vendor->find($data['id']);
+		if( isset($data['vendor_id'])  && !empty($data['vendor_id']) ){
+			$vendor =	$this->vendor->find($data['vendor_id']);
 		}
 
-		$vendor->name 			= $data['name'];
-		$vendor->description 	= $data['description'];
-		
+        //User Profiles
+        $address = $this->address;
+
+        if (isset($vendor['address_id'])) {
+            if( !is_null(
+                $this->address
+                    ->where('address_id',$vendor['address_id'])
+                    ->first()
+            )
+            ){
+                $address = $this->address->where('id',$vendor['address_id'])->first();
+            }
+        }
+
+        //insert UserProfiles
+        $address->zipcode_id 		= $data['zipcode_id'];
+        $address->barangay       	= $data['barangay'];
+        $address->address1       	= $data['address1'];
+        $address->address2       	= $data['address2'];
+
+        $address->save();
+
+
+		$vendor->vendor_name 		= $data['vendor_name'];
+		$vendor->vendor_desc 	    = $data['vendor_desc'];
+		$vendor->phone	    	    = $data['phone'];
+        $vendor->phone2		        = $data['phone2'];
+        $vendor->mobile		        = $data['mobile'];
+        $vendor->mobile2		    = $data['mobile2'];
+        $vendor->website		    = $data['website'];
+        $vendor->address_id         = $address->id;
+
 		$vendor->save();
 		//ALL MIGHTY ->SYNC() is the way of light!
-		return $vendor->permissions()->sync( $data['permission']);
+		//return $vendor->addresses()->sync( $data['address_id']);
+        return;
 	}
 
 	public function delete($id)

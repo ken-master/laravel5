@@ -15,7 +15,7 @@ class CreateAddressTable extends Migration
         Schema::create('addresses', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('zipcode_id');
-            $table->foreign('zipcode_id')->references('id')->on('zipcodes');
+            //$table->foreign('zipcode_id')->references('id')->on('zipcodes');
             $table->string('barangay', 255);
             $table->string('address1', 255);
             $table->string('address2', 255);

@@ -34,27 +34,27 @@
                     @if( !empty($data) && !is_null($data) )
                       @foreach($data as $vendor)
                       <tr>
-                        <td>{{ $vendor->id  }}.</td>
+                        <td>{{ $vendor->vendor_id  }}.</td>
                         <td>{{ $vendor->vendor_name  }}</td>
                         <td>{{ $vendor->vendor_desc  }}</td>
-                       
+
 
                         <td>
                         	<div class="btn-group pull-right">
   	                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action <span class="fa fa-caret-down"></span></button>
   	                   		<ul class="dropdown-menu">
   	                        <!-- <li><a href="{{ route('vendor.show', $vendor->id) }}">View</a></li> -->
-  	                        <li><a href="{{ route('vendor.edit', $vendor->id) }}">Edit</a></li>
+  	                        <li><a href="{{ route('vendor.edit', $vendor->vendor_id) }}">Edit</a></li>
   	                        <li class="divider"></li>
-                            
+
   	                        <li>
-                              {!! Form::open(array('route' => array('vendor.destroy', $vendor->id), 'method' => 'delete')) !!}
+                              {!! Form::open(array('route' => array('vendor.destroy', $vendor->vendor_id), 'method' => 'delete')) !!}
                               <a href="javascript:void(0);" onclick="$(this).closest('form').submit();">Remove</a>
                               {!! Form::close() !!}
                             </li>
-                            
+
   	                      </ul>
-  	                    </div>            		
+  	                    </div>
   	                   </td>
                       </tr>
                      	@endforeach

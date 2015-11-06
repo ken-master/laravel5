@@ -22,8 +22,8 @@ class VendorCreateRequest extends Request {
 	public function rules()
 	{
 		return [
-			'name' 			=> 'required',
-			'description' 	=> 'required',
+			'vendor_name' 		=> 'required',
+			'vendor_desc' 	    => 'required',
 		];
 	}
 

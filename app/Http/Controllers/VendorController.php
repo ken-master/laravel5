@@ -45,6 +45,7 @@ class VendorController extends Controller
 	public function create()
 	{
 		//
+        return view('vendor.create');
 	}
 
 	/**
@@ -52,9 +53,10 @@ class VendorController extends Controller
 	 *
 	 * @return Response
 	 */
-	public function store()
-	{
-		//
+	public function store(VendorCreateRequest $request)
+    {
+        $this->vendorService->save( $request->all() );
+        return redirect( '/vendor' )->with('message', 'Successfully Created');
 	}
 
 	/**

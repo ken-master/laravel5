@@ -5,7 +5,6 @@ use App\Repositories\Vendor\VendorRepository;
 
 use Illuminate\Support\Facades\Route;
 
-
 //use App\Http\Requests\RegisterUserRequest;
 //use Illuminate\Contracts\Hashing\Hasher as Hash;
 
@@ -15,13 +14,11 @@ class VendorService{
 	protected $vendor;
 	
 
-	public function __construct( VendorRepository $vendor)
+	public function __construct(VendorRepository $vendor)
 	{
 		$this->vendor = $vendor;
 	
 	}
-
-
 
 	public function get($id = null){
 		return $this->vendor->get($id);
@@ -30,17 +27,24 @@ class VendorService{
 	public function save(array $data)
 	{
 		//dd($data);
-		if ( isset($data['id']) && !empty($data['id']) ) {
-			$vendor['id'] = $data['id'];
+		if ( isset($data['vendor_id']) && !empty($data['vendor_id']) ) {
+			$vendor['vendor_id'] = $data['vendor_id'];
 		}
-		
-	
-	
-		$vendor['name'] 			= $data['name'];
-		$vendor['description'] 	    = $data['description'];
-		$vendor['permission']		= $data['permission'];
 
-		return $this->vendor->save($vendor);
+		$vendor['vendor_name'] 	    = $data['vendor_name'];
+        $vendor['vendor_desc'] 	    = $data['vendor_desc'];
+		$vendor['phone']		    = $data['phone'];
+        $vendor['phone2']		    = $data['phone2'];
+        $vendor['mobile']		    = $data['mobile'];
+        $vendor['mobile2']		    = $data['mobile2'];
+        $vendor['website']		    = $data['website'];
+        //$vendor['address_id']		= $data['address_id'];
+        $vendor['zipcode_id'] 	    = 1; //$data['zipcode'];
+        $vendor['barangay'] 	    = $data['barangay'];
+        $vendor['address1']		    = $data['address1'];
+        $vendor['address2']		    = $data['address2'];
+
+        return $this->vendor->save($vendor);
 	}
 
 	public function delete($id)
@@ -52,20 +56,12 @@ class VendorService{
 	}
 
 	/**
-	 * Get current Listed Route Names
+	 * Get zips
 	 * @return Array name.action
 	 */
-	public function getRouteList()
+	public function getZip()
 	{	
-		$routes = Route::getRoutes();
-
-		foreach( $routes as $value ){
-			if( !is_null($value->getName()) ){
-				$r[] = $value->getName();
-			}
-		}
-
-		return $r ;
+		//
 	}
 
 }

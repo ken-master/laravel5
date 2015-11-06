@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Vendor extends Model {
+class Zipcode extends Model {
 
 	//use SoftDeletes;
 	/**
@@ -10,7 +10,7 @@ class Vendor extends Model {
 	 *
 	 * @var string
 	 */
-	protected $table = 'vendors';
+	protected $table = 'zipcodes';
 
 	/**
 	 * Soft Deleting, so soft that you could put your face to it. so smoothy soft!
@@ -21,10 +21,6 @@ class Vendor extends Model {
 	/**
 	 * @return \Illuminate\Database\Eloquent\Relations\belongsTo
 	 */
-	public function address()
-	{
-		return $this->belongsTo('App\Address', 'address_id', 'id', 'address');
-	}
 
 
 }
