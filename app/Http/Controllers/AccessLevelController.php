@@ -90,7 +90,8 @@ class AccessLevelController extends Controller
      */
     public function edit($id)
     {
-        //dd($this->accessLevel->get($id));
+       
+        //dd( $this->accessLevel->getRouteList() );
 
         $data['access_level']   = $this->accessLevel->get($id);
         $data['permissions'] = $this->accessLevel->getRouteList();

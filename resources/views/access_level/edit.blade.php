@@ -6,7 +6,7 @@
 
 <div class="row">
     <form role="form" action="{{{ route('access_level.update', $access_level->id) }}}" method="POST" >
-    <div class="col-md-8">
+    <div class="">
         <div class="box box-primary">
         <div class="box-header">
             <h3 class="box-title">Edit Access Level</h3> - <a href="{{ route('access_level.index') }}">Go back</a>
@@ -30,27 +30,27 @@
                     <input type="input" name="description" class="form-control" id="description" placeholder="Enter Description" value="{{ old('description',$access_level->description) }}">
                 </div>
                
-    <!--             <div class="form-group">
-                    <label for="full_name">Is Active:</label>
-                    {!! Form::checkbox('is_active', '1') !!}
-                </div> -->
-               
-                <div class="form-group">
-               
-                    <label for="full_name">Permissions:</label>
-                        <?php //dd( $access_level->routes->toArray()  ); ?>
-                    <div class="checkbox">
-                    @foreach( $permissions as $value ) 
-                        <div>
-                        <label>      
-                            {!! Form::checkbox('permission[]', $value, in_array( $value, array_fetch( $access_level->routes->toArray(), 'route_name') ) ) !!}
-                            {{ $value }}
-                        </label>
-                        </div>
-                    @endforeach
-                    </div>
-                    
-                </div>
+  
+             @foreach( $permissions as $key => $value ) 
+            <div class="col-md-3">
+              <div class="box box-default">
+                <div class="box-header with-border">
+                  <h3 class="box-title">{{ ucwords( str_replace("_"," ",$key) ) }}</h3>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                  </div><!-- /.box-tools -->
+                </div><!-- /.box-header -->
+                <div class="box-body" style="display: block;">
+                @foreach( $value as $v )        
+                            <div>      
+                            {!! Form::checkbox('permission[]', $v, in_array( $v, array_fetch( $access_level->routes->toArray(), 'route_name') ) ) !!}
+                            {{$v}}
+                            </div>
+                 @endforeach
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div>
+             @endforeach
 
 
 
@@ -60,11 +60,6 @@
             <button type="submit" class="btn btn-primary">Save</button>
         </div>
 
-        
-
-           <!--  <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div> -->
         
         </div>
     </div>

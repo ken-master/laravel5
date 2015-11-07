@@ -53,19 +53,40 @@ class AccessLevelService{
 
 	/**
 	 * Get current Listed Route Names
-	 * @return Array name.action
+	 * @return Array routename => (name.action .... )
 	 */
 	public function getRouteList()
 	{	
 		$routes = Route::getRoutes();
-
+		$routeValue = array();
 		foreach( $routes as $value ){
 			if( !is_null($value->getName()) ){
-				$r[] = $value->getName();
+
+				$explode = explode('.', $value->getName());
+						
+				$routekey[] = $explode[0];
+				$routeValue[] = $value->getName();
+				
 			}
 		}
+		
+		$routekey = array_unique($routekey);
 
-		return $r ;
+		foreach($routekey as $v){
+			foreach ($routeValue as $key => $value) {
+				
+				if( strpos( $value, $v."." ) !== false ){
+				 		$arr[] = $value;	 			
+				}
+
+			}
+			
+			$xxx[$v ] = $arr;
+			unset($arr);
+		}
+
+
+		return $xxx;
 	}
 
 }
