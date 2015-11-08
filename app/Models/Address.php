@@ -1,4 +1,4 @@
-<?php namespace App;
+<?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -23,7 +23,7 @@ class Address extends Model {
 	 */
 	public function zipcode()
 	{
-		return $this->belongsTo('App\Zip', 'zipcode_id', 'id', 'zipcode');
+		return $this->belongsTo('App\Models\Zip', 'zipcode_id', 'id', 'zipcode');
 	}
 
 

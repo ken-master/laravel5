@@ -6,8 +6,8 @@ use App\Repositories\Role\RoleInterface;
 
 
 //Models
-use App\Roles;
-use App\RoleHasAccessLevel;
+use App\Models\Roles;
+use App\Models\RoleHasAccessLevel;
 
 
 class RoleRepository implements RoleInterface{

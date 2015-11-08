@@ -1,4 +1,4 @@
-<?php namespace App;
+<?php namespace App\Models;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
@@ -57,12 +57,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	public function profile()
     {
-        return $this->hasOne('App\UserProfiles','user_id');
+        return $this->hasOne('App\Models\UserProfiles','user_id');
     }
 
     public function role()
     {
-        return $this->belongsTo('App\Roles','roles_id');
+        return $this->belongsTo('App\Models\Roles','roles_id');
     }
 
 

@@ -3,8 +3,8 @@
 use App\Repositories\User\UserInterface;
 
 //Models
-use App\User;
-use App\UserProfiles;
+use App\Models\User;
+use App\Models\UserProfiles;
 
 //helpers
 use Illuminate\Support\Facades\Hash;

@@ -6,7 +6,7 @@ use App\Repositories\Vendor\VendorInterface;
 
 
 //Models
-use App\Vendor, App\Address;
+use App\Models\Vendor, App\Models\Address;
 
 
 

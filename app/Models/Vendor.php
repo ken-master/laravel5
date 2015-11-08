@@ -1,4 +1,4 @@
-<?php namespace App;
+<?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -23,7 +23,7 @@ class Vendor extends Model {
 	 */
 	public function address()
 	{
-		return $this->belongsTo('App\Address', 'address_id', 'id', 'address');
+		return $this->belongsTo('App\Models\Address', 'address_id', 'id', 'address');
 	}
 
 

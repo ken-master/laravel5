@@ -1,4 +1,4 @@
-<?php namespace App;
+<?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,14 +12,14 @@ class RoleHasAccessLevel extends Model {
 
 	public function access_level()
     {
-        return $this->belongsToMany('App\AccessLevels');
+        return $this->belongsToMany('App\Models\AccessLevels');
     }
 
 
 
 	public function roles()
     {
-        return $this->belongsToMany('App\Roles');
+        return $this->belongsToMany('App\Models\Roles');
     }
 
 }

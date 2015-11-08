@@ -4,7 +4,7 @@ namespace App\Repositories\Permission;
 use App\Repositories\Permission\PermissionInterface;
 
 //Models
-use App\Permissions;
+use App\Models\Permissions;
 
 
 

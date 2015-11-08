@@ -1,4 +1,4 @@
-<?php namespace App;
+<?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,7 +17,7 @@ class Roles extends Model {
 	 */
 	public function users()
 	{
-		return $this->hasOne('App\User');
+		return $this->hasOne('App\Models\User');
 	}
 
 	/***
@@ -26,7 +26,7 @@ class Roles extends Model {
 	 */
 	public function accessLevel()
     {
-        return $this->belongsToMany('App\AccessLevel', 'roles_has_access_level', 'roles_id', 'access_level_id');
+        return $this->belongsToMany('App\Models\AccessLevel', 'roles_has_access_level', 'roles_id', 'access_level_id');
     }
 
     /*public function permissions()

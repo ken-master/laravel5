@@ -6,7 +6,7 @@ use App\Repositories\AccessLevel\AccessLevelInterface;
 
 
 //Models
-use App\AccessLevel;
+use App\Models\AccessLevel;
 
 
 

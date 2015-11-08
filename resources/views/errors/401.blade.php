@@ -22,16 +22,20 @@
               <h3><i class="fa fa-warning text-yellow"></i> Oops! Page not found.</h3>
               <p>
                 Unauthorized!
-                Meanwhile, you may <a href='/home'>return to dashboard</a> or try using the search form.
+                Meanwhile, you may <a href='/home'>return to dashboard.</a>
               </p>
-              <form class='search-form'>
+              
+
+              <!-- <form class='search-form'>
                 <div class='input-group'>
                   <input type="text" name="search" class='form-control' placeholder="Search"/>
                   <div class="input-group-btn">
                     <button type="submit" name="submit" class="btn btn-warning btn-flat"><i class="fa fa-search"></i></button>
                   </div>
-                </div><!-- /.input-group -->
-              </form>
+                </div>
+              </form> -->
+
+
             </div><!-- /.error-content -->
           </div><!-- /.error-page -->
         </section><!-- /.content -->

@@ -1,4 +1,4 @@
-<?php namespace App;
+<?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -26,7 +26,7 @@ class AccessLevel extends Model {
 		//return $this->hasMany('App\AccessLevelHasPermissions');
 		//return $this->hasMany('App\Permissions');
 		//return $this->belongsToMany('App\Permissions', 'access_level_has_permission', 'access_level_id','permissions_id');
-		return $this->belongsToMany('App\Permissions', 'access_level_has_permission', 'access_level_id','route_name');
+		return $this->belongsToMany('App\Models\Permissions', 'access_level_has_permission', 'access_level_id','route_name');
 	}
 
 	/**
@@ -35,7 +35,7 @@ class AccessLevel extends Model {
 	 */
 	public function routes()
 	{
-		return $this->hasMany('App\AccessLevelHasPermissions');
+		return $this->hasMany('App\Models\AccessLevelHasPermissions');
 	}
 
 	/**
@@ -44,7 +44,7 @@ class AccessLevel extends Model {
 	 */
 	public function roles()
 	{
-		return $this->belongsToMany('App\Roles', 'roles_has_access_level', 'roles_id', 'access_level_id');
+		return $this->belongsToMany('App\Models\Roles', 'roles_has_access_level', 'roles_id', 'access_level_id');
 	}
 
 }

@@ -5,7 +5,7 @@ use App\Repositories\Address\AddressInterface;
 
 
 //Models
-use App\Address;
+use App\Models\Address;
 
 
 

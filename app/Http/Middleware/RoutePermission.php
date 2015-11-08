@@ -6,7 +6,7 @@ use Closure;
 
 //Models
 use Auth;
-use App\AccessLevelHasPermissions;
+use App\Models\AccessLevelHasPermissions;
 
 
 
