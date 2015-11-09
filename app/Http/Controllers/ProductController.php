@@ -7,6 +7,11 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 
+//requests
+use App\Http\Requests\Product\ProductCreateRequest;
+use App\Http\Requests\Product\ProductUpdateRequest;
+
+
 //service
 use App\Services\ProductService;
 use App\Services\VendorService;
@@ -45,12 +50,15 @@ class ProductController extends Controller
     {
 
         $vendors = $this->vendor->getAll();
+        $v = [];
         if( isset($vendors) && !empty($vendors) ){
             foreach($vendors as $vendor){
                 $v[$vendor->id] = $vendor->vendor_name;
             }
+
+            $data['vendors'] = $v;
         }
-        $data['vendors'] = $v;
+        
     
 
         return  view('product.create',$data);
@@ -64,7 +72,10 @@ class ProductController extends Controller
      */
     public function store(ProductCreateRequest $request)
     {
-        //
+
+        dd($request->all() );
+        $this->product->save( $request->all() );
+        return redirect( '/product' )->with('message', 'Sucessfully Created');
     }
 
     /**
@@ -86,7 +97,22 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        //for dropdown
+        $vendors = $this->vendor->getAll();
+        $v = [];
+        if( isset($vendors) && !empty($vendors) ){
+            foreach($vendors as $vendor){
+                $v[$vendor->id] = $vendor->vendor_name;
+            }
+
+            $data['vendors'] = $v;
+        }
+        
+
+
+
+        return  view('product.edit',$data);
+
     }
 
     /**
@@ -98,7 +124,11 @@ class ProductController extends Controller
      */
     public function update( $id, ProductUpdateRequest $request)
     {
-        //
+        $data = array_add( $request->all(), 'id', $id );
+        if( $this->product->save( $data ) ){
+             return redirect( '/product/'.$id.'/edit' )->with('message', 'Sucessfully Updated');
+        }
+        return redirect( '/product/'.$id.'/edit' )->with('message', 'Something Wrong with the Update!');
     }
 
     /**

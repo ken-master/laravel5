@@ -33,6 +33,9 @@
                 <li><a href="/user"><i class="fa fa-circle-o"></i>Users</a></li>
                 <li><a href="/role"><i class="fa fa-circle-o"></i>Roles</a></li>
                 <li><a href="/access_level"><i class="fa fa-circle-o"></i>Access Levels</a></li>
+
+                <li><a href="/vendor"><i class="fa fa-circle-o"></i>Vendor</a></li>
+                <li><a href="/product"><i class="fa fa-circle-o"></i>Product</a></li>
               </ul>
             </li>
             

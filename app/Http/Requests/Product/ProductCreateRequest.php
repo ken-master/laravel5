@@ -22,8 +22,19 @@ class ProductCreateRequest extends Request {
 	public function rules()
 	{
 		return [
+			'vendor_id'		=> 'required',
 			'name' 			=> 'required',
 			'description' 	=> 'required',
+			'sku' 			=> 'required',
+		];
+	}
+
+
+	public function messages()
+	{
+		return  [
+
+			'vendor_id.required' => 'The Vendor Field is Required',
 		];
 	}
 

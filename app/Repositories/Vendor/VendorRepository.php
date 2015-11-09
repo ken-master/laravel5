@@ -72,7 +72,7 @@ class VendorRepository implements VendorInterface{
 	{
 		
 		$vendor = $this->vendor;
-		
+
 		//check if Id exist, then update
 		if( isset($data['id'])  && !empty($data['id']) ){
 			$vendor =	$this->vendor->find($data['id']);
@@ -89,24 +89,16 @@ class VendorRepository implements VendorInterface{
         //$vendor->address_id         = $address->id;
 
 		$vendor->save();
-//dd($vendor->id);
+
 
         //User Profiles
         $address = $this->address;
 
        // if (isset($vendor['address_id'])) {
-            if( !is_null(
-                $this->address
-                    ->where('vendor_id',$vendor->id)
-                    ->first()
-            )
-            ){
+        if( !is_null( $this->address->where('vendor_id',$vendor->id)->first() ) ){
                 $address = $this->address->where('id',$vendor->id)->first();
-            }
+        }
       //  }
-
-
-
 
         //insert UserProfiles
         $address->zipcode 			= $data['zipcode'];
