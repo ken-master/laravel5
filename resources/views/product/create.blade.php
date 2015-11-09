@@ -49,6 +49,10 @@
                 <input type="input" name="manufacturer_sku" class="form-control" id="manufacturer_sku" placeholder="Enter Manufacturer SKU" value="{{ old('manufacturer_sku') }}">
             </div>
 
+             <div class="form-group">
+                <label for="full_name">Bar Code:</label> <span class="text-red">{{ $errors->first('barcode') }}</span>
+                <input type="input" name="barcode" class="form-control" id="barcode" placeholder="Enter Bar Code" value="{{ old('barcode') }}">
+            </div>
 
             <div class="form-group">
                 <label for="full_name">Price:</label> <span class="text-red">{{ $errors->first('price') }}</span>
@@ -65,7 +69,28 @@
                 <input type="input" name="price2" class="form-control" id="price2" placeholder="Enter Price2" value="{{ old('price2') }}">
             </div>
 
+            <div class="form-group">
+                <label for="full_name">Lower Limit:</label> <span class="text-red">{{ $errors->first('lower_limit') }}</span>
+                <input type="input" name="lower_limit" class="form-control" id="lower_limit" placeholder="Enter Lower Limit" value="{{ old('lower_limit') }}">
+            </div>
+
+
+            <div class="form-group">
+                <label for="full_name">Upper Limit:</label> <span class="text-red">{{ $errors->first('upper_limit') }}</span>
+                <input type="input" name="upper_limit" class="form-control" id="upper_limit" placeholder="Enter Upper Limit" value="{{ old('upper_limit') }}">
+            </div>
+
             
+            <div class="form-group">
+                <label for="full_name">Minimum Qty:</label> <span class="text-red">{{ $errors->first('min_qty') }}</span>
+                <input type="input" name="min_qty" class="form-control" id="min_qty" placeholder="Enter Minimum Qty" value="{{ old('min_qty') }}">
+            </div>
+
+             <div class="form-group">
+                <label for="full_name">Maximum Qty:</label> <span class="text-red">{{ $errors->first('max_qty') }}</span>
+                <input type="input" name="max_qty" class="form-control" id="max_qty" placeholder="Enter Maximum Qty" value="{{ old('max_qty') }}">
+            </div>
+
             <div class="form-group">
               <label>Description</label>
               <textarea name="description" class="form-control" id="description" rows="3" placeholder="Description ...">{{ old('description') }}</textarea>

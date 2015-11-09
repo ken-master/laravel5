@@ -25,6 +25,10 @@ class CreateProductsTable extends Migration
             $table->float('price3');
             $table->text('description');
 
+            $table->integer('lower_limit');
+            $table->integer('upper_limit');
+
+
             $table->unsignedInteger('producttype');
             $table->foreign('producttype')->references('id')->on('producttype');
             $table->index('sku');
