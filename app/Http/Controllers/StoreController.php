@@ -6,7 +6,15 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class LocationController extends Controller
+//HTTP Requests
+use App\Http\Requests\Store\StoreCreateRequest;
+use App\Http\Requests\Store\StoreUpdateRequest;
+
+
+//Services
+use App\Services\StoreService;
+
+class StoreController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,6 +24,9 @@ class LocationController extends Controller
     public function index()
     {
         //
+        $data = $this->storeService->get();
+
+        return view('store.index')->with('data', $data);
     }
 
     /**
