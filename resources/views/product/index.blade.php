@@ -5,7 +5,7 @@
 @section('content')
 <div class="box">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Vendor Management</h3>
+                  <h3 class="box-title">Product Management</h3>
                    <div class="box-tools">
                     <div class="input-group">
                       <input type="text" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
@@ -21,40 +21,40 @@
                 <div class="box-body">
 
                
-                <h4 class="box-title"><a href="{{route('vendor.create')}}">create vendor</a></h4>
+                <h4 class="box-title"><a href="{{route('product.create')}}">Create Product</a></h4>
                   <table class="table table-bordered">
                     <tr>
                       <th style="width: 10px">#id</th>
-                      <th>Vendor</th>
+                      <th>Access Level</th>
                       <th>Description</th>
                      
                     
                       <th class="pull-right">Actions</th>
                     </tr>
                     @if( !empty($data) && !is_null($data) )
-                      @foreach($data as $vendor)
+                      @foreach($data as $product)
                       <tr>
-                        <td>{{ $vendor->id  }}.</td>
-                        <td>{{ $vendor->vendor_name  }}</td>
-                        <td>{{ $vendor->vendor_desc  }}</td>
-
+                        <td>{{ $product->id  }}.</td>
+                        <td>{{ $product->name  }}</td>
+                        <td>{{ $product->description  }}</td>
+                       
 
                         <td>
                         	<div class="btn-group pull-right">
   	                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action <span class="fa fa-caret-down"></span></button>
   	                   		<ul class="dropdown-menu">
-  	                        <!-- <li><a href="{{ route('vendor.show', $vendor->id) }}">View</a></li> -->
-  	                        <li><a href="{{ route('vendor.edit', $vendor->id) }}">Edit</a></li>
+  	                        <!-- <li><a href="{{ route('access_level.show', $access_level->id) }}">View</a></li> -->
+  	                        <li><a href="{{ route('product.edit', $product->id) }}">Edit</a></li>
   	                        <li class="divider"></li>
-
+                            
   	                        <li>
-                              {!! Form::open(array('route' => array('vendor.destroy', $vendor->id), 'method' => 'delete')) !!}
+                              {!! Form::open(array('route' => array('product.destroy', $product->id), 'method' => 'delete')) !!}
                               <a href="javascript:void(0);" onclick="$(this).closest('form').submit();">Remove</a>
                               {!! Form::close() !!}
                             </li>
-
+                            
   	                      </ul>
-  	                    </div>
+  	                    </div>            		
   	                   </td>
                       </tr>
                      	@endforeach

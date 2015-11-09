@@ -27,8 +27,8 @@ class VendorService{
 	public function save(array $data)
 	{
 		//dd($data);
-		if ( isset($data['vendor_id']) && !empty($data['vendor_id']) ) {
-			$vendor['vendor_id'] = $data['vendor_id'];
+		if ( isset($data['id']) && !empty($data['id']) ) {
+			$vendor['id'] = $data['id'];
 		}
 
 		$vendor['vendor_name'] 	    = $data['vendor_name'];

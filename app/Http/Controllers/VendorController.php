@@ -77,8 +77,10 @@ class VendorController extends Controller
 	 * @return Response
 	 */
 	public function edit($id)
-	{
-		//
+	{	
+		$data['vendor'] = $this->vendorService->get($id);
+
+		return view('vendor.edit',$data);
 	}
 
 	/**
@@ -87,9 +89,11 @@ class VendorController extends Controller
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id, VendorUpdateRequest $request)
 	{
-		//
+		dd($request->all());
+		$s = $this->vendorService->save( $request->all() );
+        return redirect( '/vendor/'.$id.'/edit' )->with('message', 'Sucessfully Updated Vendor');
 	}
 
 	/**

@@ -35,7 +35,7 @@ class VendorRepository implements VendorInterface{
 	 */
 	public function get($id = null){
 
-		$vendor = $this->vendor->paginate($this->limit);
+		$vendor = $this->vendor->with('address')->paginate($this->limit);
 
 		//$vendor = $this->vendor->all();
 
@@ -44,7 +44,7 @@ class VendorRepository implements VendorInterface{
 		}*/
 
 		if (!is_null($id)){
-			$vendor = $this->vendor->find($id);
+			$vendor = $this->vendor->with('address')->find($id);
 		}
 		return $vendor;
 	
@@ -56,8 +56,8 @@ class VendorRepository implements VendorInterface{
 		$vendor = $this->vendor;
 
 		//check if Id exist, then update
-		if( isset($data['vendor_id'])  && !empty($data['vendor_id']) ){
-			$vendor =	$this->vendor->find($data['vendor_id']);
+		if( isset($data['id'])  && !empty($data['id']) ){
+			$vendor =	$this->vendor->find($data['id']);
 		}
 
         //User Profiles
@@ -75,7 +75,7 @@ class VendorRepository implements VendorInterface{
         }
 
         //insert UserProfiles
-        $address->zipcode_id 		= $data['zipcode_id'];
+        $address->zipcode 			= $data['zipcode'];
         $address->barangay       	= $data['barangay'];
         $address->address1       	= $data['address1'];
         $address->address2       	= $data['address2'];

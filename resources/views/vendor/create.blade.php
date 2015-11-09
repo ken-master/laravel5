@@ -8,7 +8,7 @@
 <div class="col-md-4">
     <div class="box box-primary">
     <div class="box-header">
-        <h3 class="box-title">Access Level List</h3> - <a href="{{ route('vendor.index') }}">Go back</a>
+        <h3 class="box-title">Vendors List</h3> - <a href="{{ route('vendor.index') }}">Go back</a>
     </div><!-- /.box-header -->
     <!-- form start -->
    

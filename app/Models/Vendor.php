@@ -11,7 +11,7 @@ class Vendor extends Model {
 	 * @var string
 	 */
 	protected $table = 'vendors';
-
+	//protected $primaryKey  = 'vendor_id';
 	/**
 	 * Soft Deleting, so soft that you could put your face to it. so smoothy soft!
 	 * @var string

@@ -15,7 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $data = [];
+        return view('product.index')->with('product', $data);
     }
 
     /**
