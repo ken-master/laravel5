@@ -35,7 +35,7 @@ class VendorRepository implements VendorInterface{
 	 */
 	public function get($id = null){
 
-		$vendor = $this->vendor->paginate($this->limit);
+		$vendor = $this->vendor->with('address')->paginate($this->limit);
 
 		//$vendor = $this->vendor->all();
 
@@ -44,43 +44,39 @@ class VendorRepository implements VendorInterface{
 		}*/
 
 		if (!is_null($id)){
-			$vendor = $this->vendor->find($id);
+			$vendor = $this->vendor->with('address')->find($id);
 		}
 		return $vendor;
 	
 	}
 
+
+	public function getAll(){
+
+		$vendor = $this->vendor->all();
+
+		//$vendor = $this->vendor->all();
+
+		/*foreach($permission as $key => $value){
+			dd($value->profile);
+		}*/
+
+		
+		return $vendor;
+	
+	}
+
+
+
 	public function save($data)
 	{
 		
 		$vendor = $this->vendor;
-
+		
 		//check if Id exist, then update
-		if( isset($data['vendor_id'])  && !empty($data['vendor_id']) ){
-			$vendor =	$this->vendor->find($data['vendor_id']);
+		if( isset($data['id'])  && !empty($data['id']) ){
+			$vendor =	$this->vendor->find($data['id']);
 		}
-
-        //User Profiles
-        $address = $this->address;
-
-        if (isset($vendor['address_id'])) {
-            if( !is_null(
-                $this->address
-                    ->where('address_id',$vendor['address_id'])
-                    ->first()
-            )
-            ){
-                $address = $this->address->where('id',$vendor['address_id'])->first();
-            }
-        }
-
-        //insert UserProfiles
-        $address->zipcode_id 		= $data['zipcode_id'];
-        $address->barangay       	= $data['barangay'];
-        $address->address1       	= $data['address1'];
-        $address->address2       	= $data['address2'];
-
-        $address->save();
 
 
 		$vendor->vendor_name 		= $data['vendor_name'];
@@ -90,12 +86,42 @@ class VendorRepository implements VendorInterface{
         $vendor->mobile		        = $data['mobile'];
         $vendor->mobile2		    = $data['mobile2'];
         $vendor->website		    = $data['website'];
-        $vendor->address_id         = $address->id;
+        //$vendor->address_id         = $address->id;
 
 		$vendor->save();
+//dd($vendor->id);
+
+        //User Profiles
+        $address = $this->address;
+
+       // if (isset($vendor['address_id'])) {
+            if( !is_null(
+                $this->address
+                    ->where('vendor_id',$vendor->id)
+                    ->first()
+            )
+            ){
+                $address = $this->address->where('id',$vendor->id)->first();
+            }
+      //  }
+
+
+
+
+        //insert UserProfiles
+        $address->zipcode 			= $data['zipcode'];
+        $address->barangay       	= $data['barangay'];
+        $address->address1       	= $data['address1'];
+        $address->address2       	= $data['address2'];
+        $address->vendor_id       	= $vendor->id;
+
+        return $address->save();
+
+
+		
 		//ALL MIGHTY ->SYNC() is the way of light!
 		//return $vendor->addresses()->sync( $data['address_id']);
-        return;
+       
 	}
 
 	public function delete($id)

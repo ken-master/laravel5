@@ -23,6 +23,8 @@
        
             <div class="box-body">
                 
+                <input type="hidden" name="_method" value="PUT">
+                <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
                 <input type="hidden" name="id" value="{{$access_level->id}}" />
 
                 <div class="form-group">

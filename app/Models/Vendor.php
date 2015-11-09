@@ -11,7 +11,7 @@ class Vendor extends Model {
 	 * @var string
 	 */
 	protected $table = 'vendors';
-
+	//protected $primaryKey  = 'vendor_id';
 	/**
 	 * Soft Deleting, so soft that you could put your face to it. so smoothy soft!
 	 * @var string
@@ -23,8 +23,12 @@ class Vendor extends Model {
 	 */
 	public function address()
 	{
-		return $this->belongsTo('App\Models\Address', 'address_id', 'id', 'address');
+		return $this->hasOne('App\Models\Address', 'vendor_id');
 	}
 
+
+	public function product(){
+		return $this->belongsToMany('App\Models\Product','vendors_products', 'vendor_id', 'product_id');
+	}
 
 }

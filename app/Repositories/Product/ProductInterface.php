@@ -1,15 +1,13 @@
 <?php 
 
-namespace App\Repositories\Vendor;
+namespace App\Repositories\Product;
 
 
 
-interface VendorInterface {
+interface ProductInterface {
 
 
 	public function get($id = null);
-
-	public function getAll();
 
 	public function save($data);
 
