@@ -1,6 +1,6 @@
 <?php namespace App\Services;
 
-use App\Repositories\Vendor\VendorRepository;
+use App\Repositories\Store\StoreRepository;
 
 
 use Illuminate\Support\Facades\Route;
@@ -14,7 +14,7 @@ class StoreService{
 	protected $store;
 	
 
-	public function __construct(VendorRepository $store)
+	public function __construct(StoreRepository $store)
 	{
 		$this->store = $store;
 	
@@ -28,13 +28,13 @@ class StoreService{
 	{
 		//dd($data);
 		if ( isset($data['id']) && !empty($data['id']) ) {
-			$vendor['id'] = $data['id'];
+			$store['id'] = $data['id'];
 		}
 
-		$vendor['name'] 	        = $data['name'];
-        $vendor['description'] 	    = $data['description'];
+		$store['name'] 	        = $data['name'];
+        $store['description'] 	= $data['description'];
 
-        return $this->store->save($vendor);
+        return $this->store->save($store);
 	}
 
 	public function delete($id)

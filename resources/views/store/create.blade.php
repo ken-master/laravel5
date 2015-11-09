@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="row">
-<form role="form" action="{{{ route('stor.store') }}}" method="POST" >
+<form role="form" action="{{{ route('store.store') }}}" method="POST" >
 <div class="col-md-4">
     <div class="box box-primary">
     <div class="box-header">

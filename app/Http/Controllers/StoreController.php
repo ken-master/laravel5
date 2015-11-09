@@ -16,6 +16,13 @@ use App\Services\StoreService;
 
 class StoreController extends Controller
 {
+    protected $storeService;
+
+    public function __construct(StoreService $storeService)
+    {
+        $this->storeService = $storeService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -37,6 +44,7 @@ class StoreController extends Controller
     public function create()
     {
         //
+        return view('store.create');
     }
 
     /**
@@ -45,9 +53,10 @@ class StoreController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCreateRequest $request)
     {
-        //
+        $this->storeService->save( $request->all() );
+        return redirect( '/store' )->with('message', 'Successfully Created');
     }
 
     /**
