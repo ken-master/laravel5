@@ -20,10 +20,20 @@ class CreateAddressTable extends Migration
             $table->string('address1', 255);
             $table->string('address2', 255);
             $table->string('zipcode',25);
-            $table->timestamps();
-           // $table->index('zipcode_id');
+            //$table->integer('vendor_id');           
+           
+
+           //indexes
             $table->index('zipcode');
             $table->index('barangay');
+
+
+            $table->integer('vendor_id')->unsigned()->index();
+            $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade');
+
+
+            $table->timestamps();
+
             $table->engine = 'InnoDB';
         });
     }

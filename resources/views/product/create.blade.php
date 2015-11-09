@@ -4,60 +4,74 @@
 
 @section('content')
 <div class="row">
-<form role="form" action="{{{ route('access_level.store') }}}" method="POST" >
+
+    {!! Form::open(
+        array(
+            'route' => array('product.store'),
+            'method' => 'POST'
+        )
+    ) !!}
 <div class="">
     <div class="box box-primary">
     <div class="box-header">
-        <h3 class="box-title">Access Level List</h3> - <a href="{{ route('access_level.index') }}">Go back</a>
+        <h3 class="box-title">Product List</h3> - <a href="{{ route('product.index') }}">Go back</a>
     </div><!-- /.box-header -->
     <!-- form start -->
    
         <div class="box-body">
             
-            <input type="hidden" name="_method" value="POST">
-            <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
-            
+            <div class="form-group">
+                <label>Vendor:</label> <span class="text-red">{{ $errors->first('vendor_id') }}</span>
+                {!! Form::select('vendor_id', $vendors, old('vendor_id') , ['placeholder' => 'Select Vendor...','class' => 'form-control'] ) !!}
+                
+            </div>
+
 
             <div class="form-group">
-                <label for="full_name">Access Level Name:</label> <span class="text-red">{{ $errors->first('name') }}</span>
-                <input type="input" name="name" class="form-control" id="name" placeholder="Enter Access Level Name" value="{{ old('name') }}">
+                <label for="full_name">Product Name:</label> <span class="text-red">{{ $errors->first('name') }}</span>
+                <input type="input" name="name" class="form-control" id="name" placeholder="Enter Product Name" value="{{ old('name') }}">
             </div>
 
+            <div class="form-group">
+                <label for="full_name">SKU:</label> <span class="text-red">{{ $errors->first('sku') }}</span>
+                <input type="input" name="sku" class="form-control" id="sku" placeholder="Enter SKU" value="{{ old('sku') }}">
+            </div>
+
+
+            <div class="form-group">
+                <label for="full_name">Brand Name:</label> <span class="text-red">{{ $errors->first('brand') }}</span>
+                <input type="input" name="brand" class="form-control" id="brand" placeholder="Enter Brand Name" value="{{ old('brand') }}">
+            </div>
+
+
+            <div class="form-group">
+                <label for="full_name">Manufacturer SKU:</label> <span class="text-red">{{ $errors->first('manufacturer_sku') }}</span>
+                <input type="input" name="manufacturer_sku" class="form-control" id="manufacturer_sku" placeholder="Enter Manufacturer SKU" value="{{ old('manufacturer_sku') }}">
+            </div>
+
+
+            <div class="form-group">
+                <label for="full_name">Price:</label> <span class="text-red">{{ $errors->first('price') }}</span>
+                <input type="input" name="price" class="form-control" id="price" placeholder="Enter Price" value="{{ old('price') }}">
+            </div>
 
              <div class="form-group">
-                <label for="exampleInputEmail1">Description:</label> <span class="text-red">{{ $errors->first('description') }}</span>
-                <input type="input" name="description" class="form-control" id="description" placeholder="Enter Description" value="{{ old('description') }}">
+                <label for="full_name">Price1:</label> <span class="text-red">{{ $errors->first('price1') }}</span>
+                <input type="input" name="price1" class="form-control" id="price1" placeholder="Enter Price1" value="{{ old('price1') }}">
             </div>
+
+            <div class="form-group">
+                <label for="full_name">Price2:</label> <span class="text-red">{{ $errors->first('price2') }}</span>
+                <input type="input" name="price2" class="form-control" id="price2" placeholder="Enter Price2" value="{{ old('price2') }}">
+            </div>
+
+            
+            <div class="form-group">
+              <label>Description</label>
+              <textarea name="description" class="form-control" id="description" rows="3" placeholder="Description ...">{{ old('description') }}</textarea>
+            </div>
+
         
-
-            @foreach( $permissions as $key => $value ) 
-            <div class="col-md-3">
-              <div class="box box-default collapsed-box">
-                <div class="box-header with-border">
-                  <h3 class="box-title">{{ ucwords( str_replace("_"," ",$key) ) }}</h3>
-                  <div class="box-tools pull-right">
-                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
-                  </div><!-- /.box-tools -->
-                </div><!-- /.box-header -->
-                <div class="box-body" style="display: none;">
-                @foreach( $value as $v )        
-                            <div>      
-                            {!! Form::checkbox('permission[]', $v ) !!}
-                            {{$v}}
-                            </div>
-                 @endforeach
-                </div><!-- /.box-body -->
-              </div><!-- /.box -->
-            </div>
-             @endforeach
-
-
-
-
-
-
-
-
 
         </div><!-- /.box-body -->
 
@@ -72,6 +86,6 @@
 
 
 
-</form>
+{!! Form::close() !!}
 </div>
 @endsection

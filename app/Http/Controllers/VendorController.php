@@ -90,9 +90,9 @@ class VendorController extends Controller
 	 * @return Response
 	 */
 	public function update($id, VendorUpdateRequest $request)
-	{
-		dd($request->all());
-		$s = $this->vendorService->save( $request->all() );
+	{	
+		$data = array_add( $request->all(), 'id', $id );
+		$s = $this->vendorService->save( $data );
         return redirect( '/vendor/'.$id.'/edit' )->with('message', 'Sucessfully Updated Vendor');
 	}
 

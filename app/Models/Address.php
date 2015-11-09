@@ -18,6 +18,11 @@ class Address extends Model {
 	 */
 	//protected $dates = ['deleted_at'];
 
+
+	public function vendor(){
+		return $this->belongsTo('App\Models\Vendor', 'vendor_id');
+	}
+
 	/**
 	 * @return \Illuminate\Database\Eloquent\Relations\belongsTo
 	 */

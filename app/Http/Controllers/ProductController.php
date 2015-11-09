@@ -6,8 +6,24 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+
+//service
+use App\Services\ProductService;
+use App\Services\VendorService;
+
 class ProductController extends Controller
 {
+
+
+    protected $product;
+    protected $vendor;
+
+
+    public function __construct(ProductService $product, VendorService $vendor){
+        $this->product = $product;
+        $this->vendor = $vendor;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +31,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $data = [];
-        return view('product.index')->with('product', $data);
+        $data = $this->product->get();
+        //dd($data);
+        return view('product.index')->with('data', $data);
     }
 
     /**
@@ -26,7 +43,17 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+
+        $vendors = $this->vendor->getAll();
+        if( isset($vendors) && !empty($vendors) ){
+            foreach($vendors as $vendor){
+                $v[$vendor->id] = $vendor->vendor_name;
+            }
+        }
+        $data['vendors'] = $v;
+    
+
+        return  view('product.create',$data);
     }
 
     /**
@@ -35,7 +62,7 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductCreateRequest $request)
     {
         //
     }
@@ -69,7 +96,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update( $id, ProductUpdateRequest $request)
     {
         //
     }

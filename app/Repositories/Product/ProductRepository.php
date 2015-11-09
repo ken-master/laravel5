@@ -6,7 +6,7 @@ use App\Repositories\Product\ProductInterface;
 
 
 //Models
-use App\Models\Product;
+use App\Models\Products;
 
 
 
@@ -20,7 +20,7 @@ class ProductRepository implements ProductInterface{
 	/**
 	 *  Permissions
 	 */
-	public function __construct( Product $product ){
+	public function __construct( Products $product ){
 		$this->product = $product;
 		//$this->permission  = $permission;
 	}

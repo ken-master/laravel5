@@ -23,8 +23,12 @@ class Vendor extends Model {
 	 */
 	public function address()
 	{
-		return $this->belongsTo('App\Models\Address', 'address_id', 'id', 'address');
+		return $this->hasOne('App\Models\Address', 'vendor_id');
 	}
 
+
+	public function product(){
+		return $this->belongsToMany('App\Models\Product','vendors_products', 'vendor_id', 'product_id');
+	}
 
 }

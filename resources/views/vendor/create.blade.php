@@ -30,8 +30,8 @@
             </div>
 
             <div class="form-group">
-                <label for="exampleInputEmail1">Zip:</label> <span class="text-red">{{ $errors->first('zip') }}</span>
-                <input type="input" name="zip" class="form-control" id="zip" placeholder="Enter Zip" value="{{ old('zip') }}">
+                <label for="exampleInputEmail1">Zip:</label> <span class="text-red">{{ $errors->first('zipcode') }}</span>
+                <input type="input" name="zipcode" class="form-control" id="zip" placeholder="Enter Zip" value="{{ old('zipcode') }}">
             </div>
 
             <div class="form-group">

@@ -24,6 +24,10 @@ class VendorService{
 		return $this->vendor->get($id);
 	}
 
+	public function getAll(){
+		return $this->vendor->getAll();
+	}
+
 	public function save(array $data)
 	{
 		//dd($data);
@@ -39,7 +43,7 @@ class VendorService{
         $vendor['mobile2']		    = $data['mobile2'];
         $vendor['website']		    = $data['website'];
         //$vendor['address_id']		= $data['address_id'];
-        $vendor['zipcode_id'] 	    = 1; //$data['zipcode'];
+        $vendor['zipcode'] 	    	= $data['zipcode'];
         $vendor['barangay'] 	    = $data['barangay'];
         $vendor['address1']		    = $data['address1'];
         $vendor['address2']		    = $data['address2'];

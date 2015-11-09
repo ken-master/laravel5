@@ -14,18 +14,33 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name', 225);
             $table->string('sku', 50);
+            $table->string('brand', 225);
             $table->string('barcode', 100);
             $table->string('manufacturer_sku', 50);
+            $table->float('price');
+            $table->float('price1');
+            $table->float('price2');
+            $table->float('price3');
             $table->text('description');
+
             $table->unsignedInteger('producttype');
             $table->foreign('producttype')->references('id')->on('producttype');
             $table->index('sku');
+            $table->index('brand');
             $table->index('barcode');
             $table->index('manufacturer_sku');
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
+
+
+
+
+
+
+
     }
 
     /**

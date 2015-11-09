@@ -1,8 +1,8 @@
-<?php namespace App\Http\Requests\Vendor;
+<?php namespace App\Http\Requests\Product;
 
 use App\Http\Requests\Request;
 
-class VendorUpdateRequest extends Request {
+class ProductCreateRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -21,11 +21,9 @@ class VendorUpdateRequest extends Request {
 	 */
 	public function rules()
 	{
-		
 		return [
-			'vendor_name' 	=> 'required',
-			'vendor_desc' 	=> 'required',
-
+			'name' 			=> 'required',
+			'description' 	=> 'required',
 		];
 	}
 

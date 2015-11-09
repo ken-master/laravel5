@@ -12,7 +12,7 @@ class CreateSupplierVendorTable extends Migration
      */
     public function up()
     {
-        Schema::create('vendor_product', function (Blueprint $table) {
+        Schema::create('vendors_products', function (Blueprint $table) {
           
             //set foreign keys
             $table->integer('vendor_id')->unsigned()->index();
@@ -22,10 +22,10 @@ class CreateSupplierVendorTable extends Migration
             $table->integer('product_id')->unsigned()->index();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
 
-            $table->integer('priority', 10);
+            $table->integer('priority');
 
-            $table->integer('max_qty', 10);
-            $table->integer('min_qty', 10);
+            $table->integer('max_qty');
+            $table->integer('min_qty');
 
 
         });
@@ -38,6 +38,6 @@ class CreateSupplierVendorTable extends Migration
      */
     public function down()
     {
-        Schema::drop('vendor_product');
+        Schema::dropIfExists('vendors_products');
     }
 }

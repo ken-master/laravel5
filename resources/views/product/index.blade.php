@@ -25,9 +25,9 @@
                   <table class="table table-bordered">
                     <tr>
                       <th style="width: 10px">#id</th>
-                      <th>Access Level</th>
-                      <th>Description</th>
-                     
+                      <th>Product Name</th>
+                      <th>Sku</th>
+                      <th>Brand</th>
                     
                       <th class="pull-right">Actions</th>
                     </tr>
@@ -36,7 +36,7 @@
                       <tr>
                         <td>{{ $product->id  }}.</td>
                         <td>{{ $product->name  }}</td>
-                        <td>{{ $product->description  }}</td>
+                        <td>{{ $product->brand_id  }}</td>
                        
 
                         <td>
