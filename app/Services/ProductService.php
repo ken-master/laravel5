@@ -36,12 +36,11 @@ class ProductService{
 			$product['id'] = $data['id'];
 		}
 		
-  		//vendors is array
-		$product['vendors'] 			= $data['vendors'];
-		$product['min_qty'] 			= $data['min_qty'];
-		$product['max_qty'] 			= $data['max_qty'];
+		foreach($data['vendors'] as $key => $value){
+			$vendors[$value] = array( 'max_qty' => $data['max_qty'], 'min_qty' => $data['min_qty'] );
+		}
 
-
+		$product['vendors'] = $vendors;
 
 		$product['name'] 				= $data['name'];
 		$product['sku'] 				= $data['sku'];
