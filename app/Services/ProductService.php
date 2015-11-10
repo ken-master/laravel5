@@ -36,11 +36,24 @@ class ProductService{
 			$product['id'] = $data['id'];
 		}
 		
-	
-	
-		$product['name'] 			= $data['name'];
-		$product['description'] 	= $data['description'];
-		$product['permission']		= $data['permission'];
+  		//vendors is array
+		$product['vendors'] 			= $data['vendors'];
+		$product['min_qty'] 			= $data['min_qty'];
+		$product['max_qty'] 			= $data['max_qty'];
+
+
+
+		$product['name'] 				= $data['name'];
+		$product['sku'] 				= $data['sku'];
+		$product['brand'] 				= $data['brand'];
+		$product['manufacturer_sku'] 	= $data['manufacturer_sku'];
+		$product['barcode'] 			= $data['barcode'];
+		$product['price'] 				= $data['price'];
+		$product['price1'] 				= $data['price1'];
+		$product['price2'] 				= $data['price2'];
+		$product['lower_limit'] 		= $data['lower_limit'];
+		$product['higher_limit'] 		= $data['higher_limit'];
+		$product['description'] 		= $data['description'];
 
 		return $this->product->save($product);
 	}

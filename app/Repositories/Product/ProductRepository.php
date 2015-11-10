@@ -60,10 +60,12 @@ class ProductRepository implements ProductInterface{
 
 		$product->name 			= $data['name'];
 		$product->description 	= $data['description'];
+
+		$product->producttype 	= 1;
 		
 		$product->save();
 		//ALL MIGHTY ->SYNC() is the way of light!
-		return $product->permissions()->sync( $data['permission']);
+		return $product->vendor()->sync( $data['vendors'] );
 	}
 
 	public function delete($id)

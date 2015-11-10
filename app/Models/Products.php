@@ -18,7 +18,7 @@ class Products extends Model
 
 
 	public function vendor(){
-		return $this->belongsToMany('App\Models\Vendor','vendors_products', 'vendor_id', 'product_id');
+		return $this->belongsToMany('App\Models\Vendor','vendors_products', 'product_id', 'vendor_id');
 	}
 
 }
