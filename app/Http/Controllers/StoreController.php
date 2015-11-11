@@ -79,6 +79,9 @@ class StoreController extends Controller
     public function edit($id)
     {
         //
+        $data['store'] = $this->storeService->get($id);
+//dd($data);
+        return view('store.edit',$data);
     }
 
     /**
@@ -88,9 +91,11 @@ class StoreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id, StoreUpdateRequest $request)
     {
-        //
+        $data = array_add( $request->all(), 'id', $id );
+        $s = $this->storeService->save( $data );
+        return redirect( '/store/'.$id.'/edit' )->with('message', 'Successfully Updated Store');
     }
 
     /**
@@ -102,5 +107,7 @@ class StoreController extends Controller
     public function destroy($id)
     {
         //
+        $s = $this->storeService->delete( $id );
+        return redirect( '/store' )->with('message', 'Successfully Deleted');
     }
 }
