@@ -39,12 +39,14 @@ class ProductService{
 		if ( isset($data['id']) && !empty($data['id']) ) {
 			$product['id'] = $data['id'];
 		}
-		
+		/*
 		foreach($data['vendors'] as $key => $value){
 			$vendors[$value] = array( 'max_qty' => $data['max_qty'], 'min_qty' => $data['min_qty'] );
 		}
-
+		
 		$product['vendors'] = $vendors;
+		*/
+		$product['vendors']				= $data['vendors'];
 
 		$product['name'] 				= $data['name'];
 		$product['sku'] 				= $data['sku'];

@@ -101,7 +101,7 @@
                 <input type="input" name="higher_limit" class="form-control" id="higher_limit" placeholder="Enter Higher Limit" value="{{ old('higher_limit') }}">
             </div>
 
-            
+            <?php /*
             <div class="form-group">
                 <label for="full_name">Minimum Qty:</label> <span class="text-red">{{ $errors->first('min_qty') }}</span>
                 <input type="input" name="min_qty" class="form-control" id="min_qty" placeholder="Enter Minimum Qty" value="{{ old('min_qty') }}">
@@ -111,7 +111,8 @@
                 <label for="full_name">Maximum Qty:</label> <span class="text-red">{{ $errors->first('max_qty') }}</span>
                 <input type="input" name="max_qty" class="form-control" id="max_qty" placeholder="Enter Maximum Qty" value="{{ old('max_qty') }}">
             </div>
-
+            */
+            ?>
             <div class="form-group">
               <label>Description</label>
               <textarea name="description" class="form-control" id="description" rows="3" placeholder="Description ...">{{ old('description') }}</textarea>
