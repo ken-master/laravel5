@@ -36,7 +36,8 @@
                       <tr>
                         <td>{{ $product->id  }}.</td>
                         <td>{{ $product->name  }}</td>
-                        <td>{{ $product->brand_id  }}</td>
+                         <td>{{ $product->sku  }}</td>
+                        <td>{{ $product->brand  }}</td>
                        
 
                         <td>

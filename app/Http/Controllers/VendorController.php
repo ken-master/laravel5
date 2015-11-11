@@ -67,7 +67,13 @@ class VendorController extends Controller
 	 */
 	public function show($id)
 	{
-		//
+		$data['vendor'] = $this->vendorService->get($id);
+
+		//get product associated
+		
+		//get product note associated
+
+		return view('vendor.show',$data);
 	}
 
 	/**
