@@ -29,6 +29,10 @@ class ProductService{
 		return $this->product->get($id);
 	}
 
+	public function getSelectedVendors(){
+		return $this->product->vendor();
+	}
+
 	public function save(array $data)
 	{
 		//dd($data);

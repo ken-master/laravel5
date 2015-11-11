@@ -22,9 +22,9 @@ class ProductUpdateRequest extends Request {
 	public function rules()
 	{
 		return [
-			'vendor_id'		=> 'required',
+			//'vendor_id'		=> 'required',
 			'name' 			=> 'required',
-			'description' 	=> 'required',
+			//'description' 	=> 'required',
 			'sku' 			=> 'required',
 		];
 	}

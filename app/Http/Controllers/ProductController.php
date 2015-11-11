@@ -107,9 +107,9 @@ class ProductController extends Controller
 
             $data['vendors'] = $v;
         }
-        
-
-
+    
+        $data['product'] = $this->product->get($id);        
+        $data['selectedVendors'] = $data['product']->vendor->lists('id')->toArray() ;
 
         return  view('product.edit',$data);
 
@@ -125,6 +125,7 @@ class ProductController extends Controller
     public function update( $id, ProductUpdateRequest $request)
     {
         $data = array_add( $request->all(), 'id', $id );
+
         if( $this->product->save( $data ) ){
              return redirect( '/product/'.$id.'/edit' )->with('message', 'Sucessfully Updated');
         }

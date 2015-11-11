@@ -28,7 +28,7 @@ class Vendor extends Model {
 
 
 	public function product(){
-		return $this->belongsToMany('App\Models\Product','vendors_products', 'vendor_id', 'product_id');
+		return $this->belongsToMany('App\Models\Product','vendors_products', 'vendor_id', 'product_id')->withPivot('max_qty', 'min_qty', 'priority');
 	}
 
 }
