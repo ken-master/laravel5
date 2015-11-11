@@ -25,8 +25,8 @@ class CreateProductsTable extends Migration
             $table->float('price3');
             $table->text('description');
 
-            $table->integer('lower_limit');
-            $table->integer('upper_limit');
+            $table->integer('lower_limit')->default(0);
+            $table->integer('higher_limit')->default(0);
 
 
             $table->unsignedInteger('producttype');

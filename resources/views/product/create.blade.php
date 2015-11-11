@@ -20,10 +20,31 @@
    
         <div class="box-body">
             
-            <div class="form-group">
-                <label>Vendor:</label> <span class="text-red">{{ $errors->first('vendor_id') }}</span>
-                {!! Form::select('vendor_id', $vendors, old('vendor_id') , ['placeholder' => 'Select Vendor...','class' => 'form-control'] ) !!}
-                
+
+            <button class="btn btn-block btn-primary" type="button" data-toggle="modal" data-target="#modelVendor">Select Vendors</button>
+
+            <div class="modal" id="modelVendor">
+              <div class="modal-dialog" >
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">Vendor List</h4>
+                  </div>
+                  <div class="modal-body"  >
+                     <div class="form-group" style="max-height:250px;overflow-y:scroll">
+                        <label>Vendor:</label> <span class="text-red">{{ $errors->first('vendor_id') }}</span>
+                        @foreach( $vendors as $key => $value )
+                         <div>{!! Form::checkbox( 'vendors[]', $key ,null, array( 'data-value'=> $value, 'class' => 'vendor-checkbox' ) ) !!} {{$value}}</div>
+                         @endforeach
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    
+                    <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Assign Vendor</button>
+                  </div>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
             </div>
 
 
@@ -76,8 +97,8 @@
 
 
             <div class="form-group">
-                <label for="full_name">Upper Limit:</label> <span class="text-red">{{ $errors->first('upper_limit') }}</span>
-                <input type="input" name="upper_limit" class="form-control" id="upper_limit" placeholder="Enter Upper Limit" value="{{ old('upper_limit') }}">
+                <label for="full_name">Higher Limit:</label> <span class="text-red">{{ $errors->first('higher_limit') }}</span>
+                <input type="input" name="higher_limit" class="form-control" id="higher_limit" placeholder="Enter Higher Limit" value="{{ old('higher_limit') }}">
             </div>
 
             
@@ -113,4 +134,22 @@
 
 {!! Form::close() !!}
 </div>
+@endsection
+
+
+@section('footer_scripts')
+ 
+  <script type="text/javascript">
+  $(document).ready(function(){
+
+    //clear vendor checboxes
+    $('.clear-data').click(function(){
+        $('.vendor-checkbox').removeAttr('checked');
+    });
+
+  });
+
+  </script>
+
+
 @endsection

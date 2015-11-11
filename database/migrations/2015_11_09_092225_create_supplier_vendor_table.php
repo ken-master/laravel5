@@ -24,8 +24,8 @@ class CreateSupplierVendorTable extends Migration
 
             $table->integer('priority');
 
-            $table->integer('max_qty');
-            $table->integer('min_qty');
+            $table->integer('max_qty')->default(0);
+            $table->integer('min_qty')->default(0);
 
 
         });

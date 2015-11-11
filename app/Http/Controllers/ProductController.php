@@ -59,7 +59,7 @@ class ProductController extends Controller
             $data['vendors'] = $v;
         }
         
-    
+        
 
         return  view('product.create',$data);
     }
@@ -73,7 +73,7 @@ class ProductController extends Controller
     public function store(ProductCreateRequest $request)
     {
 
-        dd($request->all() );
+        //dd( $request->all() );
         $this->product->save( $request->all() );
         return redirect( '/product' )->with('message', 'Sucessfully Created');
     }
