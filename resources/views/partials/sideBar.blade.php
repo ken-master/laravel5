@@ -36,6 +36,7 @@
 
                 <li><a href="/vendor"><i class="fa fa-circle-o"></i>Vendor</a></li>
                 <li><a href="/product"><i class="fa fa-circle-o"></i>Product</a></li>
+                <li><a href="/store"><i class="fa fa-circle-o"></i>Store</a></li>
               </ul>
             </li>
 <!--             
