@@ -32,12 +32,12 @@
                     
                       <th class="pull-right">Actions</th>
                     </tr>
-                    @if( !empty($data) && !is_null($data) )
-                      @foreach($data as $vendor)
+                    @if( !empty($productsBelongsToVendor) && !is_null($productsBelongsToVendor) )
+                      @foreach($productsBelongsToVendor as $productAssociated)
                       <tr>
-                        <td>{{ $vendor->id  }}.</td>
-                        <td>{{ $vendor->vendor_name  }}</td>
-                        <td>{{ $vendor->vendor_desc  }}</td>
+                        <td>{{ $productAssociated->id  }}.</td>
+                        <td>{{ $productAssociated->name  }}</td>
+                        <td>{{ $productAssociated->sku  }}</td>
 
 
                         <td>
@@ -49,7 +49,7 @@
                             <li class="divider"></li>
 
                             <li>
-                              {!! Form::open(array('route' => array('vendor.destroy', $vendor->id), 'method' => 'delete')) !!}
+                              {!! Form::open(array('route' => array('product.destroy', $productAssociated->id), 'method' => 'delete')) !!}
                               <a href="javascript:void(0);" onclick="$(this).closest('form').submit();">Remove</a>
                               {!! Form::close() !!}
                             </li>
@@ -77,24 +77,24 @@
                     
                       <th class="pull-right">Actions</th>
                     </tr>
-                    @if( !empty($data) && !is_null($data) )
-                      @foreach($data as $vendor)
+                    @if( !empty($productNotBelongsToVendor) && !is_null($productNotBelongsToVendor) )
+                      @foreach($productNotBelongsToVendor as $productNotAssociated)
                       <tr>
-                        <td>{{ $vendor->id  }}.</td>
-                        <td>{{ $vendor->vendor_name  }}</td>
-                        <td>{{ $vendor->vendor_desc  }}</td>
+                        <td>{{ $productNotAssociated->id  }}.</td>
+                        <td>{{ $productNotAssociated->name  }}</td>
+                        <td>{{ $productNotAssociated->sku  }}</td>
 
 
                         <td>
                             <div class="btn-group pull-right">
                           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action <span class="fa fa-caret-down"></span></button>
                             <ul class="dropdown-menu">
-                            <li><a href="{{ route('vendor.show', $vendor->id) }}">Show</a></li>
-                            <li><a href="{{ route('vendor.edit', $vendor->id) }}">Edit</a></li>
+                            <li><a href="{{ route('product.show', $productNotAssociated->id) }}">Show</a></li>
+                            <li><a href="{{ route('product.edit', $productNotAssociated->id) }}">Edit</a></li>
                             <li class="divider"></li>
 
                             <li>
-                              {!! Form::open(array('route' => array('vendor.destroy', $vendor->id), 'method' => 'delete')) !!}
+                              {!! Form::open(array('route' => array('product.destroy', $productNotAssociated->id), 'method' => 'delete')) !!}
                               <a href="javascript:void(0);" onclick="$(this).closest('form').submit();">Remove</a>
                               {!! Form::close() !!}
                             </li>

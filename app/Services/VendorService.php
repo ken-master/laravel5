@@ -60,12 +60,32 @@ class VendorService{
 	}
 
 	/**
-	 * Get zips
-	 * @return Array name.action
+	 * Get getProductsByVendorId
+	 * @return Array 
 	 */
-	public function getZip()
+	public function getProductsByVendorId($id)
 	{	
-		//
+		return $this->vendor->getProductsByVendorId($id);
 	}
 
+	public function getAllProductNotVendor($id)
+	{
+		return $this->vendor->productNotBelongsToVendor($id);
+	}
+
+
+	public function saveProductsToVendor($data)
+	{
+		$product = $this->vendor;
+
+		
+
+		//$product->name 			= $data['name'];
+		//$product->description 	= $data['description'];
+		//$product->producttype 	= 1;
+		
+		$product->get($data['id']);
+		//ALL MIGHTY ->SYNC() is the way of light!
+		return $product->vendor()->sync( $data['vendors'] );
+	}
 }

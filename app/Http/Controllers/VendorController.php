@@ -33,8 +33,7 @@ class VendorController extends Controller
 	{
 		//
         $data = $this->vendorService->get();
-
-        return view('vendor.index')->with('data', $data);
+		return view('vendor.index')->with('data', $data);
 	}
 
 	/**
@@ -68,11 +67,10 @@ class VendorController extends Controller
 	public function show($id)
 	{
 		$data['vendor'] = $this->vendorService->get($id);
-
-		//get product associated
-		
-		//get product note associated
-
+		$data['productsBelongsToVendor'] = $this->vendorService->getProductsByVendorId($id)->product;
+		$data['productNotBelongsToVendor'] = $this->vendorService->getAllProductNotVendor($id)->product;
+		//dd( $data['productsBelongsToVendor']);
+		//dd( $data['productNotBelongsToVendor']->product);
 		return view('vendor.show',$data);
 	}
 
@@ -112,5 +110,7 @@ class VendorController extends Controller
 	{
 		//
 	}
+
+
 
 }

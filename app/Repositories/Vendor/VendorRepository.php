@@ -122,4 +122,14 @@ class VendorRepository implements VendorInterface{
 		return  $vendor->delete();
 	}
 
+
+	public function getProductsByVendorId($vendorId){
+		return $this->vendor->with('product')->find($vendorId);
+	}
+
+	public function productNotBelongsToVendor($vendorId)
+	{	
+		//i use first(), becuase the data colected is/are in pivot and associating it to vendor.
+		return $this->vendor->with('product')->where( 'id', '!=', $vendorId)->first();
+	}
 }
