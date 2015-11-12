@@ -130,6 +130,7 @@ class VendorRepository implements VendorInterface{
 	public function productNotBelongsToVendor($vendorId)
 	{	
 		//i use first(), becuase the data colected is/are in pivot and associating it to vendor.
+		//since it's a pivot table. there would be a chance but
 		return $this->vendor->with('product')->where( 'id', '!=', $vendorId)->first();
 	}
 }

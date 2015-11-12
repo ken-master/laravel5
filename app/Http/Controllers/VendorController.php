@@ -70,7 +70,7 @@ class VendorController extends Controller
 		$data['productsBelongsToVendor'] = $this->vendorService->getProductsByVendorId($id)->product;
 		$data['productNotBelongsToVendor'] = $this->vendorService->getAllProductNotVendor($id)->product;
 		//dd( $data['productsBelongsToVendor']);
-		//dd( $data['productNotBelongsToVendor']->product);
+		//dd( $data['productNotBelongsToVendor']);
 		return view('vendor.show',$data);
 	}
 

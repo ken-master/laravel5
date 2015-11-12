@@ -128,7 +128,7 @@
 
             <div class="form-group">
               <label>Description</label>
-              <textarea name="description" class="form-control" id="description" rows="3" placeholder="Description ...">{{ old('description') }}</textarea>
+              <textarea name="description" class="form-control" id="description" rows="3" placeholder="Description ...">{{ old('description', $product->description) }}</textarea>
             </div>
 
         
