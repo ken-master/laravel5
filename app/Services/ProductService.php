@@ -56,6 +56,7 @@ class ProductService{
 		$product['price'] 				= $data['price'];
 		$product['price1'] 				= $data['price1'];
 		$product['price2'] 				= $data['price2'];
+		$product['price3'] 				= $data['price3'];
 		$product['lower_limit'] 		= $data['lower_limit'];
 		$product['higher_limit'] 		= $data['higher_limit'];
 		$product['description'] 		= $data['description'];

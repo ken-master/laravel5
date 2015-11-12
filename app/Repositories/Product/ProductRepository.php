@@ -60,7 +60,19 @@ class ProductRepository implements ProductInterface{
 
 		$product->name 			= $data['name'];
 		$product->description 	= $data['description'];
+		$product->sku 			= $data['sku'];
 
+		$product->brand 			= $data['brand'];
+		$product->barcode 			= $data['barcode'];
+		$product->manufacturer_sku 			= $data['manufacturer_sku'];
+		$product->price 			= $data['price'];
+		$product->price1 			= $data['price1'];
+		$product->price2 			= $data['price2'];
+		$product->price3			= $data['price3'];
+		$product->lower_limit 			= $data['lower_limit'];
+		$product->higher_limit 			= $data['higher_limit'];
+		$product->description 			= $data['description'];
+		
 		$product->producttype 	= 1;
 		
 		$product->save();

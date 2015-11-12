@@ -66,8 +66,8 @@
 
 
 
-                <h2>Products not Associated product</h2>
-
+                <h2>Products not Associated to {{ $vendor->vendor_name }} Vendor</h2>
+                {!! Form::open( array('route' => array('product.update', $productNotBelongsToVendor->id), 'method' => 'PUT') ) !!}
                 <table class="table table-bordered">
                     <tr>
                       <th style="width: 10px">#id</th>
@@ -75,7 +75,7 @@
                       <th>SKU</th>
                      
                     
-                      <th class="pull-right">Actions</th>
+                      <th class="pull-right">Associate</th>
                     </tr>
                     @if( !empty($productNotBelongsToVendor) && !is_null($productNotBelongsToVendor) )
                       @foreach($productNotBelongsToVendor as $productNotAssociated)
@@ -84,23 +84,10 @@
                         <td>{{ $productNotAssociated->name  }}</td>
                         <td>{{ $productNotAssociated->sku  }}</td>
 
-
                         <td>
-                            <div class="btn-group pull-right">
-                          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action <span class="fa fa-caret-down"></span></button>
-                            <ul class="dropdown-menu">
-                            <li><a href="{{ route('product.show', $productNotAssociated->id) }}">Show</a></li>
-                            <li><a href="{{ route('product.edit', $productNotAssociated->id) }}">Edit</a></li>
-                            <li class="divider"></li>
-
-                            <li>
-                              {!! Form::open(array('route' => array('product.destroy', $productNotAssociated->id), 'method' => 'delete')) !!}
-                              <a href="javascript:void(0);" onclick="$(this).closest('form').submit();">Remove</a>
-                              {!! Form::close() !!}
-                            </li>
-
-                          </ul>
-                        </div>
+                            <div class="btn-group pull-right">  
+                                  {!! Form::checkbox('product[]', $productNotAssociated->id ) !!}
+                            </div>
                        </td>
                       </tr>
                         @endforeach
@@ -109,14 +96,16 @@
 
                 </table>
 
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+                {!! Form::close() !!}
 
 
 
             </div><!-- /.box-body -->
 
-        <div class="box-footer">
-            <button type="submit" class="btn btn-primary">Save</button>
-        </div>
+        
 
         
         </div>

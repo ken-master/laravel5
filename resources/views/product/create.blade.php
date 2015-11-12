@@ -91,6 +91,11 @@
             </div>
 
             <div class="form-group">
+                <label for="full_name">Price3:</label> <span class="text-red">{{ $errors->first('price3') }}</span>
+                <input type="input" name="price3" class="form-control" id="price3" placeholder="Enter Price3" value="{{ old('price3') }}">
+            </div>
+
+            <div class="form-group">
                 <label for="full_name">Lower Limit:</label> <span class="text-red">{{ $errors->first('lower_limit') }}</span>
                 <input type="input" name="lower_limit" class="form-control" id="lower_limit" placeholder="Enter Lower Limit" value="{{ old('lower_limit') }}">
             </div>
