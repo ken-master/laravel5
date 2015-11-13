@@ -23,7 +23,7 @@ class Store extends Model {
 	 */
 	public function products()
 	{
-		return $this->belongsToMany('App\Models\Product','inventory','store_id','product_id')->withPivot('stocks', 'lower_limit', 'higher_limit');
+		return $this->belongsToMany('App\Models\Products','inventory','store_id','product_id')->withPivot('stocks', 'lower_limit', 'higher_limit');
 	}
 
 

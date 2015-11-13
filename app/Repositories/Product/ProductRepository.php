@@ -48,6 +48,21 @@ class ProductRepository implements ProductInterface{
 	
 	}
 
+    public function getAll(){
+
+        $products = $this->product->all();
+
+        //$vendor = $this->vendor->all();
+
+        /*foreach($permission as $key => $value){
+            dd($value->profile);
+        }*/
+
+
+        return $products;
+
+    }
+
 	public function save($data)
 	{
 		

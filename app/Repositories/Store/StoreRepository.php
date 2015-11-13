@@ -46,6 +46,10 @@ class StoreRepository implements StoreInterface{
         $store->description     = $data['description'];
 
 		$store->save();
+
+        if( !empty($data['products']) ){
+            $store->products()->sync( $data['products'] );
+        }
 		//ALL MIGHTY ->SYNC() is the way of light!
 		//return $vendor->addresses()->sync( $data['address_id']);
         return;

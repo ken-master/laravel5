@@ -12,15 +12,18 @@ use App\Http\Requests\Store\StoreUpdateRequest;
 
 
 //Services
-use App\Services\StoreService;
+use App\Services\StoreService,
+    App\Services\ProductService;
 
 class StoreController extends Controller
 {
     protected $storeService;
+    protected $productService;
 
-    public function __construct(StoreService $storeService)
+    public function __construct(StoreService $storeService, ProductService $productService)
     {
         $this->storeService = $storeService;
+        $this->productService = $productService;
     }
 
     /**
@@ -43,8 +46,18 @@ class StoreController extends Controller
      */
     public function create()
     {
+        $products = $this->productService->getAll();
+        $v = [];
+        if( isset($products) && !empty($products) ){
+            foreach($products as $product){
+                $v[$product->id] = $product->name;
+            }
+
+            $data['products'] = $v;
+        }
+
         //
-        return view('store.create');
+        return view('store.create', $data);
     }
 
     /**
@@ -80,6 +93,20 @@ class StoreController extends Controller
     {
         //
         $data['store'] = $this->storeService->get($id);
+
+        //for dropdown
+        $products = $this->productService->getAll();
+        $v = [];
+        if( isset($products) && !empty($products) ){
+            foreach($products as $product){
+                $v[$product->id] = $product->name;
+            }
+
+            $data['products'] = $v;
+        }
+
+        $data['selectedProducts'] = $data['store']->products->lists('id')->toArray() ;
+
 //dd($data);
         return view('store.edit',$data);
     }
@@ -94,8 +121,13 @@ class StoreController extends Controller
     public function update($id, StoreUpdateRequest $request)
     {
         $data = array_add( $request->all(), 'id', $id );
-        $s = $this->storeService->save( $data );
-        return redirect( '/store/'.$id.'/edit' )->with('message', 'Successfully Updated Store');
+
+        if( $this->storeService->save( $data ) ){
+            return redirect( '/store/'.$id.'/edit' )->with('message', 'Sucessfully Updated');
+        }
+        return redirect( '/store/'.$id.'/edit' )->with('message', 'Something Wrong with the Update!');
+
+
     }
 
     /**

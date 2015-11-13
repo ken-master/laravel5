@@ -31,6 +31,11 @@ class StoreService{
 			$store['id'] = $data['id'];
 		}
 
+        if(!empty($data['products'])){
+            $product['products']				= $data['products'];
+
+        }
+
 		$store['name'] 	        = $data['name'];
         $store['description'] 	= $data['description'];
 

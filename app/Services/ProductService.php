@@ -23,7 +23,9 @@ class ProductService{
 		
 	}
 
-
+    public function getAll(){
+        return $this->product->getAll();
+    }
 
 	public function get($id = null){
 		return $this->product->get($id);
