@@ -22,7 +22,7 @@ class ProductCreateRequest extends Request {
 	public function rules()
 	{
 		return [
-			//'vendor_id'		=> 'required',
+			'vendors'		=> 'required',
 			'name' 			=> 'required',
 			//'description' 	=> 'required',
 			'sku' 			=> 'required',
@@ -34,7 +34,7 @@ class ProductCreateRequest extends Request {
 	{
 		return  [
 
-			'vendor_id.required' => 'The Vendor Field is Required',
+			'vendors.required' => 'The Vendor Field is Required',
 		];
 	}
 

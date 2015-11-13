@@ -23,10 +23,8 @@
        
             <div class="box-body">
             
-            <?php
-            //$vendor_R = $product->vendor->toArray();
-             //dd( $vendor_R ); ?>
-
+            
+             <span class="text-red">{{ $errors->first('vendors') }}</span>
             <button class="btn btn-block btn-primary" type="button" data-toggle="modal" data-target="#modelVendor">Select Vendors</button>
 
             <div class="modal" id="modelVendor">
@@ -38,7 +36,7 @@
                   </div>
                   <div class="modal-body"  >
                      <div class="form-group" style="max-height:250px;overflow-y:scroll">
-                        <label>Vendor:</label> <span class="text-red">{{ $errors->first('vendor_id') }}</span>
+                        <label>Vendor:</label>
                         @foreach( $vendors as $key => $value )
                          <div>{!! Form::checkbox( 'vendors[]', $key, in_array( $key, $selectedVendors ) , array( 'data-value'=> $value, 'class' => 'vendor-checkbox' ) ) !!} {{$value}}</div>
                          @endforeach
