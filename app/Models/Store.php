@@ -21,9 +21,9 @@ class Store extends Model {
 	/**
 	 * @return \Illuminate\Database\Eloquent\Relations\belongsTo
 	 */
-	public function address()
+	public function products()
 	{
-		return $this->belongsTo('App\Models\Address', 'address_id', 'id', 'address');
+		return $this->belongsToMany('App\Models\Product','inventory','store_id','product_id')->withPivot('stocks', 'lower_limit', 'higher_limit');
 	}
 
 
