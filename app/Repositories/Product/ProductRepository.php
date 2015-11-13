@@ -76,8 +76,13 @@ class ProductRepository implements ProductInterface{
 		$product->producttype 	= 1;
 		
 		$product->save();
+		
+		if( !empty($data['vendors']) ){
+			$product->vendor()->sync( $data['vendors'] );
+		}
+		return;
 		//ALL MIGHTY ->SYNC() is the way of light!
-		return $product->vendor()->sync( $data['vendors'] );
+		//return $product->vendor()->sync( $data['vendors'] );
 	}
 
 	public function delete($id)

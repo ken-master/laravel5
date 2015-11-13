@@ -46,8 +46,11 @@ class ProductService{
 		
 		$product['vendors'] = $vendors;
 		*/
-		$product['vendors']				= $data['vendors'];
+		if(!empty($data['vendors'])){
+			$product['vendors']				= $data['vendors'];
 
+		}
+		
 		$product['name'] 				= $data['name'];
 		$product['sku'] 				= $data['sku'];
 		$product['brand'] 				= $data['brand'];
