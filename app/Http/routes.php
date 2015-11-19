@@ -56,14 +56,14 @@ Route::group( ['middleware' => ['auth'] ],function(){
 Route::group( ['middleware' => ['auth','route.permission'] ],function(){
 
 
-	Route::resource( 'user', 'UserController' );
+	Route::resource( 'user', 'User\UserController' );
 	// /Route::post('user/{id}','UserController@update');
 
 
-	Route::resource( 'role', 'RoleController' );
-	Route::resource( 'access_level', 'AccessLevelController' );
-    Route::resource( 'vendor', 'VendorController' );
-    Route::resource( 'product', 'ProductController' );
+	Route::resource( 'role', 'User\RoleController' );
+	Route::resource( 'access_level', 'User\AccessLevelController' );
+    Route::resource( 'vendor', 'Vendor\VendorController' );
+    Route::resource( 'product', 'Product\ProductController' );
     Route::resource( 'store', 'StoreController' );
 
 

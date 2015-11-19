@@ -68,9 +68,9 @@ class VendorService{
 		return $this->vendor->getProductsByVendorId($id);
 	}
 
-	public function getAllProductNotVendor($id)
+	public function getAllProductNotVendor($vendorId)
 	{
-		return $this->vendor->productNotBelongsToVendor($id);
+		return $this->vendor->productNotBelongsToVendor($vendorId);
 	}
 
 

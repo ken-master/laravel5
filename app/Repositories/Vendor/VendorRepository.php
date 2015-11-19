@@ -131,6 +131,9 @@ class VendorRepository implements VendorInterface{
 	{	
 		//i use first(), becuase the data colected is/are in pivot and associating it to vendor.
 		//since it's a pivot table. there would be a chance but
-		return $this->vendor->with('product')->where( 'id', '!=', $vendorId)->first();
+		return $this->vendor->with('product')
+				->where( 'id', '!=', $vendorId)
+				//->where( 'product_id', '!=', $prductId)
+				->first();
 	}
 }
