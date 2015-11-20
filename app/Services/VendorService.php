@@ -74,12 +74,14 @@ class VendorService{
 	}
 
 
-	public function saveProductsToVendor($data)
+	public function removeProductsToVendor()
+	{
+		
+	}
+
+	public function assignProductsToVendor($data)
 	{
 		$product = $this->vendor;
-
-		
-
 		//$product->name 			= $data['name'];
 		//$product->description 	= $data['description'];
 		//$product->producttype 	= 1;

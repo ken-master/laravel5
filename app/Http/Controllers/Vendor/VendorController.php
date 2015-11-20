@@ -67,9 +67,12 @@ class VendorController extends Controller
 	 */
 	public function show($id)
 	{
+
+//dd($this->vendorService->getProductsByVendorId($id));
+
 		$data['vendor'] = $this->vendorService->get($id);
-		$data['productsBelongsToVendor'] = $this->vendorService->getProductsByVendorId($id)->product;
-		$data['productNotBelongsToVendor'] = $this->vendorService->getAllProductNotVendor($id)->product;
+		$data['productsBelongsToVendor'] = $this->vendorService->getProductsByVendorId($id);
+		//$data['productNotBelongsToVendor'] = $this->vendorService->getAllProductNotVendor($id)->product;
 		//dd( $data['productsBelongsToVendor']);
 		//dd( $data['productNotBelongsToVendor']);
 		return view('vendor.show',$data);
@@ -109,9 +112,35 @@ class VendorController extends Controller
 	 */
 	public function destroy($id)
 	{
-		//
+		
 	}
 
+	
+
+	public function removeProducts(Request $request,$vendorId)
+	{
+		dd($vendorId);
+		$this->vendor->removeProductsToVendor($request->all());
+		return redirect( '/vendor/'.$vendorId.'/remove-products' )->with('message', 'Sucessfully Remove Products');
+	}
+
+
+	public function assignProducts(Request $request)
+	{	
+		$data['vendor'] = $this->vendorService->get($request->vendorId);
+		$data['productNotBelongsToVendor'] = $this->vendorService->getAllProductNotVendor($request->vendorId);
+		//dd($data['productNotBelongsToVendor']);
+		return view("vendor.assign-products", $data);
+	}
+
+
+	public function assignProductsUpdate(Request $request,$vendorId)
+	{
+		dd($vendorId);
+		
+		$this->vendor->assignProductsToVendor( $request->all() );
+		return redirect( '/vendor/'.$vendorId.'/assign-products' )->with('message', 'Sucessfully Assign Products');
+	}
 
 
 }

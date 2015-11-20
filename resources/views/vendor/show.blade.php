@@ -16,7 +16,7 @@
                   <h3 class="box-title">Product Associated to {{ $vendor->vendor_name }}</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                    {!! Form::open( array('route' => array('vendor.update', $vendor->vendor_id), 'method' => 'PUT') ) !!}
+                    {!! Form::open( array('route' => array('vendor.remove-products', $vendor->id), 'method' => 'PUT') ) !!}
                    <table class="table table-bordered">
                         <tr>
                           <th style="width: 10px">#id</th>
@@ -46,6 +46,19 @@
 
 
                     </table>
+                    <div class="pull-left">
+                    {!! $productsBelongsToVendor->render() !!}
+                      <!-- <ul class="pagination pagination-sm no-margin pull-right">
+                        <li><a href="{{$productsBelongsToVendor->url(1)}}">&laquo;</a></li>
+                        <li><a href="{{ $productsBelongsToVendor->previousPageUrl() }}">Prev</a></li>
+                        @for ( $i = 1; $i <= $productsBelongsToVendor->lastPage(); $i++ )
+                          <li><a href="{{ $productsBelongsToVendor->url($i) }}">{{$i}}</a></li>
+                        @endfor
+                        <li><a href="{{ $productsBelongsToVendor->nextPageUrl() }}">Next</a></li>
+                        <li><a href="{{$productsBelongsToVendor->url( $productsBelongsToVendor->lastPage() )}}">&raquo;</a></li>
+                      </ul> -->
+                    
+                    </div>
                     <div class="btn-group pull-right">
                         <button type="submit" class="btn btn-primary">Remove from Vendor</button>
                     </div>
@@ -53,53 +66,6 @@
                  </div><!-- /.box-body -->
               </div><!-- /.box -->
 
-
-
-
-
-
-
-              <div class="box">
-                <div class="box-header">
-                  <h3 class="box-title">Product <span class="text-red">NOT</span> Associated to {{ $vendor->vendor_name }}</h3>
-                </div><!-- /.box-header -->
-                <div class="box-body">
-                    {!! Form::open( array('route' => array('vendor.update', $vendor->vendor_id), 'method' => 'PUT') ) !!}
-                        <table class="table table-bordered">
-                            <tr>
-                              <th style="width: 10px">#id</th>
-                              <th>Product</th>
-                              <th>SKU</th>
-                             
-                            
-                              <th class="pull-right">Associate</th>
-                            </tr>
-                            @if( !empty($productNotBelongsToVendor) && !is_null($productNotBelongsToVendor) )
-                              @foreach($productNotBelongsToVendor as $productNotAssociated)
-                              <tr>
-                                <td>{{ $productNotAssociated->id  }}.</td>
-                                <td>{{ $productNotAssociated->name  }}</td>
-                                <td>{{ $productNotAssociated->sku  }}</td>
-
-                                <td>
-                                    <div class="btn-group pull-right">  
-                                          {!! Form::checkbox('productNotAssociated[]', $productNotAssociated->id ) !!}
-                                    </div>
-                               </td>
-                              </tr>
-                                @endforeach
-                           @endif
-
-
-                        </table>
-
-                        <div class="btn-group  pull-right">
-                            <button type="submit" class="btn btn-primary">Add To Vendor</button>
-                        </div>
-                    {!! Form::close() !!}
-
-                </div><!-- /.box-body -->
-              </div><!-- /.box -->
             </div><!-- /.col -->
           </div><!-- /.row -->
         </section><!-- /.content -->    

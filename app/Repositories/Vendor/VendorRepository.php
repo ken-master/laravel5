@@ -6,25 +6,25 @@ use App\Repositories\Vendor\VendorInterface;
 
 
 //Models
-use App\Models\Vendor, App\Models\Address;
+use App\Models\Vendor, App\Models\Address, App\Models\Products;
 
 
 
 class VendorRepository implements VendorInterface{
 
-	protected $limit = 10;
+	protected $limit = 2;
 
 	protected $vendor;
     protected $address;
-	//protected $permissions;
+	protected $product;
 
 	/**
 	 *  Permissions
 	 */
-	public function __construct( Vendor $vendor, Address $address){
+	public function __construct( Vendor $vendor, Address $address, Products $product){
 		$this->vendor  = $vendor;
         $this->address = $address;
-		//$this->permission  = $permission;
+		$this->product  = $product;
 	}
 
 
@@ -124,16 +124,18 @@ class VendorRepository implements VendorInterface{
 
 
 	public function getProductsByVendorId($vendorId){
-		return $this->vendor->with('product')->find($vendorId);
+
+		
+		return $this->vendor->find($vendorId)->product()->paginate($this->limit);
 	}
 
 	public function productNotBelongsToVendor($vendorId)
 	{	
 		//i use first(), becuase the data colected is/are in pivot and associating it to vendor.
 		//since it's a pivot table. there would be a chance but
-		return $this->vendor->with('product')
+		return $this->vendor
 				->where( 'id', '!=', $vendorId)
 				//->where( 'product_id', '!=', $prductId)
-				->first();
+				->first()->product()->paginate($this->limit);
 	}
 }

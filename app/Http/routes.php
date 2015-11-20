@@ -58,6 +58,9 @@ Route::group( ['middleware' => ['auth','route.permission'] ],function(){
 
 	Route::resource( 'user', 'User\UserController' );
 	// /Route::post('user/{id}','UserController@update');
+	// 
+	// 
+  
 
 
 	Route::resource( 'role', 'User\RoleController' );
@@ -66,6 +69,17 @@ Route::group( ['middleware' => ['auth','route.permission'] ],function(){
     Route::resource( 'product', 'Product\ProductController' );
     Route::resource( 'store', 'StoreController' );
 
+    /**
+     *  VENDOR DEFINED ROUTES
+     */
+    Route::post( 'vendor/{vendorId}/remove-products', [ 'uses' => 'Vendor\VendorController@removeProducts', 'as' => 'vendor.remove-products' ] );
+	Route::get( 'vendor/{vendorId}/assign-products', [ 'uses' => 'Vendor\VendorController@assignProducts', 'as' => 'vendor.assign-products' ] );
+   	Route::post( 'vendor/{vendorId}/assign-products/update', [ 'uses' => 'Vendor\VendorController@assignProductsUpdate', 'as' => 'vendor.assign-products.update' ] );
+
+
+    /**
+     *  PRODUCT DEFINED TOUTES
+     */
 
 
 } );
