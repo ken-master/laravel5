@@ -81,13 +81,6 @@ class VendorService{
 
 	public function assignProductsToVendor($data)
 	{
-		$product = $this->vendor;
-		//$product->name 			= $data['name'];
-		//$product->description 	= $data['description'];
-		//$product->producttype 	= 1;
-		
-		$product->get($data['id']);
-		//ALL MIGHTY ->SYNC() is the way of light!
-		return $product->vendor()->sync( $data['vendors'] );
+		return $this->vendor->assignProductsToVendor($vendorId);
 	}
 }

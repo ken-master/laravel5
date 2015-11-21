@@ -13,7 +13,8 @@
 
               <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title">Product <span class="text-red">NOT</span> Associated to {{ $vendor->vendor_name }}</h3>
+                  <h3 class="box-title">Product <span class="text-red">NOT</span> Associated to {{ $vendor->vendor_name }} </h3>
+                  <a class="btn btn-primary pull-right" href="/vendor/{{$vendor->id}}">Go Back</a>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                 
@@ -28,15 +29,15 @@
                               <th class="pull-right">Associate</th>
                             </tr>
                             @if( !empty($productNotBelongsToVendor) && !is_null($productNotBelongsToVendor) )
-                              @foreach($productNotBelongsToVendor as $productNotAssociated)
+                              @foreach($productNotBelongsToVendor as $assignProduct)
                               <tr>
-                                <td>{{ $productNotAssociated->id  }}.</td>
-                                <td>{{ $productNotAssociated->name  }}</td>
-                                <td>{{ $productNotAssociated->sku  }}</td>
+                                <td>{{ $assignProduct->id  }}.</td>
+                                <td>{{ $assignProduct->name  }}</td>
+                                <td>{{ $assignProduct->sku  }}</td>
 
                                 <td>
                                     <div class="btn-group pull-right">  
-                                          {!! Form::checkbox('productNotAssociated[]', $productNotAssociated->id ) !!}
+                                          {!! Form::checkbox('assignProducts[]', $assignProduct->id ) !!}
                                     </div>
                                </td>
                               </tr>

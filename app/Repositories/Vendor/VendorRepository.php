@@ -12,7 +12,7 @@ use App\Models\Vendor, App\Models\Address, App\Models\Products;
 
 class VendorRepository implements VendorInterface{
 
-	protected $limit = 2;
+	protected $limit = 10;
 
 	protected $vendor;
     protected $address;
@@ -133,9 +133,42 @@ class VendorRepository implements VendorInterface{
 	{	
 		//i use first(), becuase the data colected is/are in pivot and associating it to vendor.
 		//since it's a pivot table. there would be a chance but
-		return $this->vendor
-				->where( 'id', '!=', $vendorId)
-				//->where( 'product_id', '!=', $prductId)
-				->first()->product()->paginate($this->limit);
+		//$products = $this->vendor
+		//		->where( 'id', '!=', $vendorId)
+		//		->get();
+				//->product();
+				//->groupby('product_id');
+				//->paginate($this->limit);
+
+
+
+		$query = \DB::table('products')
+            ->leftJoin('vendors_products', 'products.id', '=', 'vendors_products.product_id') 
+            ->where('vendors_products.vendor_id', '!=', $vendorId)
+            ->whereRaw("vendors_products.product_id NOT IN (SELECT product_id from vendors_products where vendor_id = ".$vendorId.")"  )
+            ->paginate($this->limit);
+
+		
+		return $query;
+		
+		
+		
+//
+
 	}
+
+
+
+	public function assignProductsToVendor($data)
+	{
+		$product = $this->vendor;
+		//$product->name 			= $data['name'];
+		//$product->description 	= $data['description'];
+		//$product->producttype 	= 1;
+		
+		$product->find( $data['vendor_id'] );
+		//ALL MIGHTY ->SYNC() is the way of light!
+		return $product->product()->attach( $data['assignProducts'] );
+	}
+
 }

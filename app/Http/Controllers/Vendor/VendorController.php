@@ -136,9 +136,9 @@ class VendorController extends Controller
 
 	public function assignProductsUpdate(Request $request,$vendorId)
 	{
-		dd($vendorId);
+		$data = array_add($request->except("_token"), 'vendorId',$vendorId);
 		
-		$this->vendor->assignProductsToVendor( $request->all() );
+		$this->vendor->assignProductsToVendor( $data );
 		return redirect( '/vendor/'.$vendorId.'/assign-products' )->with('message', 'Sucessfully Assign Products');
 	}
 

@@ -14,6 +14,7 @@
               <div class="box">
                 <div class="box-header">
                   <h3 class="box-title">Product Associated to {{ $vendor->vendor_name }}</h3>
+                   <a class="btn btn-primary pull-right" href="/vendor/{{$vendor->id}}/assign-products">Assign Other Products</a>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     {!! Form::open( array('route' => array('vendor.remove-products', $vendor->id), 'method' => 'PUT') ) !!}
