@@ -113,4 +113,11 @@ class ProductRepository implements ProductInterface{
 		return \DB::table('vendors_products')->where('vendor_id','=', $vendorId)->where('product_id','=', $productID)->first();
 	}
 
+
+	public function getVendorProductUpdate($data)
+	{
+		return \DB::table('vendors_products')->where('vendor_id','=', $data['vendor_id'])->where('product_id','=', $data['product_id'])
+				->update(['priority' => $data['priority'], 'min_qty' => $data['min_qty'], 'max_qty' => $data['max_qty'] ]);
+	}
+
 }

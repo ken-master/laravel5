@@ -82,4 +82,9 @@ class ProductService{
 	{
 		return $this->product->getVendorProduct($vendorId,$productId);
 	}
+
+	public function getVendorProductUpdate($data)
+	{
+		return $this->product->getVendorProductUpdate($data);
+	}
 }

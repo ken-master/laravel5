@@ -83,7 +83,7 @@ Route::group( ['middleware' => ['auth','route.permission'] ],function(){
      *  PRODUCT DEFINED ROUTES
      */
 	Route::get('ajax-vendor-product/{vendorid}/{productid}', ['uses' => 'Product\AjaxProductController@getVendorProduct']); //no need to create route name
-	Route::post('ajax-vendor-product-update/{vendorid}/{productid}', ['uses' => 'Product\AjaxProductController@getVendorProductUpdate']); //no need to create route name
+	Route::post('ajax-vendor-product-update', ['uses' => 'Product\AjaxProductController@getVendorProductUpdate']); //no need to create route name
 
 
 } );
