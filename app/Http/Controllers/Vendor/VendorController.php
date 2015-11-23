@@ -142,5 +142,11 @@ class VendorController extends Controller
 		return redirect( '/vendor/'.$vendorId.'/assign-products' )->with('message', 'Sucessfully Assign Products');
 	}
 
+	public function productAttributeUpdate(Request $request,$pid)
+	{
+		$data = array_add($request->except("_token"), 'productId',$pid);
+		dd($request->all());
+	}
+
 
 }

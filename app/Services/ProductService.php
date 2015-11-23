@@ -78,5 +78,8 @@ class ProductService{
 	}
 
 	
-
+	public function getVendorProduct($vendorId,$productId)
+	{
+		return $this->product->getVendorProduct($vendorId,$productId);
+	}
 }

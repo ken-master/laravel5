@@ -36,8 +36,11 @@
 
 
                             <td>
+                                <div class="pull-left">
+                                    <a class="" href="#" data-toggle="modal" data-target="#modelVendor" data-productid="{{ $productAssociated->id }}">set attributes</a>
+                                </div>
                                 <div class="btn-group pull-right">
-                                    {!! Form::checkbox('productAssociated[]', $productAssociated->id ) !!}
+                                   {!! Form::checkbox('productAssociated[]', $productAssociated->id ) !!}
                                 </div>
                            
                            </td>
@@ -64,19 +67,148 @@
                         <button type="submit" class="btn btn-primary">Remove from Vendor</button>
                     </div>
                     {!! Form::close() !!}
-                 </div><!-- /.box-body -->
-              </div><!-- /.box -->
+
+
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+
+
+
+
+
+                <div class="modal" id="modelVendor">
+                      
+                      <div class="modal-dialog" >
+                        <div class="modal-content">
+                          <div class="box">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <h4 class="modal-title">Product NAME Attributes:</h4>
+                          </div>
+
+                            <div class="modal-body"  >
+                            {!! Form::open( array('id'=> 'modalForm')) !!}
+                                {!! Form::hidden('vendor_id') !!}
+                                {!! Form::hidden('product_id') !!}
+                             <div class="form-group" style="max-height:250px;overflow-y:scroll">
+
+                                 <div class="form-group">
+                                    <label>Priority</label> 
+                                    {!! Form::text('priority') !!}
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Min Qty</label> 
+                                    {!! Form::text('min_qty') !!}
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Max Qty</label> 
+                                    {!! Form::text('max_qty') !!}
+                                </div>
+                               
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                
+                                <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
+                                <button type="button" class="btn btn-primary update" id="updateAttribute" >Update</button>
+                              </div>
+
+                           {!! Form::close() !!}
+
+                            <div class="overlay" style="display:none">
+                              <i class="fa fa-refresh fa-spin"></i>
+                            </div>
+
+                           </div><!-- /.box -->
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+
+                     
+
+                </div>
+
+
+
+
 
             </div><!-- /.col -->
           </div><!-- /.row -->
         </section><!-- /.content -->    
 
+@endsection
 
 
 
-  
+@section('footer_scripts')
+
+<script type="text/javascript">
+    
+
+$(document).ready(function(){
+
+    var vid = '{{$vendor->id}}';
+    //onclick modal
+   $('.modal').on('shown.bs.modal',function(e){
+
+        //clear the form first
+        $(this)
+        .find("input,textarea,select")
+           .val('')
+           .end()
+        .find("input[type=checkbox], input[type=radio]")
+           .prop("checked", "")
+           .end();
+
+        //get product ID
+        var pid = $(e.relatedTarget).attr('data-productid');
+
+        //populate form from ajax
+        $.ajax({
+            url: '/ajax-vendor-product/'+ vid +'/'+ pid ,
+            dataType: 'json',
+            success:function(data){
+                $('input[name=vendor_id]').val(data.vendor_id);
+                $('input[name=product_id]').val(data.product_id);
+
+                $('input[name=priority]').val(data.priority);
+                $('input[name=min_qty]').val(data.min_qty);
+                $('input[name=max_qty]').val(data.max_qty);
+               // console.log(data.min_qty);
 
 
+
+            },
+        });
+   });
+
+
+   //onupdate
+   $("#updateAttribute").click(function(){
+        
+        $(".overlay").show();
+        var dataform = $("#modalForm").serializeArray();
+        console.log(dataform);
+        
+        $.ajax({
+            url: "/ajax-vendor-product-update/",
+            method: 'POST',
+            data: dataform,
+            dataType: 'json',
+            success: function(data){
+                console.log(data.success);
+                $(".overlay").hide();
+            }
+        });
+
+   });
+   
+
+
+});
+
+</script>
 
 
 @endsection

@@ -75,11 +75,15 @@ Route::group( ['middleware' => ['auth','route.permission'] ],function(){
     Route::post( 'vendor/{vendorId}/remove-products', [ 'uses' => 'Vendor\VendorController@removeProducts', 'as' => 'vendor.remove-products' ] );
 	Route::get( 'vendor/{vendorId}/assign-products', [ 'uses' => 'Vendor\VendorController@assignProducts', 'as' => 'vendor.assign-products' ] );
    	Route::post( 'vendor/{vendorId}/assign-products/update', [ 'uses' => 'Vendor\VendorController@assignProductsUpdate', 'as' => 'vendor.assign-products.update' ] );
+   	Route::post( 'vendor/{vendorId}/product-attribute/update', [ 'uses' => 'Vendor\VendorController@productAttributeUpdate', 'as' => 'vendor.product.attribute.update' ] );
+
 
 
     /**
-     *  PRODUCT DEFINED TOUTES
+     *  PRODUCT DEFINED ROUTES
      */
+	Route::get('ajax-vendor-product/{vendorid}/{productid}', ['uses' => 'Product\AjaxProductController@getVendorProduct']); //no need to create route name
+	Route::post('ajax-vendor-product-update/{vendorid}/{productid}', ['uses' => 'Product\AjaxProductController@getVendorProductUpdate']); //no need to create route name
 
 
 } );

@@ -108,4 +108,9 @@ class ProductRepository implements ProductInterface{
 
 
 
+	public function getVendorProduct($vendorId,$productID)
+	{
+		return \DB::table('vendors_products')->where('vendor_id','=', $vendorId)->where('product_id','=', $productID)->first();
+	}
+
 }
