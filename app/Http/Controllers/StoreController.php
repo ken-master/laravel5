@@ -80,7 +80,15 @@ class StoreController extends Controller
      */
     public function show($id)
     {
-        //
+
+//dd($this->vendorService->getProductsByVendorId($id));
+
+        $data['vendor'] = $this->storeService->get($id);
+        $data['productsBelongsToStore'] = $this->storeService->getProductsByStoreId($id);
+        //$data['productNotBelongsToVendor'] = $this->vendorService->getAllProductNotVendor($id)->product;
+        //dd( $data['productsBelongsToVendor']);
+        //dd( $data['productNotBelongsToVendor']);
+        return view('vendor.show',$data);
     }
 
     /**

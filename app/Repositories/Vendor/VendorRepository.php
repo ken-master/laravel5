@@ -123,7 +123,8 @@ class VendorRepository implements VendorInterface{
 	}
 
 
-	public function getProductsByVendorId($vendorId){
+	public function getProductsByVendorId($vendorId)
+    {
 
 		
 		return $this->vendor->find($vendorId)->product()->paginate($this->limit);

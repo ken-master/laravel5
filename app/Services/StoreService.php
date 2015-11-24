@@ -59,4 +59,18 @@ class StoreService{
 		//
 	}
 
+    /**
+     * Get getProductsByVendorId
+     * @return Array
+     */
+    public function getProductsByStoreId($id)
+    {
+        return $this->product->getProductsByStoreId($id);
+    }
+
+    public function getAllProductNotStore($storeId)
+    {
+        return $this->product->productNotBelongsToStore($storeId);
+    }
+
 }

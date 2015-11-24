@@ -6,7 +6,7 @@ use App\Repositories\Product\ProductInterface;
 
 
 //Models
-use App\Models\Products;
+use App\Models\Products, App\Models\Store;
 
 
 
@@ -15,14 +15,15 @@ class ProductRepository implements ProductInterface{
 	protected $limit = 10;
 
 	protected $product;
+    protected $store;
 	//protected $permissions;
 
 	/**
 	 *  Permissions
 	 */
-	public function __construct( Products $product ){
+	public function __construct( Products $product, Store $store){
 		$this->product = $product;
-		//$this->permission  = $permission;
+		$this->store  = $store;
 	}
 
 
@@ -112,5 +113,10 @@ class ProductRepository implements ProductInterface{
 	{
 		return \DB::table('vendors_products')->where('vendor_id','=', $vendorId)->where('product_id','=', $productID)->first();
 	}
+
+    public function getProductsByStoreId($storeId)
+    {
+        return $this->store->find($storeId)->product()->paginate($this->limit);
+    }
 
 }
