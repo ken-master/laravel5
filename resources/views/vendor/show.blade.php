@@ -87,7 +87,12 @@
                           </div>
 
                             <div class="modal-body"  >
-                            {!! Form::open( array('id'=> 'modalForm')) !!}
+
+                            <div class="callout callout-success" style="display:none">
+                                <h4>Update Successfully!</h4>
+                            </div>
+
+                            {!! Form::open( array('id'=> 'modalForm', 'method' => 'post' ) ) !!}
                                 {!! Form::hidden('vendor_id') !!}
                                 {!! Form::hidden('product_id') !!}
                              <div class="form-group" style="max-height:250px;overflow-y:scroll">
@@ -153,13 +158,15 @@ $(document).ready(function(){
    $('.modal').on('shown.bs.modal',function(e){
 
         //clear the form first
-        $(this)
-        .find("input,textarea,select")
-           .val('')
-           .end()
-        .find("input[type=checkbox], input[type=radio]")
-           .prop("checked", "")
-           .end();
+        /**
+         * NOTE: _token should not be null for form
+         */
+
+        $('input[name=product_id]').val('');
+        $('input[name=priority]').val('');
+        $('input[name=min_qty]').val('');
+        $('input[name=max_qty]').val('');
+
 
         //get product ID
         var pid = $(e.relatedTarget).attr('data-productid');
@@ -188,17 +195,19 @@ $(document).ready(function(){
    $("#updateAttribute").click(function(){
         
         $(".overlay").show();
-        var dataform = $("#modalForm").serializeArray();
-        console.log(dataform);
+        var dataform = $("#modalForm").serialize();
+      
         
         $.ajax({
             url: "/ajax-vendor-product-update/",
-            method: 'POST',
+            method: 'post',
             data: dataform,
             dataType: 'json',
             success: function(data){
-                console.log(data.success);
+                
                 $(".overlay").hide();
+                $(".callout").show();
+                $(".callout").fadeOut(5000); 
             }
         });
 

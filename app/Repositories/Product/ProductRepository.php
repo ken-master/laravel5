@@ -119,4 +119,11 @@ class ProductRepository implements ProductInterface{
         return $this->store->find($storeId)->product()->paginate($this->limit);
     }
 
+	public function getVendorProductUpdate($data)
+	{
+		return \DB::table('vendors_products')->where('vendor_id','=', $data['vendor_id'])->where('product_id','=', $data['product_id'])
+				->update(['priority' => $data['priority'], 'min_qty' => $data['min_qty'], 'max_qty' => $data['max_qty'] ]);
+	}
+
+
 }

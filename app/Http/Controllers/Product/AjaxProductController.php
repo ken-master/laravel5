@@ -3,7 +3,7 @@ namespace App\Http\Controllers\Product;
 
 
 use Illuminate\Http\Request;
-use App\Http\Requests;
+
 use App\Http\Controllers\Controller;
 
 
@@ -34,8 +34,11 @@ class AjaxPRoductController extends Controller
 		return json_encode( $this->product->getVendorProduct($vid,$pid) );
 	}
 
-	public function getVendorProductUpdate($vid,$pid, Requests $request){
-		return $request->all();
+	public function getVendorProductUpdate(Request $request){
+
+		$data = $request->all();
+
+		return $this->product->getVendorProductUpdate($data);
 	}
 
 }
