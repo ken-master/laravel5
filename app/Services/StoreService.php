@@ -1,6 +1,7 @@
 <?php namespace App\Services;
 
-use App\Repositories\Store\StoreRepository;
+use App\Repositories\Store\StoreRepository,
+    App\Repositories\Product\ProductRepository;
 
 
 use Illuminate\Support\Facades\Route;
@@ -12,11 +13,13 @@ use Illuminate\Support\Facades\Route;
 class StoreService{
 
 	protected $store;
+    protected $product;
 	
 
-	public function __construct(StoreRepository $store)
+	public function __construct(StoreRepository $store, ProductRepository $product)
 	{
 		$this->store = $store;
+        $this->product = $product;
 	
 	}
 
@@ -32,7 +35,7 @@ class StoreService{
 		}
 
         if(!empty($data['products'])){
-            $product['products']				= $data['products'];
+            $store['products']				= $data['products'];
 
         }
 

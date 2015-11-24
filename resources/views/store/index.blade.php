@@ -44,6 +44,7 @@
   	                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action <span class="fa fa-caret-down"></span></button>
   	                   		<ul class="dropdown-menu">
   	                        <!-- <li><a href="{{ route('store.show', $store->id) }}">View</a></li> -->
+                            <li><a href="{{ route('store.show', $store->id) }}">Show</a></li>
   	                        <li><a href="{{ route('store.edit', $store->id) }}">Edit</a></li>
   	                        <li class="divider"></li>
 

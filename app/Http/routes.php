@@ -67,7 +67,7 @@ Route::group( ['middleware' => ['auth','route.permission'] ],function(){
 	Route::resource( 'access_level', 'User\AccessLevelController' );
     Route::resource( 'vendor', 'Vendor\VendorController' );
     Route::resource( 'product', 'Product\ProductController' );
-    Route::resource( 'store', 'StoreController' );
+    Route::resource( 'store', 'Store\StoreController' );
 
     /**
      *  VENDOR DEFINED ROUTES
@@ -78,13 +78,23 @@ Route::group( ['middleware' => ['auth','route.permission'] ],function(){
    	Route::post( 'vendor/{vendorId}/product-attribute/update', [ 'uses' => 'Vendor\VendorController@productAttributeUpdate', 'as' => 'vendor.product.attribute.update' ] );
 
 
+    /**
+     *  STORE DEFINED ROUTES
+     */
+    Route::post( 'store/{storeId}/remove-products', [ 'uses' => 'Store\VendorController@removeProducts', 'as' => 'store.remove-products' ] );
+    Route::get( 'store/{storeId}/assign-products', [ 'uses' => 'Store\StoreController@assignProducts', 'as' => 'store.assign-products' ] );
+    Route::post( 'store/{storeId}/assign-products/update', [ 'uses' => 'Store\StoreController@assignProductsUpdate', 'as' => 'store.assign-products.update' ] );
+    Route::post( 'store/{vendorId}/store-attribute/update', [ 'uses' => 'Store\StoreController@productAttributeUpdate', 'as' => 'store.product.attribute.update' ] );
+
+
 
     /**
      *  PRODUCT DEFINED ROUTES
      */
 	Route::get('ajax-vendor-product/{vendorid}/{productid}', ['uses' => 'Product\AjaxProductController@getVendorProduct']); //no need to create route name
 	Route::post('ajax-vendor-product-update', ['uses' => 'Product\AjaxProductController@getVendorProductUpdate']); //no need to create route name
-
+    Route::get('ajax-store-product/{storeid}/{productid}', ['uses' => 'Product\AjaxProductController@getStoreProduct']); //no need to create route name
+    Route::post('ajax-store-product-update', ['uses' => 'Product\AjaxProductController@getStoreProductUpdate']); //no need to create route name
 
 } );
 

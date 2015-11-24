@@ -4,7 +4,12 @@
 
 @section('content')
 <div class="row">
-<form role="form" action="{{{ route('store.store') }}}" method="POST" >
+    {!! Form::open(
+    array(
+    'route' => array('store.store'),
+    'method' => 'POST'
+    )
+    ) !!}
 <div class="col-md-4">
     <div class="box box-primary">
     <div class="box-header">
@@ -77,6 +82,23 @@
 
 
 
-</form>
+    {!! Form::close() !!}
 </div>
+@endsection
+
+@section('footer_scripts')
+
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        //clear vendor checboxes
+        $('.clear-data').click(function(){
+            $('.product-checkbox').removeAttr('checked');
+        });
+
+    });
+
+</script>
+
+
 @endsection
