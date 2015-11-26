@@ -146,4 +146,13 @@ class StoreController extends Controller
         $s = $this->storeService->delete( $id );
         return redirect( '/store' )->with('message', 'Successfully Deleted');
     }
+
+    public function assignProducts(Request $request)
+    {
+        $data['store'] = $this->storeService->get($request->storeId);
+        $data['productNotBelongsToStore'] = $this->storeService->getAllProductNotStore($request->storeId);
+        //dd($data['productNotBelongsToStore']);
+
+        return view("store.assign-products", $data);
+    }
 }

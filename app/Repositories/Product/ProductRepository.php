@@ -12,7 +12,7 @@ use App\Models\Products, App\Models\Store;
 
 class ProductRepository implements ProductInterface{
 
-	protected $limit = 10;
+	protected $limit = 2;
 
 	protected $product;
     protected $store;
@@ -124,6 +124,19 @@ class ProductRepository implements ProductInterface{
 		return \DB::table('vendors_products')->where('vendor_id','=', $data['vendor_id'])->where('product_id','=', $data['product_id'])
 				->update(['priority' => $data['priority'], 'min_qty' => $data['min_qty'], 'max_qty' => $data['max_qty'] ]);
 	}
+
+    public function productNotBelongsToStore($storeId)
+    {
+
+        $query = \DB::table('products')
+            ->whereRaw("products.id NOT IN (SELECT product_id from inventory where store_id = ".$storeId.")"  )
+            ->paginate($this->limit);
+
+
+        return $query;
+
+
+    }
 
 
 }

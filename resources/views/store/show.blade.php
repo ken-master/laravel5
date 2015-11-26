@@ -58,7 +58,7 @@
                         @for ( $i = 1; $i <= $productsBelongsToStore->lastPage(); $i++ )
                           <li><a href="{{ $productsBelongsToStore->url($i) }}">{{$i}}</a></li>
                         @endfor
-                        <li><a href="{{ $productsBelongsToStore>nextPageUrl() }}">Next</a></li>
+                        <li><a href="{{ $productsBelongsToStore->nextPageUrl() }}">Next</a></li>
                         <li><a href="{{$productsBelongsToStore->url( $productsBelongsToStore->lastPage() )}}">&raquo;</a></li>
                       </ul> -->
 
