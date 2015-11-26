@@ -164,4 +164,12 @@ class StoreController extends Controller
         return redirect( '/store/'.$storeId.'/assign-products' )->with('message', 'Successfully Assigned Products');
     }
 
+    public function removeProducts(Request $request,$storeId)
+    {
+        $data = array_add($request->except("_token"), 'storeId',$storeId);
+
+        $this->storeService->removeProductsToStore($data);
+        return redirect( '/store/'.$storeId )->with('message', 'Successfully Removed Products');
+    }
+
 }

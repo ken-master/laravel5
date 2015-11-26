@@ -81,10 +81,10 @@ Route::group( ['middleware' => ['auth','route.permission'] ],function(){
     /**
      *  STORE DEFINED ROUTES
      */
-    Route::post( 'store/{storeId}/remove-products', [ 'uses' => 'Store\VendorController@removeProducts', 'as' => 'store.remove-products' ] );
+    Route::post( 'store/{storeId}/remove-products', [ 'uses' => 'Store\StoreController@removeProducts', 'as' => 'store.remove-products' ] );
     Route::get( 'store/{storeId}/assign-products', [ 'uses' => 'Store\StoreController@assignProducts', 'as' => 'store.assign-products' ] );
     Route::post( 'store/{storeId}/assign-products/update', [ 'uses' => 'Store\StoreController@assignProductsUpdate', 'as' => 'store.assign-products.update' ] );
-    Route::post( 'store/{vendorId}/store-attribute/update', [ 'uses' => 'Store\StoreController@productAttributeUpdate', 'as' => 'store.product.attribute.update' ] );
+    Route::post( 'store/{storeId}/store-attribute/update', [ 'uses' => 'Store\StoreController@productAttributeUpdate', 'as' => 'store.product.attribute.update' ] );
 
 
 

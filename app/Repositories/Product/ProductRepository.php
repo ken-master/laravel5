@@ -12,7 +12,7 @@ use App\Models\Products, App\Models\Store;
 
 class ProductRepository implements ProductInterface{
 
-	protected $limit = 2;
+	protected $limit = 10;
 
 	protected $product;
     protected $store;
@@ -148,6 +148,18 @@ class ProductRepository implements ProductInterface{
         }
         //ALL MIGHTY ->SYNC() is the way of light!
         return $store->product()->attach( $data['assignProducts'] );
+    }
+
+    public function removeProductsToStore($data)
+    {
+        $store = $this->store;
+
+        $store->find( $data['storeId'] );
+        if (!isset($store->id)) { //somehow, there's no store found hence explicit assignment
+            $store->id = $data['storeId'];
+        }
+        //ALL MIGHTY ->SYNC() is the way of light!
+        return $store->product()->detach( $data['productAssociated'] );
     }
 
 

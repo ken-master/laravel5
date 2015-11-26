@@ -134,12 +134,10 @@ class VendorRepository implements VendorInterface{
 	{
         $query= $this->product
         		->whereRaw("id NOT IN (SELECT product_id from vendors_products where vendor_id = ?)", [$vendorId])
-        		->paginate($this->limit);	
+        		->paginate($this->limit);
 		return $query;
 		
 	}
-
-
 
 	public function assignProductsToVendor($data)
 	{

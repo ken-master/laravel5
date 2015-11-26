@@ -81,4 +81,9 @@ class StoreService{
         return $this->product->assignProductsToStore($data);
     }
 
+    public function removeProductsToStore($data)
+    {
+        return $this->product->removeProductsToStore($data);
+    }
+
 }
