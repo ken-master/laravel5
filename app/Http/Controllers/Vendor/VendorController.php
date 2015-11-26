@@ -119,9 +119,10 @@ class VendorController extends Controller
 
 	public function removeProducts(Request $request,$vendorId)
 	{
-		dd($vendorId);
-		$this->vendor->removeProductsToVendor($request->all());
-		return redirect( '/vendor/'.$vendorId.'/remove-products' )->with('message', 'Sucessfully Remove Products');
+        $data = array_add($request->except("_token"), 'vendorId',$vendorId);
+
+		$this->vendorService->removeProductsToVendor($data);
+		return redirect( '/vendor/'.$vendorId )->with('message', 'Successfully Removed Products');
 	}
 
 
@@ -139,7 +140,7 @@ class VendorController extends Controller
 		$data = array_add($request->except("_token"), 'vendorId',$vendorId);
 		
 		$this->vendorService->assignProductsToVendor( $data );
-		return redirect( '/vendor/'.$vendorId.'/assign-products' )->with('message', 'Sucessfully Assign Products');
+		return redirect( '/vendor/'.$vendorId.'/assign-products' )->with('message', 'Successfully Assigned Products');
 	}
 
 	public function productAttributeUpdate(Request $request,$pid)

@@ -74,9 +74,9 @@ class VendorService{
 	}
 
 
-	public function removeProductsToVendor()
+	public function removeProductsToVendor($data)
 	{
-		
+        return $this->vendor->removeProductsToVendor($data);
 	}
 
 	public function assignProductsToVendor($data)

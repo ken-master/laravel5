@@ -150,4 +150,15 @@ class VendorRepository implements VendorInterface{
 		return $vendor->product()->attach( $data['assignProducts'] );
 	}
 
+    public function removeProductsToVendor($data)
+    {
+        $vendor = $this->vendor;
+        $vendor->find( $data['vendorId'] );
+        if (!isset($vendor->id)) { //somehow, there's no store found hence explicit assignment
+            $vendor->id = $data['vendorId'];
+        }
+        //ALL MIGHTY ->SYNC() is the way of light!
+        return $vendor->product()->detach( $data['productAssociated'] );
+    }
+
 }

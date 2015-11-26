@@ -17,7 +17,7 @@
                    <a class="btn btn-primary pull-right" href="/vendor/{{$vendor->id}}/assign-products">Assign Other Products</a>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                    {!! Form::open( array('route' => array('vendor.remove-products', $vendor->id), 'method' => 'PUT') ) !!}
+                    {!! Form::open( array('route' => array('vendor.remove-products', $vendor->id), 'method' => 'POST') ) !!}
                    <table class="table table-bordered">
                         <tr>
                           <th style="width: 10px">#id</th>
