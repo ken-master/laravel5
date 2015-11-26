@@ -132,49 +132,13 @@ class VendorRepository implements VendorInterface{
 
 	public function productNotBelongsToVendor($vendorId)
 	{	
-		//i use first(), becuase the data colected is/are in pivot and associating it to vendor.
-		//since it's a pivot table. there would be a chance but
-		//$products = $this->vendor
-		//		->where( 'id', '!=', $vendorId)
-		//		->get();
-				//->product();
-				//->groupby('product_id');
-				//->paginate($this->limit);
-
-   // SELECT * FROM products LEFT JOIN vendors_products ON id = product_id AND vendor_id != 1 
-   // AND vendors_products.product_id NOT IN (SELECT product_id from vendors_products where vendor_id = 1) order by id asc
-
-/*		$query = \DB::table('products')
-            ->leftJoin('vendors_products', 'products.id', '=', 'vendors_products.product_id') 
-            ->where('vendors_products.vendor_id', '!=', $vendorId)
-            ->whereRaw("vendors_products.product_id NOT IN (SELECT product_id from vendors_products where vendor_id = ".$vendorId.")"  )
-            ->paginate($this->limit);
-*/     
         
-		$products = $this->vendorsProducts->where('vendor_id','=',$vendorId)->get()->toArray();
-        $products = array_pluck($products, 'product_id');
-
-        $query = \DB::table('products')
-            ->leftJoin('vendors_products',function($leftJoin) use ( $vendorId, $products ) {
-
-           
-
-            	$leftJoin->on('products.id', '=', 'vendors_products.product_id')
-            	->where('vendors_products.vendor_id', '!=', $vendorId)
-            	->whereNotIn("vendors_products.product_id", $products );
-            })
-            ->paginate($this->limit);
- 		//dd($query);
-        /*$query = \DB::raw("SELECT * FROM products LEFT JOIN vendors_products ON id = product_id AND vendor_id != 1 
-    	AND vendors_products.product_id NOT IN (SELECT product_id from vendors_products where vendor_id = 1) order by id asc");*/
-
-		
+		//select * from products where id not in (SElect product_id from vendors_products where vendor_id=1)
+        $query= $this->product
+        		->whereRaw("id NOT IN (SELECT product_id from vendors_products where vendor_id = ?)", [$vendorId])
+        		->paginate($this->limit);	
 		return $query;
 		
-		
-		
-//
-
 	}
 
 
