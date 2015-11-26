@@ -148,6 +148,8 @@ return [
 		//Required via composers  (Packages)
 		'Collective\Html\HtmlServiceProvider',
 
+		'Barryvdh\Debugbar\ServiceProvider',
+
 	],
 
 	/*

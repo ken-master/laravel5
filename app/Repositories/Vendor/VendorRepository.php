@@ -6,7 +6,7 @@ use App\Repositories\Vendor\VendorInterface;
 
 
 //Models
-use App\Models\Vendor, App\Models\Address, App\Models\Products;
+use App\Models\Vendor, App\Models\Address, App\Models\Products,App\Models\VendorProducts ;
 
 
 
@@ -17,14 +17,16 @@ class VendorRepository implements VendorInterface{
 	protected $vendor;
     protected $address;
 	protected $product;
+	protected $vendorsProducts;
 
 	/**
 	 *  Permissions
 	 */
-	public function __construct( Vendor $vendor, Address $address, Products $product){
+	public function __construct( Vendor $vendor, Address $address, Products $product,VendorProducts $vendorsProducts){
 		$this->vendor  = $vendor;
         $this->address = $address;
 		$this->product  = $product;
+		$this->vendorsProducts = $vendorsProducts;
 	}
 
 
@@ -139,13 +141,32 @@ class VendorRepository implements VendorInterface{
 				//->groupby('product_id');
 				//->paginate($this->limit);
 
+   // SELECT * FROM products LEFT JOIN vendors_products ON id = product_id AND vendor_id != 1 
+   // AND vendors_products.product_id NOT IN (SELECT product_id from vendors_products where vendor_id = 1) order by id asc
 
-
-		$query = \DB::table('products')
+/*		$query = \DB::table('products')
             ->leftJoin('vendors_products', 'products.id', '=', 'vendors_products.product_id') 
             ->where('vendors_products.vendor_id', '!=', $vendorId)
             ->whereRaw("vendors_products.product_id NOT IN (SELECT product_id from vendors_products where vendor_id = ".$vendorId.")"  )
             ->paginate($this->limit);
+*/     
+        
+		$products = $this->vendorsProducts->where('vendor_id','=',$vendorId)->get()->toArray();
+        $products = array_pluck($products, 'product_id');
+
+        $query = \DB::table('products')
+            ->leftJoin('vendors_products',function($leftJoin) use ( $vendorId, $products ) {
+
+           
+
+            	$leftJoin->on('products.id', '=', 'vendors_products.product_id')
+            	->where('vendors_products.vendor_id', '!=', $vendorId)
+            	->whereNotIn("vendors_products.product_id", $products );
+            })
+            ->paginate($this->limit);
+ 		//dd($query);
+        /*$query = \DB::raw("SELECT * FROM products LEFT JOIN vendors_products ON id = product_id AND vendor_id != 1 
+    	AND vendors_products.product_id NOT IN (SELECT product_id from vendors_products where vendor_id = 1) order by id asc");*/
 
 		
 		return $query;
