@@ -81,6 +81,6 @@ class VendorService{
 
 	public function assignProductsToVendor($data)
 	{
-		return $this->vendor->assignProductsToVendor($vendorId);
+		return $this->vendor->assignProductsToVendor($data);
 	}
 }

@@ -150,7 +150,7 @@ class VendorRepository implements VendorInterface{
             ->whereRaw("vendors_products.product_id NOT IN (SELECT product_id from vendors_products where vendor_id = ".$vendorId.")"  )
             ->paginate($this->limit);
 */     
-        
+        /**
 		$products = $this->vendorsProducts->where('vendor_id','=',$vendorId)->get()->toArray();
         $products = array_pluck($products, 'product_id');
 
@@ -164,9 +164,13 @@ class VendorRepository implements VendorInterface{
             	->whereNotIn("vendors_products.product_id", $products );
             })
             ->paginate($this->limit);
+         * **/
  		//dd($query);
         /*$query = \DB::raw("SELECT * FROM products LEFT JOIN vendors_products ON id = product_id AND vendor_id != 1 
     	AND vendors_products.product_id NOT IN (SELECT product_id from vendors_products where vendor_id = 1) order by id asc");*/
+        $query = \DB::table('products')
+            ->whereRaw("products.id NOT IN (SELECT product_id from vendors_products where vendor_id = ".$vendorId.")"  )
+            ->paginate($this->limit);
 
 		
 		return $query;
@@ -181,14 +185,13 @@ class VendorRepository implements VendorInterface{
 
 	public function assignProductsToVendor($data)
 	{
-		$product = $this->vendor;
-		//$product->name 			= $data['name'];
-		//$product->description 	= $data['description'];
-		//$product->producttype 	= 1;
-		
-		$product->find( $data['vendor_id'] );
+		$vendor = $this->vendor;
+        $vendor->find( $data['vendorId'] );
+        if (!isset($vendor->id)) { //somehow, there's no store found hence explicit assignment
+            $vendor->id = $data['vendorId'];
+        }
 		//ALL MIGHTY ->SYNC() is the way of light!
-		return $product->product()->attach( $data['assignProducts'] );
+		return $vendor->product()->attach( $data['assignProducts'] );
 	}
 
 }

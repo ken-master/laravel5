@@ -76,4 +76,9 @@ class StoreService{
         return $this->product->productNotBelongsToStore($storeId);
     }
 
+    public function assignProductsToStore($data)
+    {
+        return $this->product->assignProductsToStore($data);
+    }
+
 }

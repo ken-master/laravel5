@@ -23,7 +23,7 @@ class ProductRepository implements ProductInterface{
 	 */
 	public function __construct( Products $product, Store $store){
 		$this->product = $product;
-		$this->store  = $store;
+		$this->store   = $store;
 	}
 
 
@@ -136,6 +136,18 @@ class ProductRepository implements ProductInterface{
         return $query;
 
 
+    }
+
+    public function assignProductsToStore($data)
+    {
+        $store = $this->store;
+
+        $store->find( $data['storeId'] );
+        if (!isset($store->id)) { //somehow, there's no store found hence explicit assignment
+            $store->id = $data['storeId'];
+        }
+        //ALL MIGHTY ->SYNC() is the way of light!
+        return $store->product()->attach( $data['assignProducts'] );
     }
 
 

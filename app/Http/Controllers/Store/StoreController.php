@@ -155,4 +155,13 @@ class StoreController extends Controller
 
         return view("store.assign-products", $data);
     }
+
+    public function assignProductsUpdate(Request $request,$storeId)
+    {
+        $data = array_add($request->except("_token"), 'storeId',$storeId);
+
+        $this->storeService->assignProductsToStore( $data );
+        return redirect( '/store/'.$storeId.'/assign-products' )->with('message', 'Successfully Assigned Products');
+    }
+
 }

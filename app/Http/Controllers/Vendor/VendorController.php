@@ -138,7 +138,7 @@ class VendorController extends Controller
 	{
 		$data = array_add($request->except("_token"), 'vendorId',$vendorId);
 		
-		$this->vendor->assignProductsToVendor( $data );
+		$this->vendorService->assignProductsToVendor( $data );
 		return redirect( '/vendor/'.$vendorId.'/assign-products' )->with('message', 'Sucessfully Assign Products');
 	}
 
