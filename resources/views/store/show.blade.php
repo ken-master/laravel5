@@ -23,6 +23,8 @@
                           <th style="width: 10px">#id</th>
                           <th>Product</th>
                           <th>SKU</th>
+                          <th></th>
+                          <th></th>
                          
                         
                           <th class="pull-right">Remove</th>
@@ -35,14 +37,21 @@
                             <td>{{ $productAssociated->sku  }}</td>
 
 
+
                             <td>
                                 <div class="pull-left">
                                     <a class="" href="#" data-toggle="modal" data-target="#modalStore" data-productid="{{ $productAssociated->id }}">set attributes</a>
                                 </div>
+                            </td>
+                            <td>
+                                <div class="pull-left">
+                                    <a class="" href="#" data-toggle="modal" data-target="#modalStoreQty" data-productid="{{ $productAssociated->id }}">set quantity</a>
+                                </div>
+                            </td>
+                            <td>
                                 <div class="btn-group pull-right">
                                    {!! Form::checkbox('productAssociated[]', $productAssociated->id ) !!}
                                 </div>
-                           
                            </td>
                           </tr>
                             @endforeach
@@ -129,6 +138,56 @@
 
                 </div>
 
+                <!-- ALLOW ONLY IF ALLOWED ON ROLE -->
+                <div class="modal" id="modalStoreQty">
+
+                    <div class="modal-dialog" >
+                        <div class="modal-content">
+                            <div class="box">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                    <h4 class="modal-title">Product Qty:</h4>
+                                </div>
+
+                                <div class="modal-body"  >
+
+                                    <div class="callout callout-success" style="display:none">
+                                        <h4>Quantity Updated Successfully!</h4>
+                                    </div>
+
+                                    {!! Form::open( array('id'=> 'modalFormQty', 'method' => 'post' ) ) !!}
+                                    {!! Form::hidden('store_id') !!}
+                                    {!! Form::hidden('product_id') !!}
+                                    <div class="form-group" style="max-height:250px;overflow-y:scroll">
+
+                                        <div class="form-group">
+                                            <label>Quantity</label>
+                                            {!! Form::text('quantity') !!}
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+
+                                    <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
+                                    <button type="button" class="btn btn-primary update" id="updateQty" >Update</button>
+                                </div>
+
+                                {!! Form::close() !!}
+
+                                <div class="overlay" style="display:none">
+                                    <i class="fa fa-refresh fa-spin"></i>
+                                </div>
+
+                            </div><!-- /.box -->
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+
+
+
+                </div>
+
 
 
 
@@ -160,6 +219,7 @@ $(document).ready(function(){
         $('input[name=product_id]').val('');
         $('input[name=lower_limit]').val('');
         $('input[name=higher_limit]').val('');
+        $('input[name=quantity]').val('');
 
 
         //get product ID
@@ -175,6 +235,7 @@ $(document).ready(function(){
 
                 $('input[name=lower_limit]').val(data.lower_limit);
                 $('input[name=higher_limit]').val(data.higher_limit);
+                $('input[name=quantity]').val(data.stocks);
 
             }
         });
@@ -202,6 +263,27 @@ $(document).ready(function(){
         });
 
    });
+
+    $("#updateQty").click(function(){
+
+        $(".overlay").show();
+        var dataform = $("#modalFormQty").serialize();
+
+
+        $.ajax({
+            url: "/ajax-store-product-update-qty/",
+            method: 'post',
+            data: dataform,
+            dataType: 'json',
+            success: function(data){
+
+                $(".overlay").hide();
+                $(".callout").show();
+                $(".callout").fadeOut(5000);
+            }
+        });
+
+    });
    
 
 

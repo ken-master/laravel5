@@ -85,6 +85,7 @@ Route::group( ['middleware' => ['auth','route.permission'] ],function(){
     Route::get( 'store/{storeId}/assign-products', [ 'uses' => 'Store\StoreController@assignProducts', 'as' => 'store.assign-products' ] );
     Route::post( 'store/{storeId}/assign-products/update', [ 'uses' => 'Store\StoreController@assignProductsUpdate', 'as' => 'store.assign-products.update' ] );
     Route::post( 'store/{storeId}/store-attribute/update', [ 'uses' => 'Store\StoreController@productAttributeUpdate', 'as' => 'store.product.attribute.update' ] );
+    Route::post( 'store/{storeId}/store-quantity/update', [ 'uses' => 'Store\StoreController@productQuantityUpdate', 'as' => 'store.product.quantity.update' ] );
 
 
 
@@ -95,7 +96,7 @@ Route::group( ['middleware' => ['auth','route.permission'] ],function(){
 	Route::post('ajax-vendor-product-update', ['uses' => 'Product\AjaxProductController@getVendorProductUpdate']); //no need to create route name
     Route::get('ajax-store-product/{storeid}/{productid}', ['uses' => 'Product\AjaxProductController@getStoreProduct']); //no need to create route name
     Route::post('ajax-store-product-update', ['uses' => 'Product\AjaxProductController@getStoreProductUpdate']); //no need to create route name
-
+    Route::post('ajax-store-product-update-qty', ['uses' => 'Product\AjaxProductController@getStoreProductUpdateQty']); //no need to create route name
 } );
 
 

@@ -136,6 +136,12 @@ class ProductRepository implements ProductInterface{
 		->update(['lower_limit' => $data['lower_limit'], 'higher_limit' => $data['higher_limit']]);
 	}
 
+    public function getStoreProductUpdateQty($data)
+    {
+        return \DB::table('inventory')->where('store_id','=', $data['store_id'])->where('product_id','=', $data['product_id'])
+            ->update(['stocks' => $data['quantity']]);
+    }
+
     public function productNotBelongsToStore($storeId)
     {
 

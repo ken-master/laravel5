@@ -98,4 +98,9 @@ class ProductService{
 		return $this->product->getStoreProductUpdate($data);
 	}
 
+    public function getStoreProductUpdateQty($data)
+    {
+        return $this->product->getStoreProductUpdateQty($data);
+    }
+
 }

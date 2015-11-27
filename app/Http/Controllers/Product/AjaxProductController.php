@@ -55,4 +55,11 @@ class AjaxPRoductController extends Controller
 		return $this->product->getStoreProductUpdate($data);
 	}
 
+    public function getStoreProductUpdateQty(Request $request){
+
+        $data = $request->all();
+
+        return $this->product->getStoreProductUpdateQty($data);
+    }
+
 }
