@@ -37,7 +37,7 @@
 
                             <td>
                                 <div class="pull-left">
-                                    <a class="" href="#" data-toggle="modal" data-target="#modelStore" data-productid="{{ $productAssociated->id }}">set attributes</a>
+                                    <a class="" href="#" data-toggle="modal" data-target="#modalStore" data-productid="{{ $productAssociated->id }}">set attributes</a>
                                 </div>
                                 <div class="btn-group pull-right">
                                    {!! Form::checkbox('productAssociated[]', $productAssociated->id ) !!}
@@ -76,7 +76,7 @@
 
 
 
-                <div class="modal" id="modelStore">
+                <div class="modal" id="modalStore">
                       
                       <div class="modal-dialog" >
                         <div class="modal-content">

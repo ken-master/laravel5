@@ -87,5 +87,15 @@ class ProductService{
 	{
 		return $this->product->getVendorProductUpdate($data);
 	}
+	
+	public function getStoreProduct($storeId,$productId)
+	{
+		return $this->product->getStoreProduct($storeId,$productId);
+	}
+	
+	public function getStoreProductUpdate($data)
+	{
+		return $this->product->getStoreProductUpdate($data);
+	}
 
 }

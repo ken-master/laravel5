@@ -34,11 +34,25 @@ class AjaxPRoductController extends Controller
 		return json_encode( $this->product->getVendorProduct($vid,$pid) );
 	}
 
+	
+	public function getStoreProduct($sid,$pid)
+	{
+		return json_encode( $this->product->getStoreProduct($sid,$pid) );
+	}
+	
+	
 	public function getVendorProductUpdate(Request $request){
 
 		$data = $request->all();
 
 		return $this->product->getVendorProductUpdate($data);
+	}
+	
+	public function getStoreProductUpdate(Request $request){
+	
+		$data = $request->all();
+	
+		return $this->product->getStoreProductUpdate($data);
 	}
 
 }

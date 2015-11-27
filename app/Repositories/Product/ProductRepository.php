@@ -113,6 +113,11 @@ class ProductRepository implements ProductInterface{
 	{
 		return \DB::table('vendors_products')->where('vendor_id','=', $vendorId)->where('product_id','=', $productID)->first();
 	}
+	
+	public function getStoreProduct($storeId,$productID)
+	{
+		return \DB::table('inventory')->where('store_id','=', $storeId)->where('product_id','=', $productID)->first();
+	}
 
     public function getProductsByStoreId($storeId)
     {
@@ -123,6 +128,12 @@ class ProductRepository implements ProductInterface{
 	{
 		return \DB::table('vendors_products')->where('vendor_id','=', $data['vendor_id'])->where('product_id','=', $data['product_id'])
 				->update(['priority' => $data['priority'], 'min_qty' => $data['min_qty'], 'max_qty' => $data['max_qty'] ]);
+	}
+	
+	public function getStoreProductUpdate($data)
+	{
+		return \DB::table('inventory')->where('store_id','=', $data['store_id'])->where('product_id','=', $data['product_id'])
+		->update(['lower_limit' => $data['lower_limit'], 'higher_limit' => $data['higher_limit']]);
 	}
 
     public function productNotBelongsToStore($storeId)
