@@ -97,6 +97,17 @@ Route::group( ['middleware' => ['auth','route.permission'] ],function(){
     Route::get('ajax-store-product/{storeid}/{productid}', ['uses' => 'Product\AjaxProductController@getStoreProduct']); //no need to create route name
     Route::post('ajax-store-product-update', ['uses' => 'Product\AjaxProductController@getStoreProductUpdate']); //no need to create route name
     Route::post('ajax-store-product-update-qty', ['uses' => 'Product\AjaxProductController@getStoreProductUpdateQty']); //no need to create route name
+
+
+     /**
+     *  SALES DEFINED ROUTES
+     */
+     Route::get('sales', ['uses' => 'Sales\SalesController@index']);
+
+     
+
+
+
 } );
 
 
