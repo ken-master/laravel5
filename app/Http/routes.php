@@ -32,7 +32,7 @@ Route::group(['middleware' => 'guest'],function(){
 	Route::get('auth','Auth\AuthController@getIndex');
 	Route::post('auth/login','Auth\AuthController@postLogin');
 
-	
+
 
 });
 
@@ -58,9 +58,9 @@ Route::group( ['middleware' => ['auth','route.permission'] ],function(){
 
 	Route::resource( 'user', 'User\UserController' );
 	// /Route::post('user/{id}','UserController@update');
-	// 
-	// 
-  
+	//
+	//
+
 
 
 	Route::resource( 'role', 'User\RoleController' );
@@ -102,12 +102,10 @@ Route::group( ['middleware' => ['auth','route.permission'] ],function(){
      /**
      *  SALES DEFINED ROUTES
      */
-     Route::get('sales', ['uses' => 'Sales\SalesController@index']);
+     Route::resource('sales', 'Sales\SalesController');
 
-     
+
 
 
 
 } );
-
-
