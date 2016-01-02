@@ -62,4 +62,11 @@ class AjaxPRoductController extends Controller
         return $this->product->getStoreProductUpdateQty($data);
     }
 
+    public function getByName(Request $request){
+
+        $data = $request->all();
+//dd($data);
+        return $this->product->getByName($data);
+    }
+
 }

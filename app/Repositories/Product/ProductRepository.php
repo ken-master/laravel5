@@ -49,6 +49,16 @@ class ProductRepository implements ProductInterface{
 	
 	}
 
+	/**
+	 * get product by name
+	 * @param  $productName string 
+	 * @return collection object 
+	 */
+	public function getByName($productName)
+	{
+		return $this->product->where('name', 'LIKE', '%'.$productName.'%')->get();
+	}
+
     public function getAll(){
 
         $products = $this->product->all();

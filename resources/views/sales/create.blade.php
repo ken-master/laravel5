@@ -30,7 +30,7 @@
             'method' => 'POST'
         )
     ) !!}
-<div class="col-md-6">
+<div class="col-md-8 col-xs-8">
     <div class="box box-primary">
     <div class="box-header  with-border">
 
@@ -45,15 +45,8 @@
             </div>
 
             <div class="form-group">
-                <label for="full_name">Product Name:</label> <span class="text-red">{{ $errors->first('name') }}</span>
-                <input type="input" name="name" class="form-control" id="name" placeholder="Enter Product Name" value="{{ old('name') }}">
-            </div>
-
-
-
-            <div class="form-group">
-                <label for="full_name">Higher Limit:</label> <span class="text-red">{{ $errors->first('higher_limit') }}</span>
-                <input type="input" name="higher_limit" class="form-control" id="higher_limit" placeholder="Enter Higher Limit" value="{{ old('higher_limit') }}">
+                <label for="full_name">Vendor Name:</label> <span class="text-red">{{ $errors->first('name') }}</span>
+                <input type="input" name="vendor" class="form-control" id="name" placeholder="Enter Product Name" value="{{ old('name') }}">
             </div>
 
         </div><!-- /.box-body -->
@@ -62,19 +55,15 @@
 
     </div>
 </div>
+</div>
 
-
-<div class="col-md-6">
+<div class="row">
+<div class="col-md-8 col-xs-8">
   <div class="box">
                   <div class="box-header with-border">
                     <h3 class="box-title">Products</h3>
                      <div class="box-tools">
-                      <div class="input-group">
-                        <input type="text" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
-                        <div class="input-group-btn">
-                          <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
-                        </div>
-                      </div>
+                     
                     </div>
                   </div><!-- /.box-header -->
 
@@ -83,7 +72,10 @@
                   <div class="box-body">
 
 
-                  <h4 class="box-title"><a href="javascript:void(0);" data-toggle="modal" data-target="#modelProduct">Select Product</a></h4>
+                  <h4 class="box-title">
+                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modelProduct">Select Product</button>
+
+                  </h4>
 
 
 
@@ -134,22 +126,35 @@
 
                   </div>
   </div><!-- /.box -->
+</div>
+</div>
 
 
-<div class="col-md-6">
-  <div class="box box-primary">
-  <div class="box-header  with-border">
+<div class="row">
+<div class="col-md-8 col-xs-8">
+  <div class="box">
+  <div class="box-header with-border">
   </div><!-- /.box-header -->
 
       <div class="box-body">
         <div class="form-group">
-            <label for="full_name">Product Name:</label> <span class="text-red">{{ $errors->first('name') }}</span>
-            <input type="input" name="name" class="form-control" id="name" placeholder="Enter Product Name" value="{{ old('name') }}">
+            <label for="full_name">Sub Total:</label> <span class="text-red">{{ $errors->first('name') }}</span>
+            <input type="input" name="sub_total" class="form-control" id="name" placeholder="Enter Product Name" value="{{ old('name') }}">
         </div>
 
         <div class="form-group">
-            <label for="full_name">Product Name:</label> <span class="text-red">{{ $errors->first('name') }}</span>
-            <input type="input" name="name" class="form-control" id="name" placeholder="Enter Product Name" value="{{ old('name') }}">
+            <label for="full_name">Tax:</label> <span class="text-red">{{ $errors->first('name') }}</span>
+            <input type="input" name="tax" class="form-control" id="name" placeholder="Enter Product Name" value="{{ old('name') }}">
+        </div>
+
+        <div class="form-group">
+            <label for="full_name">Discount:</label> <span class="text-red">{{ $errors->first('name') }}</span>
+            <input type="input" name="discount" class="form-control" id="name" placeholder="Enter Product Name" value="{{ old('name') }}">
+        </div>
+
+        <div class="form-group">
+            <label for="full_name">Total:</label> <span class="text-red">{{ $errors->first('name') }}</span>
+            <input type="input" name="total" class="form-control" id="name" placeholder="Enter Product Name" value="{{ old('name') }}">
         </div>
 
 
@@ -168,6 +173,9 @@
 </div>
 
 {!! Form::close() !!}
+
+
+
 </div>
 
 
@@ -177,18 +185,59 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-        <h4 class="modal-title">Products List</h4>
+        <h4 class="modal-title">Products Search</h4>
       </div>
       <div class="modal-body"  >
 
-         <div class="form-group" style="max-height:250px;overflow-y:scroll">
+         <div class="form-group">
+           
+           <div class="input-group">
+           <form>
+             
+           </form>
+              <input type="text" name="product_search" id="product_search" class="form-control input-sm pull-left" style="width: 150px;" placeholder="Enter Product Name"/>
+              <div class="input-group-btn pull-left">
+                <button class="btn btn-sm btn-default" id="btn_productname"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+
+            <hr />
+
+            <!-- product info -->
+           <div class="with-border">
+              <div class="box box-solid">
+                <div class="box-header with-border">
+                  
+                  <h3 class="box-title">Product Description</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  
+                  
+                  <dl>
+                      <dt>Product Name</dt>
+                      <dd>Logitech G600 MMO gaming mouse.</dd>
+                      
+                      <dt>Euismod</dt>
+                      <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
+                      <dd>Donec id elit non mi porta gravida at eget metus.</dd>
+                      
+
+                      <dt>Image</dt>
+                      <dt><img src=""></dt>
+
+                  </dl>
+
+
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div>
 
         </div>
       </div>
       <div class="modal-footer">
 
         <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Assign Vendor</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Add Product</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -200,10 +249,26 @@
 
 @section('footer_scripts')
 
-  <script type="text/javascript">
+<script type="text/javascript">
 
+$(document).ready(function(){
 
-  </script>
+  $("#btn_productname").click(function(){
+    $.ajax({
+      url: '/ajax-get-name-product',
+      method:'get',
+      data: "q="+$('#product_search').val(),
+      success: function(data){
+        console.log(data);
+      }
+    });
+
+  });
+  
+
+});
+
+</script>
 
 
 @endsection

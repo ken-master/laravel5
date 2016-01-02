@@ -103,4 +103,12 @@ class ProductService{
         return $this->product->getStoreProductUpdateQty($data);
     }
 
+
+    public function getByName($productName)
+    {
+    	$productName = $productName['q'];
+
+    	return $this->product->getByName($productName);
+    }
+
 }

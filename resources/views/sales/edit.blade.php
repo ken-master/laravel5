@@ -45,15 +45,8 @@
             </div>
 
             <div class="form-group">
-                <label for="full_name">Product Name:</label> <span class="text-red">{{ $errors->first('name') }}</span>
-                <input type="input" name="name" class="form-control" id="name" placeholder="Enter Product Name" value="{{ old('name') }}">
-            </div>
-
-
-
-            <div class="form-group">
-                <label for="full_name">Higher Limit:</label> <span class="text-red">{{ $errors->first('higher_limit') }}</span>
-                <input type="input" name="higher_limit" class="form-control" id="higher_limit" placeholder="Enter Higher Limit" value="{{ old('higher_limit') }}">
+                <label for="full_name">Vendor Name:</label> <span class="text-red">{{ $errors->first('name') }}</span>
+                <input type="input" name="vendor" class="form-control" id="name" placeholder="Enter Product Name" value="{{ old('name') }}">
             </div>
 
         </div><!-- /.box-body -->
@@ -83,7 +76,10 @@
                   <div class="box-body">
 
 
-                  <h4 class="box-title"><a href="javascript:void(0);" data-toggle="modal" data-target="#modelProduct">Select Product</a></h4>
+                  <h4 class="box-title">
+                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modelProduct">Select Product</button>
+
+                  </h4>
 
 
 
@@ -143,13 +139,23 @@
 
       <div class="box-body">
         <div class="form-group">
-            <label for="full_name">Product Name:</label> <span class="text-red">{{ $errors->first('name') }}</span>
-            <input type="input" name="name" class="form-control" id="name" placeholder="Enter Product Name" value="{{ old('name') }}">
+            <label for="full_name">Sub Total:</label> <span class="text-red">{{ $errors->first('name') }}</span>
+            <input type="input" name="sub_total" class="form-control" id="name" placeholder="Enter Product Name" value="{{ old('name') }}">
         </div>
 
         <div class="form-group">
-            <label for="full_name">Product Name:</label> <span class="text-red">{{ $errors->first('name') }}</span>
-            <input type="input" name="name" class="form-control" id="name" placeholder="Enter Product Name" value="{{ old('name') }}">
+            <label for="full_name">Tax:</label> <span class="text-red">{{ $errors->first('name') }}</span>
+            <input type="input" name="tax" class="form-control" id="name" placeholder="Enter Product Name" value="{{ old('name') }}">
+        </div>
+
+        <div class="form-group">
+            <label for="full_name">Discount:</label> <span class="text-red">{{ $errors->first('name') }}</span>
+            <input type="input" name="discount" class="form-control" id="name" placeholder="Enter Product Name" value="{{ old('name') }}">
+        </div>
+
+        <div class="form-group">
+            <label for="full_name">Total:</label> <span class="text-red">{{ $errors->first('name') }}</span>
+            <input type="input" name="total" class="form-control" id="name" placeholder="Enter Product Name" value="{{ old('name') }}">
         </div>
 
 
