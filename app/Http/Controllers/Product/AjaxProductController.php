@@ -65,7 +65,7 @@ class AjaxPRoductController extends Controller
     public function getByName(Request $request){
 
         $data = $request->all();
-//dd($data);
+
         return $this->product->getByName($data);
     }
 
