@@ -21,7 +21,7 @@
   </div>
 </div>
 
-
+<?php /*
 <div class="row">
 
     {!! Form::open(
@@ -30,32 +30,35 @@
             'method' => 'POST'
         )
     ) !!}
-<div class="col-md-8 col-xs-8">
-    <div class="box box-primary">
-    <div class="box-header  with-border">
+    <div class="col-md-8 col-xs-8">
+        <div class="box box-primary">
+        <div class="box-header  with-border">
 
-    </div><!-- /.box-header -->
-    <!-- form start -->
+        </div><!-- /.box-header -->
+        <!-- form start -->
 
-        <div class="box-body">
+            <div class="box-body">
 
-            <div class="form-group">
-                <label for="full_name">Invoce Code:</label> <span class="text-red"></span>
-                <input type="input" name="sales_code" class="form-control" id="sales_code" disabled="disabled"  value="XXX1234">
-            </div>
+                <div class="form-group">
+                    <label for="full_name">Invoce Code:</label> <span class="text-red"></span>
+                    <input type="input" name="sales_code" class="form-control" id="sales_code" disabled="disabled"  value="XXX1234">
+                </div>
 
-            <div class="form-group">
-                <label for="full_name">Vendor Name:</label> <span class="text-red">{{ $errors->first('name') }}</span>
-                <input type="input" name="vendor" class="form-control" id="name" placeholder="Enter Product Name" value="{{ old('name') }}">
-            </div>
+                <div class="form-group">
+                    <label for="full_name">Vendor Name:</label> <span class="text-red">{{ $errors->first('name') }}</span>
+                    <input type="input" name="vendor" class="form-control" id="name" placeholder="Enter Product Name" value="{{ old('name') }}">
+                </div>
 
-        </div><!-- /.box-body -->
+            </div><!-- /.box-body -->
 
 
 
+        </div>
     </div>
 </div>
-</div>
+*/ ?>
+
+
 
 <div class="row">
 <div class="col-md-8 col-xs-8">
@@ -162,8 +165,8 @@
          <div class="form-group">
            
             <label>Search Product:</label>
+           
             <select class="form-control select2"  style="width: 100%;">
-              <option>Enter Product Name</option>
             </select>
 
             <hr />
@@ -230,15 +233,17 @@ $(document).ready(function(){
 
 
   $(".select2").select2({
+    placeholder: "Enter Product Name",
+    allowClear: true,
     ajax: {
-      url: '/ajax-get-name-product',
+      url: '/ajax-get-name-product',    
       dataType: 'json',
-      delay: 1800, // delay 1.8 seconds before firing the ajax
+      delay: 250, // delay 1.8 seconds before firing the ajax
       data: function (params) { 
         return {
          q: params.term, // search term
          page: params.page
-          };
+        };
       },
       processResults: function (data, params) {
           // parse the results into the format expected by Select2
@@ -268,9 +273,10 @@ $(document).ready(function(){
 
       //clear info
       $("#product_info").html("");
-
+      
           //get the selectted data
-          var args = JSON.stringify(evt.params, function (key, value) {
+        var args = JSON.stringify(evt.params, function (key, value) {
+
           if (value && value.nodeName) return "[DOM node]";
           if (value instanceof $.Event) return "[$.Event]";
 
@@ -284,26 +290,30 @@ $(document).ready(function(){
 
 
           //ADD to the listed product
+         
           $("#add_product").on('click',function(){
-
-              var tableProductList = "<tr>";
-                  tableProductList += "<td>123</td>";
+       
+                var tableProductList = "";
+   
+                  tableProductList += "<tr>";
+                  tableProductList += "<td>"+productData.id+"</td>";
                   tableProductList += "<td>"+productData.name+"</td>";
                   tableProductList += "<td>"+productData.sku+"</td>";
                   tableProductList += "<td>"+productData.brand+"</td>";
                   tableProductList += "<td><input type='text' value='1' name='prduct_id["+productData.id+"][]' /></td>";
                   tableProductList += "<td><a href='javascript:void(0)' onclick='$(this).parent().parent().remove();' class='pull-right remove'>Remove</a></td>";
                   tableProductList += "</tr>";
-             
-
 
               $("#products_added").append(tableProductList);
-
+            
+            $(this).unbind( "click" ); //unbind the current click to reinitialize
 
           });
 
 
-      });
+        });
+    
+  
   }); //end select2
 
 

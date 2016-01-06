@@ -7,8 +7,19 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Services\SaleService;
+
 class SalesController extends Controller
 {
+
+
+  protected $sales;
+
+  public function __construct(SaleService $sales)
+  {
+    $this->sales = $sales;
+  }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +27,8 @@ class SalesController extends Controller
      */
     public function index()
     {
-        return view('sales.index');
+      dd($this->sales->get(null));
+        //return view('sales.index');
     }
 
     /**
