@@ -66,7 +66,7 @@
                   <div class="box-header with-border">
                     <h3 class="box-title">Products</h3>
                      <div class="box-tools">
-                     
+
                     </div>
                   </div><!-- /.box-header -->
 
@@ -97,7 +97,7 @@
 
                     </table>
                   </div><!-- /.box-body -->
-                  
+
   </div><!-- /.box -->
 </div>
 </div>
@@ -110,33 +110,39 @@
   </div><!-- /.box-header -->
 
       <div class="box-body">
-        <div class="form-group">
-            <label for="full_name">Sub Total:</label> <span class="text-red">{{ $errors->first('name') }}</span>
-            <input type="input" name="sub_total" class="form-control" id="name" placeholder="Enter Product Name" value="{{ old('name') }}">
-        </div>
 
-        <div class="form-group">
-            <label for="full_name">Tax:</label> <span class="text-red">{{ $errors->first('name') }}</span>
-            <input type="input" name="tax" class="form-control" id="name" placeholder="Enter Product Name" value="{{ old('name') }}">
-        </div>
 
-        <div class="form-group">
-            <label for="full_name">Discount:</label> <span class="text-red">{{ $errors->first('name') }}</span>
-            <input type="input" name="discount" class="form-control" id="name" placeholder="Enter Product Name" value="{{ old('name') }}">
-        </div>
+        <dl class="dl-horizontal pull-right">
+          <dt>Sub Total:</dt>
+          <dd id="sub_total">00.00</dd>
 
-        <div class="form-group">
-            <label for="full_name">Total:</label> <span class="text-red">{{ $errors->first('name') }}</span>
-            <input type="input" name="total" class="form-control" id="name" placeholder="Enter Product Name" value="{{ old('name') }}">
-        </div>
+          <dt>Tax:</dt>
+          <dd id="tax">00.00</dd>
+
+          <dt>Discount:</dt>
+          <dd id="discount">00.00</dd>
+
+          <hr />
+          <dt>Total:</dt>
+          <dd id="total">00.00</dd>
+        </dl>
 
 
       </div>
+
+      {!! Form::open(
+          array(
+              'route' => array('sales.store'),
+              'method' => 'POST'
+          )
+      ) !!}
+
+      {!! Form::hidden("items", "", ['id' => 'items']) !!}
 
       <div class="box-footer">
-          <button type="submit" class="btn btn-primary">Save</button>
+          <button type="submit" class="btn btn-primary pull-right">Save</button>
       </div>
-
+      {!! Form::close() !!}
 
   </div>
 </div>
@@ -163,9 +169,9 @@
       <div class="modal-body"  >
 
          <div class="form-group">
-           
+
             <label>Search Product:</label>
-           
+
             <select class="form-control select2"  style="width: 100%;">
             </select>
 
@@ -175,12 +181,12 @@
            <div class="with-border">
               <div class="box box-solid">
                 <div class="box-header with-border">
-                  
+
                   <h3 class="box-title">Product Info</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                  
-                  
+
+
                   <dl id="product_info">
                   </dl>
 
@@ -214,9 +220,9 @@ $(document).ready(function(){
 
     //used in select2 to format the dropdown
     function formatProduct(product) {
-      
+
       if (product.loading) return product.text;
-    
+
       var markup = "<div>"+product.name+"</div>";
 
       if (product.description) {
@@ -236,10 +242,10 @@ $(document).ready(function(){
     placeholder: "Enter Product Name",
     allowClear: true,
     ajax: {
-      url: '/ajax-get-name-product',    
+      url: '/ajax-get-name-product',
       dataType: 'json',
       delay: 250, // delay 1.8 seconds before firing the ajax
-      data: function (params) { 
+      data: function (params) {
         return {
          q: params.term, // search term
          page: params.page
@@ -264,8 +270,8 @@ $(document).ready(function(){
 
       escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
       minimumInputLength: 3,
-      templateResult: formatProduct, 
-      templateSelection: formatProductSelection 
+      templateResult: formatProduct,
+      templateSelection: formatProductSelection
   });
 
   //FILL the product INfo Box
@@ -273,7 +279,7 @@ $(document).ready(function(){
 
       //clear info
       $("#product_info").html("");
-      
+
           //get the selectted data
         var args = JSON.stringify(evt.params, function (key, value) {
 
@@ -290,47 +296,62 @@ $(document).ready(function(){
 
 
           //ADD to the listed product
-         
           $("#add_product").on('click',function(){
-       
+
                 var tableProductList = "";
-   
+
                   tableProductList += "<tr>";
                   tableProductList += "<td>"+productData.id+"</td>";
                   tableProductList += "<td>"+productData.name+"</td>";
                   tableProductList += "<td>"+productData.sku+"</td>";
                   tableProductList += "<td>"+productData.brand+"</td>";
-                  tableProductList += "<td><input type='text' value='1' name='prduct_id["+productData.id+"][]' /></td>";
+                  tableProductList += "<td><input class='product_item' type='text' value='1' data-productid='"+productData.id+"' /></td>";
                   tableProductList += "<td><a href='javascript:void(0)' onclick='$(this).parent().parent().remove();' class='pull-right remove'>Remove</a></td>";
                   tableProductList += "</tr>";
 
               $("#products_added").append(tableProductList);
-            
-            $(this).unbind( "click" ); //unbind the current click to reinitialize
 
+
+              var products = []; //prep object
+              $(".product_item").each(function(index, value){
+                products.push( {"id":$(this).data('productid'),"qty":$(this).val()} );
+              });
+              var json_product = JSON.stringify(products);
+
+              $("#items").val(json_product);
+
+            //calculate
+              $.ajax({
+                url: '/ajax-sales-calculate',
+                dataType: 'json',
+                data: "data="+json_product,
+                method: 'post',
+                beforeSend: function (xhr) {
+                    //send token first
+                    var _token = "<?= csrf_token() ?>";
+                    if(_token){
+                      return xhr.setRequestHeader('X-CSRF-TOKEN', _token);
+                    }
+                },
+                success: function(data){
+                  data = JSON.parse(data);
+                  $('#sub_total').html(data.sub_total);
+                  $('#tax').html(data.tax);
+                  $('#discount').html(data.discount);
+                  $('#total').html(data.total);
+
+                }
+              });
+              $(this).unbind( "click" ); //unbind the current click to reinitialize always at the end
           });
 
 
         });
-    
-  
   }); //end select2
 
 
-/*
-<tr>
-  <td>123</td>
-  <td> product name </td>
-  <td> product sku  </td>
-  <td> product brand  </td>
-  <td>10</td>
-
-  <td>
-    <a href="javascript:void(0);" onclick="" class="pull-right">Remove</a>
-  </td>
 
 
- */
 });
 
 </script>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Sales;
 
 use Illuminate\Http\Request;
+//use Illuminate\Session;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -39,19 +40,28 @@ class SalesController extends Controller
     public function create()
     {
         $data = [];
+      //  \Session::put('testkey', ['key',]);
+
+      //  dd( \Session::get('testkey') );
 
         return view('sales.create', $data);
     }
 
     /**
      * Store a newly created resource in storage.
-     *
+     * Expected data items sample
+     * '[{"id":2,"qty":"4"},{"id":1,"qty":"3"}]'
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+      $data = $request->all();
+      $response = "";
+      if (!empty($data['items'])) {
+        $response = $this->sales->calculateSale($data['items']);
+      }
+      return $response;
     }
 
     /**
