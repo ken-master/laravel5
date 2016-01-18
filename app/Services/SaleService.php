@@ -79,9 +79,6 @@ class SaleService{
 	 */
 	public function delete($id)
 	{
-		//TO DO:
-		// CRAETE FORM HELPER FOR DELETE FORM to pass
-		// HTTP DELETE Protocol
 		$this->sale->delete($id);
 	}
 	/**

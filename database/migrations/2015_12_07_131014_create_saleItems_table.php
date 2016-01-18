@@ -15,7 +15,7 @@ class CreateSaleItemsTable extends Migration
         Schema::create('sale_items', function(Blueprint $table){
 
             $table->increments('id');
-            
+
             $table->float('item_price');
             $table->integer('quantity');
             $table->string('sku',50);
@@ -25,16 +25,16 @@ class CreateSaleItemsTable extends Migration
 
             $table->timestamps(); //created_at and updated_at collum
 
-            
-            
-            
+
+
+
             $table->integer('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products');
 
             $table->integer('sales_id')->unsigned();
-            $table->foreign('sales_id')->references('id')->on('sales');
+            $table->foreign('sales_id')->references('id')->on('sales')->onDelete('cascade');
 
-            
+
             $table->engine = 'InnoDB';
         });
     }

@@ -31,7 +31,7 @@ class SalesController extends Controller
       //dd($this->sales->get());
       $data = $this->sales->get();
       return view( 'sales.index' )->with('data' , $data);
-      
+
     }
 
     /**
@@ -108,6 +108,9 @@ class SalesController extends Controller
      */
     public function destroy($id)
     {
-        //
+      
+      $s = $this->sales->delete( $id );
+      return redirect( '/sales' )->with('message', 'Successfully Deleted');
     }
+
 }

@@ -102,6 +102,7 @@ class SaleRepository implements SaleInterface{
 
 	public function delete($id)
 	{
+
 		$sale =  $this->sale->find($id);
 		return  $sale->delete();
 	}
