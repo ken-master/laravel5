@@ -21,22 +21,30 @@ class Sales
     //apply tax if available
     //apply discount if available
     if (!empty($data)) {
+      $res = Array();
       foreach ($data as $key => $value) {
-        $res['per_item_total_price'][] = $value['price'] *  $value['qty'];
-        $res['per_item_total_id'][$value['id']] = $value['price'] *  $value['qty'];
+        $res[] = [
+            'product_id'  => $value['id'],
+            'item_price'  => $value['price'],
+            'discount'    => 0,
+            'total_item_price' => $value['price'] *  $value['qty'],
+            'item' => $value,
+        ];
       }
     }
+
     //construct data
-    $data = [];
-    $data['sub_total'] = money_format('%i', array_sum($res['per_item_total_price']) );
-    $data['tax'] = money_format('%i',0);
-    $data['discount'] = money_format('%i',0);
+    $response = [];
+    $response['sub_total'] = money_format('%i', array_sum( array_pluck($res,'item_price') ) );
+    $response['tax'] = money_format('%i',0);
+    $response['discount'] = money_format('%i',0);
 
-    $total = $data['sub_total'] + $data['tax'] + $data['discount'];
-    $data['total'] =  money_format('%i',$total);
+    $total = $response['sub_total'] + $response['tax'] + $response['discount'];
+    $response['total'] =  money_format('%i',$total);
 
-    //dd($data);
-    return $data;
+    $response['products'] = $res;
+
+    return $response;
   }
 
 }

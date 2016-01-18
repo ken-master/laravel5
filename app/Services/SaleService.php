@@ -1,6 +1,7 @@
 <?php namespace App\Services;
 
 use App\Repositories\Sale\SaleRepository;
+use App\Repositories\Sale\SaleItemsRepository;
 use App\Repositories\Product\ProductRepository;
 //use Illuminate\Contracts\Hashing\Hasher as Hash;
 
@@ -20,10 +21,11 @@ class SaleService{
 	 * @param SaleRepository    $sale    SaleRepository
 	 * @param ProductRepository $product ProductRepository
 	 */
-	public function __construct( SaleRepository $sale, ProductRepository $product  )
+	public function __construct( SaleRepository $sale,SaleItemsRepository $saleItems, ProductRepository $product  )
 	{
 		$this->sale = $sale;
 		$this->product = $product;
+		$this->saleItems = $saleItems;
 	}
 
 
@@ -49,9 +51,16 @@ class SaleService{
 			$sale['id'] = $data['id'];
 		}
 
-		//dd( $sale );
-		return $this->sale->save($sale);
+		//save sales first
+		$sales =	$this->calculateSale($data['items']);
+		$sales = collect($sales);
+		$sales = $sales->toArray();
+
+		//insertion of sales items happens in SaleRepository
+		return $this->sale->save($sales);
 	}
+
+
 
 	/**
 	 * Save ProductsItems
@@ -110,12 +119,13 @@ class SaleService{
 			foreach ($d as $d_key => $d_value) {
 				if($product_value['id'] == $d_value['id']){
 					$product_item[] = array_add($product_value, 'qty', $d_value['qty']);
+					//$product_item[] = array_add($product_value, 'total_price', $d_value['total_item_price']);
 				}
 			}
 			//break;
 		}
 		$results = LibSales::calculate($product_item);
-		return json_encode($results);
+		return $results;
 	}
 
 

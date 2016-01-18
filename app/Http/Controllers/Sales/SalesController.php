@@ -28,8 +28,10 @@ class SalesController extends Controller
      */
     public function index()
     {
-      dd($this->sales->get(null));
-        //return view('sales.index');
+      //dd($this->sales->get());
+      $data = $this->sales->get();
+      return view( 'sales.index' )->with('data' , $data);
+      
     }
 
     /**
@@ -41,7 +43,6 @@ class SalesController extends Controller
     {
         $data = [];
       //  \Session::put('testkey', ['key',]);
-
       //  dd( \Session::get('testkey') );
 
         return view('sales.create', $data);
@@ -59,9 +60,10 @@ class SalesController extends Controller
       $data = $request->all();
       $response = "";
       if (!empty($data['items'])) {
-        $response = $this->sales->calculateSale($data['items']);
+        $response = $this->sales->save($data);
       }
-      return $response;
+      	return redirect( '/sales' )->with('message', 'Sucessfully Created Sales');
+      //return $response;
     }
 
     /**

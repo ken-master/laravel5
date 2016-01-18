@@ -21,12 +21,12 @@
                 <div class="box-body">
 
 
-                <h4 class="box-title"><a href="{{route('sales.create')}}">cCreate Sales</a></h4>
+                <h4 class="box-title"><a href="{{route('sales.create')}}">Create Sales</a></h4>
                   <table class="table table-bordered">
                     <tr>
                       <th style="width: 10px">#ID</th>
-                      <th>Sales</th>
-                      <th>Description</th>
+                      <th>Total Total</th>
+                      <th>Total Sub Total</th>
 
 
                       <th class="pull-right">Actions</th>
@@ -34,18 +34,16 @@
                     @if( !empty($data) && !is_null($data) )
                       @foreach($data as $sales)
                       <tr>
-                        <td>{{ $sales->id  }}.</td>
-                        <td>{{ $sales->name  }}</td>
-                        <td>{{ $sales->description  }}</td>
-
-
+                        <td>{{ $sales->id  }}</td>
+                        <td>{{ $sales->total_total  }}.</td>
+                        <td>{{ $sales->total_subtotal  }}</td>
                         <td>
                         	<div class="btn-group pull-right">
   	                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action <span class="fa fa-caret-down"></span></button>
   	                   		<ul class="dropdown-menu">
   	                        <!-- <li><a href="{{ route('sales.show', $sales->id) }}">View</a></li> -->
                             <li><a href="{{ route('sales.show', $sales->id) }}">Show</a></li>
-  	                        <li><a href="{{ route('sales.edit', $sales->id) }}">Edit</a></li>
+  	                        <!-- <li><a href="{{ route('sales.edit', $sales->id) }}">Edit</a></li> -->
   	                        <li class="divider"></li>
 
   	                        <li>

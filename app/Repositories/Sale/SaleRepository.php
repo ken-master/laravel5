@@ -2,12 +2,13 @@
 namespace App\Repositories\Sale;
 
 use App\Repositories\Sale\SaleInterface;
+//use App\Repositories\Sale\SaleItems;
 //use App\Repositories\Permission\PermissionInterface;
 
 
 //Models
 use App\Models\Sales;
-
+use App\Models\SaleItems;
 
 class SaleRepository implements SaleInterface{
 
@@ -65,9 +66,29 @@ class SaleRepository implements SaleInterface{
 			//$sale->accessLevel()->delete();
 		}
 
-		$sale->name 		= $data['name'];
-		$sale->description 	= $data['description'];
-		return $sale->save();
+		$sale->total_total 			= $data['total'];
+		$sale->total_subtotal 	= $data['sub_total'];
+		$sale->total_tax 				= $data['tax'];
+		$sale->total_discount 	= $data['discount'];
+		$sale->user_id 					= \Auth::user()->id;
+		$sale->save();
+//	dd($data);
+		$saleItems = [];
+		foreach ($data['products'] as  $value) {
+
+			$saleItems[] = new SaleItems([
+				'item_price' 	=> $value['item_price'],
+				'quantity' 		=> $value['item']['qty'],
+				'sku' 				=> $value['item']['sku'],
+				'brand' 			=> $value['item']['brand'],
+				'total' 			=> $value['total_item_price'],
+				'discount' 		=> $value['discount'],
+				'product_id' 	=> $value['product_id'],
+
+			]);
+		}
+		$sale->saleItems()->saveMany($saleItems);
+		return $sale;
 
 		/*$access_level = [];
 		foreach ($data['access_level'] as $key => $value) {

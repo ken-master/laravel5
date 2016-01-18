@@ -334,7 +334,6 @@ $(document).ready(function(){
                     }
                 },
                 success: function(data){
-                  data = JSON.parse(data);
                   $('#sub_total').html(data.sub_total);
                   $('#tax').html(data.tax);
                   $('#discount').html(data.discount);
