@@ -31,18 +31,26 @@ class Sales
             'item' => $value,
         ];
       }
+
+      //construct data
+      $response = [];
+      $response['sub_total'] = money_format('%i', array_sum( array_pluck($res,'total_item_price') ) );
+      $response['tax'] = money_format('%i',0);
+      $response['discount'] = money_format('%i',0);
+      $total = $response['sub_total'] + $response['tax'] + $response['discount'];
+      $response['total'] =  money_format('%i',$total);
+      $response['products'] = $res;
+
+    }else{
+      $response['sub_total']  = "00.00";
+      $response['tax']        = "00.00";
+      $response['discount']   = "00.00";
+      $response['total']      = "00.00";
+      $response['products']   = [];
     }
 
-    //construct data
-    $response = [];
-    $response['sub_total'] = money_format('%i', array_sum( array_pluck($res,'item_price') ) );
-    $response['tax'] = money_format('%i',0);
-    $response['discount'] = money_format('%i',0);
 
-    $total = $response['sub_total'] + $response['tax'] + $response['discount'];
-    $response['total'] =  money_format('%i',$total);
 
-    $response['products'] = $res;
 
     return $response;
   }

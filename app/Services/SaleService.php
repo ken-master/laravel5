@@ -100,7 +100,7 @@ class SaleService{
 	{
 		//get products and prices
 		$data = array_flatten(json_decode($data));
-
+		$d = [];
 		//convert to array, somehow ->toArray() method is not working
 		foreach ($data as $key => $value) {
 			$d[] = (array) $value;
@@ -111,7 +111,8 @@ class SaleService{
 		$products = $this->product->get($pid)->toArray();
 
 		//add qty to the array for computation
-		$p = array();
+		$p = [];
+		$product_item = [];
 		foreach ($products as $product_value){
 			foreach ($d as $d_key => $d_value) {
 				if($product_value['id'] == $d_value['id']){
@@ -122,6 +123,7 @@ class SaleService{
 			//break;
 		}
 		$results = LibSales::calculate($product_item);
+
 		return $results;
 	}
 

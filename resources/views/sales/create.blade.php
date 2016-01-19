@@ -218,26 +218,6 @@
 
 $(document).ready(function(){
 
-    //used in select2 to format the dropdown
-    function formatProduct(product) {
-
-      if (product.loading) return product.text;
-
-      var markup = "<div>"+product.name+"</div>";
-
-      if (product.description) {
-        markup += "<div>" + product.description + "</div>";
-      }
-
-      return markup;
-    }
-     //used in select2 to format the dropdown
-    function formatProductSelection(product) {
-      return product.name || product.text;
-    }
-
-
-
   $(".select2").select2({
     placeholder: "Enter Product Name",
     allowClear: true,
@@ -306,7 +286,7 @@ $(document).ready(function(){
                   tableProductList += "<td>"+productData.sku+"</td>";
                   tableProductList += "<td>"+productData.brand+"</td>";
                   tableProductList += "<td><input class='product_item' type='text' value='1' data-productid='"+productData.id+"' /></td>";
-                  tableProductList += "<td><a href='javascript:void(0)' onclick='$(this).parent().parent().remove();' class='pull-right remove'>Remove</a></td>";
+                  tableProductList += "<td><a href='javascript:void(0)'  class='pull-right remove'>Remove</a></td>";
                   tableProductList += "</tr>";
 
               $("#products_added").append(tableProductList);
@@ -317,41 +297,85 @@ $(document).ready(function(){
                 products.push( {"id":$(this).data('productid'),"qty":$(this).val()} );
               });
               var json_product = JSON.stringify(products);
-
               $("#items").val(json_product);
-
             //calculate
-              $.ajax({
-                url: '/ajax-sales-calculate',
-                dataType: 'json',
-                data: "data="+json_product,
-                method: 'post',
-                beforeSend: function (xhr) {
-                    //send token first
-                    var _token = "<?= csrf_token() ?>";
-                    if(_token){
-                      return xhr.setRequestHeader('X-CSRF-TOKEN', _token);
-                    }
-                },
-                success: function(data){
-                  $('#sub_total').html(data.sub_total);
-                  $('#tax').html(data.tax);
-                  $('#discount').html(data.discount);
-                  $('#total').html(data.total);
+              calculateAjaxSales(json_product);
 
-                }
-              });
               $(this).unbind( "click" ); //unbind the current click to reinitialize always at the end
           });
+
+
 
 
         });
   }); //end select2
 
+  //on change
+  $("#products_added").on('keyup','.product_item',function(){
+    var products = []; //prep object
+    $(".product_item").each(function(index, value){
+      products.push( {"id":$(this).data('productid'),"qty":$(this).val()} );
+    });
+    var json_product = JSON.stringify(products);
+    calculateAjaxSales(json_product);
+  });
+
+  //on remove
+  $("#products_added").on('click','.remove',function(){
+
+    $(this).parent().parent().remove();
+    var products = []; //prep object
+    $(".product_item").each(function(index, value){
+      products.push( {"id":$(this).data('productid'),"qty":$(this).val()} );
+    });
+    var json_product = JSON.stringify(products);
+
+    calculateAjaxSales(json_product);
+  });
+
+
+  function calculateAjaxSales(data)
+  {
+    $.ajax({
+      url: '/ajax-sales-calculate',
+      dataType: 'json',
+      data: "data="+data,
+      method: 'post',
+      beforeSend: function (xhr) {
+          //send token first
+          var _token = "<?= csrf_token() ?>";
+          if(_token){
+            return xhr.setRequestHeader('X-CSRF-TOKEN', _token);
+          }
+      },
+      success: function(data){
+        $('#sub_total').html(data.sub_total);
+        $('#tax').html(data.tax);
+        $('#discount').html(data.discount);
+        $('#total').html(data.total);
+
+      }
+    });
+  }
+
+  //used in select2 to format the dropdown
+  function formatProduct(product) {
+
+    if (product.loading) return product.text;
+    var markup = "<div>"+product.name+"</div>";
+    if (product.description) {
+      markup += "<div>" + product.description + "</div>";
+    }
+    return markup;
+  }
+   //used in select2 to format the dropdown
+  function formatProductSelection(product) {
+    return product.name || product.text;
+  }
 
 
 
-});
+}); //end document ready
 
 </script>
 
