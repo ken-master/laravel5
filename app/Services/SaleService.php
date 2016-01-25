@@ -35,7 +35,24 @@ class SaleService{
 	 * @return object  Sale's object
 	 */
 	public function get($id = null){
-		return $this->sale->get($id);
+		$data = $this->sale->get($id);
+		$items = [];
+
+		if($id != null){
+
+			$product_id = array_pluck( $data->saleItems->toArray(), 'product_id');
+			$products = $this->product->get($product_id)->toArray();
+			
+			foreach ($data->saleItems->toArray() as $saleItem) {
+				foreach ($products as  $product) {
+						if($saleItem['product_id'] == $product['id']){
+							$items[] = array_merge($saleItem,$product);
+						}
+				}
+				//break;
+			}
+		}
+		return ['data' => $data, 'products' => $items];
 	}
 
 

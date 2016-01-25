@@ -25,6 +25,8 @@ class Products extends Model
       return $this->belongsToMany('App\Models\Store','inventory','product_id', 'store_id')->withPivot('stocks', 'lower_limit', 'higher_limit');
   }
 
-
-
+	public function saleItems()
+	{
+		return belongsTo('App\Models\SaleItems');
+	}
 }

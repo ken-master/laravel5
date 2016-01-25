@@ -45,7 +45,7 @@ class saleItemsRepository implements SaleInterface{
 		}*/
 
 		if (!is_null($id)){
-			$saleItems = $this->saleItems->with('accessLevel')->find($id);
+			$saleItems = $this->saleItems->with('products')->find($id);
 		}
 		return $saleItems;
 

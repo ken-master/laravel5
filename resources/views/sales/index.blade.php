@@ -31,8 +31,9 @@
 
                       <th class="pull-right">Actions</th>
                     </tr>
-                    @if( !empty($data) && !is_null($data) )
-                      @foreach($data as $sales)
+
+                    @if( !empty($data['data']) && !is_null($data['data']) )
+                      @foreach($data['data'] as $sales)
                       <tr>
                         <td>{{ $sales->id  }}</td>
                         <td>{{ $sales->total_total  }}.</td>
@@ -64,16 +65,16 @@
                 </div><!-- /.box-body -->
                 <div class="box-footer clearfix">
 
-                  {!! $data->render() !!}
+                  {!! $data['data']->render() !!}
 
                   <!-- <ul class="pagination pagination-sm no-margin pull-right">
-                    <li><a href="{{$data->url(1)}}">&laquo;</a></li>
-                    <li><a href="{{ $data->previousPageUrl() }}">Prev</a></li>
-                    @for ( $i = 1; $i <= $data->lastPage(); $i++ )
-                      <li><a href="{{ $data->url($i) }}">{{$i}}</a></li>
+                    <li><a href="{{$data['data']->url(1)}}">&laquo;</a></li>
+                    <li><a href="{{ $data['data']->previousPageUrl() }}">Prev</a></li>
+                    @for ( $i = 1; $i <= $data['data']->lastPage(); $i++ )
+                      <li><a href="{{ $data['data']->url($i) }}">{{$i}}</a></li>
                     @endfor
-                    <li><a href="{{ $data->nextPageUrl() }}">Next</a></li>
-                    <li><a href="{{$data->url( $data->lastPage() )}}">&raquo;</a></li>
+                    <li><a href="{{ $data['data']->nextPageUrl() }}">Next</a></li>
+                    <li><a href="{{$data['data']->url( $data['data']->lastPage() )}}">&raquo;</a></li>
                   </ul> -->
 
                 </div>

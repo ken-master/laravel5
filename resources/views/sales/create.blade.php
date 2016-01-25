@@ -151,7 +151,7 @@
 
 </div>
 
-{!! Form::close() !!}
+
 
 
 
@@ -313,10 +313,12 @@ $(document).ready(function(){
   //on change
   $("#products_added").on('keyup','.product_item',function(){
     var products = []; //prep object
+    $(this).attr('value', this.value);
     $(".product_item").each(function(index, value){
       products.push( {"id":$(this).data('productid'),"qty":$(this).val()} );
     });
     var json_product = JSON.stringify(products);
+    $("#items").val(json_product);
     calculateAjaxSales(json_product);
   });
 
@@ -329,7 +331,7 @@ $(document).ready(function(){
       products.push( {"id":$(this).data('productid'),"qty":$(this).val()} );
     });
     var json_product = JSON.stringify(products);
-
+    $("#items").val(json_product);
     calculateAjaxSales(json_product);
   });
 

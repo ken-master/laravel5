@@ -16,9 +16,11 @@ class SalesController extends Controller
 
   protected $sales;
 
+
   public function __construct(SaleService $sales)
   {
     $this->sales = $sales;
+
   }
 
     /**
@@ -74,7 +76,11 @@ class SalesController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = $this->sales->get($id);
+
+        //dd($data['products']);
+
+        return view('sales.show', $data);
     }
 
     /**
@@ -108,7 +114,7 @@ class SalesController extends Controller
      */
     public function destroy($id)
     {
-      
+
       $s = $this->sales->delete( $id );
       return redirect( '/sales' )->with('message', 'Successfully Deleted');
     }
